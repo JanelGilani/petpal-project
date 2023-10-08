@@ -9,13 +9,8 @@
     --primary-500: #3b82f6;
     --primary-600: #2563eb;
     --primary-700: #1d4ed8;
-
     --secondary-50: #f8fafc;
+    --font: 'Quicksand', sans-serif;
 }
 
-/* Example usage */
-body {
-    background-color: var(--primary-50);
-    font-family: 'Quicksand', sans-serif;
-}
 
