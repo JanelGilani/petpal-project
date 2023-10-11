@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.css" rel="stylesheet">
+    <link href="../../style/index.css" rel="stylesheet">
+    <link href="../../style/pet-details.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="body">
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="../../index.html">
+            <img alt="logo" class="logo" src="../../images/logo_large.png">
+        </a>
+        <button aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"
+                data-target="#navbarNav" data-toggle="collapse" type="button">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="login.php">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="register.php">Register</a>
+                </li>
+                <li class="nav-item notification">
+                    <button class="ui vertical animated button" data-content="1 new message" data-inverted=""
+                            data-position="bottom left">
+                        <div class="hidden content">Notifications</div>
+                        <div class="visible content">
+                            <i class="mail icon"></i>
+                            <span class="notification-count">1</span>
+                        </div>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!-- End Bootstrap Navbar -->
+
+    <div class="header">
+    </div>
+
+
+    <div class="content">
+        <div class="pet-details content">
+            <h1 class="title"> Hi, My name is Neo!</h1>
+            <div class="grid-container">
+                <div class="card pet-image">
+                    <img alt="Adopt Pet" class="images" src="../../images/adoption/3.jpg">
+                </div>
+                <div class="card pet-info">
+                    <h5 class="card-title mb-3 text-xl">My Info</h5>
+                    <h6 class="card-subtitle mb-3 text-muted display-5">About Details</h6>
+                    <p class="card-text font-weight-bold">Breed: </p>
+                    <p class="card-text font-weight-bold">Age: </p>
+                    <p class="card-text font-weight-bold">Size: </p>
+                    <p class="card-text font-weight-bold">Characteristic: </p>
+                    <p class="card-text font-weight-bold">House-Trained:</p>
+                    <p class="card-text font-weight-bold">Health:</p>
+                    <p class="card-text font-weight-bold">Adaption Fees:</p>
+                </div>
+                <div class="card pet-status border-0">
+                    <h1 class="custom-font" style="color: white">Available</h1>
+                </div>
+                    <div class="card adoption-detail">
+                        <h1 class="card-title custom-font" style="color: rgb(77,71,81)">GoDoggy Adoption Center</h1>
+                        <p class="card-text font-weight-bold display-5 custom-font-2"><i class="book icon" style="color: black"></i> Address: 123 Dog Street</p>
+                        <p class="card-text font-weight-bold display-5 custom-font-2"><i class="mail icon" style="color: black"></i> Email: adopt@godoggyadoption.com</p>
+                        <p class="card-text font-weight-bold display-5 custom-font-2"><i class="phone icon" style="color: black"></i> Phone: +123 456 7890</p>
+                        <button class="ui button adopt-button">Adopt Me</button>
+                    </div>
+
+            </div>
+        </div>
+        <div class="footer">
+            <div class="wave">
+                <svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0,160L120,154.7C240,149,480,139,720,144C960,149,1200,171,1320,181.3L1440,192L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z" fill="black"
+                          fill-opacity="1"></path>
+                </svg>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.js"></script>
+</body>
+</html>

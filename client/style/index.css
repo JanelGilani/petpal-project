@@ -5,3 +5,192 @@
     font-family: var(--font);
     color: var(--primary-400);
 }
+
+/*
+Navbar
+*/
+nav.navbar {
+    padding: 15px 60px;
+    background: var(--primary-50);
+    font-size: 14px;
+    font-weight: 800;
+    font-family: var(--font);
+}
+div.navbar-collapse {
+    display: flex;
+    justify-content: flex-end;
+    color: white;
+}
+
+button.ui.vertical.animated.button {
+    background: none;
+    padding-left: 45px;
+}
+
+.notification-count {
+    position: absolute;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 0px 5px;
+    font-size: 10px;
+}
+
+.navbar.navbar-light {
+    color: white;
+}
+
+img.logo {
+    width: 120px;
+}
+/*
+Body Content
+*/
+.slide-show {
+    position: relative;
+    width: 100vw;
+    height: 500px;
+    overflow: hidden;
+}
+
+.slide-show img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: relative;
+    z-index: 1;
+}
+
+
+/*
+Card Layout
+*/
+
+.ui.cards.home {
+    display: flex;
+    justify-content: center;
+}
+
+.adoption.cards {
+    padding: 40px 60px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
+}
+
+h1.adoption.title {
+    font-size: 60px;
+    font-weight: 800;
+    color: var(--primary-400);
+    text-align: center;
+    font-family: var(--font);
+}
+
+.adoption.card {
+    overflow: hidden; /* Hide overflow to round the corners */
+    width: 200px;
+    height: auto;
+    position: relative;
+}
+
+.heart.icon {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    color: white;
+    z-index: 2;
+}
+.heart.icon:hover {
+    cursor: pointer;
+    color: red;
+    transform: scale(1.2);
+    transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+.adoption.card:hover {
+    transform: scale(1.01);
+    transition: transform 0.3s ease-in-out;
+}
+.adoption.card:hover {
+    outline: 2px solid blue;
+    transition: outline 0.3s ease-in-out;
+}
+
+.adoption.card:hover .curved-border {
+    outline: none;
+}
+
+.card-image {
+    position: relative;
+    overflow: hidden;
+}
+
+.card-image img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+.card-content {
+    position: relative;
+}
+
+.card-wave {
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    position: absolute;
+}
+
+.card-description {
+    z-index: 4;
+}
+
+.card-description.title {
+    margin: 0;
+    padding: 0 10px 25px;
+    text-align: center;
+    background-color: #fff;
+    font-size: 24px;
+    font-family: var(--font);
+    z-index: 4;
+    color: var(--secondary-black);
+}
+
+.card-description.button {
+    width: 100%;
+    background-color: white;
+    border-top: 0.5px solid var(--primary-400);
+}
+
+.card-description .ui.button {
+    color: var(--secondary-black);
+    transition: background-color 0.3s;
+    font-family: var(--font);
+    padding: 15px;
+}
+
+.adoption.card:hover .ui.button {
+    background-color: var(--primary-500);
+    color: #fff;
+}
+
+.card-description .ui.button:hover {
+    background-color: var(--primary-500);
+    color: #fff;
+}
+
+/*
+Footer
+*/
+.wave {
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50px; /* Adjust the height as needed */
+}
+
+.wave svg {
+    display: block;
+}

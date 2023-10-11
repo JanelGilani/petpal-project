@@ -1,18 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
-    <link rel="stylesheet" href="style/index.css">
-    <!-- Add Bootstrap CSS link -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.css">
+    <link href="style/index.css" rel="stylesheet">
 </head>
 <body>
+
 <div class="body">
-    <!-- Bootstrap Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Your Logo</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="#">
+            <img src="images/logo_large.png" alt="logo" class="logo">
+        </a>
+        <button aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navbarNav" data-toggle="collapse" type="button">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
@@ -26,21 +29,145 @@
                 <li class="nav-item">
                     <a class="nav-link" href="register.php">Register</a>
                 </li>
+                <li class="nav-item">
+                    <button class="ui vertical animated button" data-inverted="" data-position="bottom left" data-content="1 new message">
+                        <div class="hidden content">Messages</div>
+                        <div class="visible content">
+                            <i class="mail icon"></i>
+                        </div>
+                    </button>
+                </li>
             </ul>
         </div>
     </nav>
     <!-- End Bootstrap Navbar -->
 
     <div class="header">
-        <h1>Home</h1>
     </div>
+
+
     <div class="content">
-        <!-- Rest of your content -->
+        <div class="slide-show images">
+<!--            <img src="images/pet1-slideshow.jpeg" alt="Adopt Pet" class="images">-->
+            <img src="images/pet2-slideshow.jpeg" alt="Adopt Pet" class="images">
+<!--            <img src="images/pet3-slideshow.jpeg" alt="Adopt Pet" class="images">-->
+        </div>
+        <div class="adoption cards">
+            <h1 class="adoption title">Looking to Adopt a Pet?</h1>
+            <div class="ui cards home">
+
+                <div class="card">
+                    <div class="curved-border">
+                        <div class="card-image">
+                            <img src="images/adoption/1.jpg" alt="Browny">
+                            <i class="heart icon"></i>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-wave">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+                                <path fill="white" fill-opacity="1" d="M0,192L120,176C240,160,480,128,720,128C960,128,1200,160,1320,176L1440,192L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="card-description">
+                        <h3 class="card-description title">Browny</h3>
+                        <button class="card-description ui button">Adopt</button>
+                    </div>
+                </div>
+
+
+                <div class="card">
+                    <div class="curved-border">
+                        <div class="card-image">
+                            <img src="images/adoption/2.jpg" alt="Browny">
+                            <i class="heart icon"></i>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-wave">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+                                <path fill="white" fill-opacity="1" d="M0,192L120,176C240,160,480,128,720,128C960,128,1200,160,1320,176L1440,192L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="card-description">
+                        <h3 class="card-description title">Mellow</h3>
+                        <button class="card-description ui button">Adopt</button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="curved-border">
+                        <div class="card-image">
+                            <img src="images/adoption/3.jpg" alt="Browny">
+                            <i class="heart icon"></i>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-wave">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+                                <path fill="white" fill-opacity="1" d="M0,192L120,176C240,160,480,128,720,128C960,128,1200,160,1320,176L1440,192L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="card-description">
+                        <h3 class="card-description title">Neo</h3>
+                        <button class="card-description ui button">Adopt</button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="curved-border">
+                        <div class="card-image">
+                            <img src="images/adoption/4.jpeg" alt="Browny">
+                            <i class="heart icon"></i>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-wave">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+                                <path fill="white" fill-opacity="1" d="M0,192L120,176C240,160,480,128,720,128C960,128,1200,160,1320,176L1440,192L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="card-description">
+                        <h3 class="card-description title">Rocky</h3>
+                        <a href="pages/seeker/pet-details.html" class="card-description ui button">Adopt</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="curved-border">
+                        <div class="card-image">
+                            <img src="images/adoption/5.jpeg" alt="Browny">
+                            <i class="heart icon"></i>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-wave">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+                                <path fill="white" fill-opacity="1" d="M0,192L120,176C240,160,480,128,720,128C960,128,1200,160,1320,176L1440,192L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="card-description">
+                        <h3 class="card-description title">Timber</h3>
+                        <button class="card-description ui button">Adopt</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
     </div>
     <div class="footer">
-        <!-- Your footer links -->
+        <div class="wave">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+                <path fill="black" fill-opacity="1" d="M0,160L120,154.7C240,149,480,139,720,144C960,149,1200,171,1320,181.3L1440,192L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"></path>
+            </svg>
+        </div>
     </div>
 </div>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.js"></script>
 </body>
 </html>

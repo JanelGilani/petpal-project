@@ -1,0 +1,93 @@
+.pet-details.content {
+    padding: 50px;
+    text-align: center;
+    background-color: #fff;
+    font-family: var(--font);
+    z-index: 4;
+    color: var(--secondary-black);
+}
+
+h1.title {
+    font-size: 50px;
+    font-family: var(--font);
+    margin-bottom: 60px;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-rows: repeat(2, 200px);
+    grid-template-columns: 1fr 2fr; /* Decrease the width of the left column */
+    gap: 10px;
+}
+
+.pet-image.card {
+    grid-column: span 1;
+    grid-row: span 2;
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    border: 5px solid #6dce6d;
+}
+.pet-image img {
+    width: 100%;
+    height: 100%; /* Adjust the height to your preference */
+    object-fit: cover;
+}
+
+.card.pet-info {
+    grid-column: span 1;
+    grid-row: span 2;
+    border: none;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+    padding: 20px 30px;
+    align-items: flex-start;
+}
+
+.card.pet-status {
+    background-color: #6dce6d;
+}
+
+.card.adoption-detail {
+    grid-column: span 1;
+    grid-row: span 2;
+    height: auto;
+    background-color: var(--primary-200);
+    border: none;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px 30px;
+    align-items: flex-start;
+}
+h1.pet-info {
+    font-size: 30px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    font-family: var(--font);
+}
+
+button.ui.button.adopt-button {
+    background: var(--primary-400);
+    color: white;
+}
+
+button.ui.button.adopt-button:hover {
+    cursor: pointer;
+    background: var(--primary-600);
+    transition: all 0.3s ease-in-out;
+}
+
+.adopt-button:hover {
+    background-color: var(--primary-600);
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+
+.custom-font {
+    font-family: var(--font);
+    color: var(--secondary-50);
+}
+
+
