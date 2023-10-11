@@ -1,7 +1,5 @@
 @import "global.css";
 
-
-
 .form-group {
     margin-bottom: 15px;
 }
@@ -109,7 +107,7 @@
 
 .btn {
     color: var(--primary-50);
-    background-color: var(--primary-700);
+    background-color: var(--primary-600);
 }
 .btn :hover{
     color: var(--primary-50);
@@ -141,7 +139,7 @@
 
 .login-modal-right {
     flex: 0.4; /* Make the right div take up half of the available space */
-    background: var(--primary-700); /* Lilac background color */
+    background: var(--primary-600); /* Lilac background color */
     padding: 40px 20px 20px 20px; /* Adjust the padding as needed */
     height: 80vh;
     color: var(--primary-50);

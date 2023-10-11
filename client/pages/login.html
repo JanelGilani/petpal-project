@@ -12,7 +12,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.js"></script>
     <link rel="stylesheet" href="../style/login.css">
-    <link rel="stylesheet" href="../style/login.css" </head>
+</head>
 
 <body>
     <!-- Bootstrap Navbar -->
@@ -43,7 +43,7 @@
         <div class="content">
 
             <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+            <button type="button" class="ui button" data-toggle="modal" data-target="#exampleModalCenter">
                 Launch demo modal
             </button>
 
@@ -54,7 +54,7 @@
                     <div class="modal-content">
 
                         <div class="login-modal">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <button type="button" class="close" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                             <div class="login-modal-left">
@@ -117,20 +117,14 @@
                     </div>
                 </div>
             </div>
-            <script>$('#myModal').on('shown.bs.modal', function () {
-                    $('#myInput').trigger('focus')
-                })</script>
-        </div>
-
-        <script>
-            $(document).ready(function () {
-                $('#open-modal').click(function () {
-                    $('.ui.modal').modal('show');
+            <script>
+                $(document).ready(function () {
+                    $('#loginLink').click(function () {
+                        $('#exampleModalCenter').modal('show');
+                    });
                 });
-            });
-        </script>
-
-
+            </script>
+        </div>
     </div>
 
     <div class="footer">

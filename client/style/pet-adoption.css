@@ -1,0 +1,46 @@
+@import "global.css";
+
+body,p,h1,h2,form,#process {
+    background-color: #f8f9fa;
+    font-family: var(--font);
+}
+.btn.btn-primary{
+    font-family: var(--font);
+}
+/* Customize the navbar */
+.navbar-custom {
+    background-color: #007bff; /* Blue background */
+}
+/* .card {
+    border-radius: 4px;
+} */
+.left-banner,
+        .right-banner {
+            position: fixed;
+            top: 0;
+            width: 100px; /* Adjust the width as needed */
+            height: 100%; /* Set the height to cover the entire page */
+            background-image: url("../images/modele-sans-couture-tetes-chiens-differentes-races_192280-226.avif");
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .left-banner {
+            left: 0;
+            z-index: -1;
+        }
+
+        .right-banner {
+            right: 0;
+            z-index: -1;
+        }
+
+.navbar-custom .navbar-brand,
+.navbar-custom .navbar-nav .nav-link {
+    color: #ffffff; /* White text */
+}
+
+.navbar-custom .navbar-toggler-icon {
+    background-color: #ffffff; /* White color for the hamburger icon */
+    font-family: 'Quicksand', sans-serif;
+}

@@ -46,6 +46,55 @@ img.logo {
 /*
 Body Content
 */
+
+/*
+Search Bar
+*/
+.joined-search {
+    display: flex;
+}
+
+.joined-search .ui.input {
+    border-radius: 2px;
+    width: 300px;
+    margin: 0;
+}
+
+.joined-search .ui.icon.input input {
+    font-family: var(--font);
+    font-weight: 400;
+    font-size: 16px;
+    height: 55px;
+    transition: border-color 0.3s ease;
+}
+
+.joined-search .ui.icon.input input:focus {
+    border: 2px solid var(--primary-400);
+}
+
+.joined-search .ui.icon.input input:hover {
+    border: 3px solid var(--primary-400);
+}
+
+.joined-search .ui.icon.input input.name {
+    border-right: none;
+    border-radius: 4px 0 0 4px;
+}
+.joined-search .ui.icon.input input.location {
+    border-left: none;
+    border-radius: 0 4px 4px 0 !important;
+}
+.slide-show .ui.joined-search {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2; /* Place the search bar in front of the image */
+}
+/*
+Bg image
+*/
+
 .slide-show {
     position: relative;
     width: 100vw;
@@ -61,6 +110,29 @@ Body Content
     z-index: 1;
 }
 
+/*
+Our Resource
+*/
+
+.info-container {
+    text-align: center;
+    margin-top: 20px;
+    background-color: var(--primary-50);
+    height: auto;
+    padding: 40px 60px;
+}
+
+.benefit-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+}
+.ui.card.benefit {
+    width: 300px;
+    height: 250px;
+    padding: 10px;
+}
 
 /*
 Card Layout
@@ -112,7 +184,7 @@ h1.adoption.title {
     transform: scale(1.01);
     transition: transform 0.3s ease-in-out;
 }
-.adoption.card:hover {
+.adoption.card.card:hover {
     outline: 2px solid blue;
     transition: outline 0.3s ease-in-out;
 }

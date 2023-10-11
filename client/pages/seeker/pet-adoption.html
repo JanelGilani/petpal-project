@@ -9,62 +9,60 @@
     <link rel="stylesheet" href="css/global.css">
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-
-    <style>
-        body {
-            background-color: #f8f9fa;
-        }
-
-        /* Customize the navbar */
-        .navbar-custom {
-            background-color: #007bff; /* Blue background */
-        }
-
-        .navbar-custom .navbar-brand,
-        .navbar-custom .navbar-nav .nav-link {
-            color: #ffffff; /* White text */
-        }
-
-        .navbar-custom .navbar-toggler-icon {
-            background-color: #ffffff; /* White color for the hamburger icon */
-            font-family: 'Quicksand', sans-serif;
-        }
-
-    </style>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.css" rel="stylesheet">
+    <link href="../../style/pet-adoption.css" rel="stylesheet">
+    <link href="../../style/index.css" rel="stylesheet">
 </head>
 <body>
 <!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
-    <a class="navbar-brand" href="#">Petfinder</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+<div class="body">
+<nav class="navbar navbar-expand-lg navbar-light">
+    <a class="navbar-brand" href="../../index.html">
+        <img alt="logo" class="logo" src="../../images/logo_large.png">
+    </a>
+    <button aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"
+            data-target="#navbarNav" data-toggle="collapse" type="button">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ml-auto">
+        <ul class="navbar-nav">
             <li class="nav-item active">
                 <a class="nav-link" href="#">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Adopt</a>
+                <a class="nav-link" href="login.php">Login</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Donate</a>
+                <a class="nav-link" href="register.php">Register</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Contact</a>
+            <li class="nav-item notification">
+                <button class="ui vertical animated button" data-content="1 new message" data-inverted=""
+                        data-position="bottom left">
+                    <div class="hidden content">Notifications</div>
+                    <div class="visible content">
+                        <i class="mail icon"></i>
+                        <span class="notification-count">1</span>
+                    </div>
+                </button>
             </li>
         </ul>
     </div>
 </nav>
+</div>
+<div class="left-banner">
+    <!-- <img src="modele-sans-couture-tetes-chiens-differentes-races_192280-226.avif" alt="Card image cap"> -->
+</div>
+<div class="right-banner">
+    <!-- <img src="modele-sans-couture-tetes-chiens-differentes-races_192280-226.avif" alt="Card image cap"> -->
+</div>
 <!-- Adoption Form -->
 <div class="container mt-4">
     <div class="row">
         <div class="col-lg-7 ">
             <!-- Check if the user already has an application for the same pet
             If the user has an application, show an error message or disable the link to this page -->
-            <form>
-                <h2>Adoption Application</h2>
+            <form class="adoption-form">
+                <p style="font-size: 30px; font-weight: bold;">Adoption Application</p>
                 <div class="form-group">
                     <label for="name">Your Name</label>
                     <input type="text" class="form-control" id="name" name="name" required>
@@ -124,9 +122,9 @@
 
         </div>
             <div class="col-lg-4">
-                <h2>Learn About Adoption</h2>
+                <p style="font-size: 30px; font-weight: bold;">Learn About Adoption</p>
                 <div class="card" style="width: 22rem; margin-top: 10px;">
-                    <img class="card-img-top" src="pencil-writing.jpg" alt="Card image cap">
+                    <img class="card-img-top" src="../../images/strategic-planning-process-flat-concept-spot-illustration-editable-2d-cartoon-character-on-white-for-web-design-following-plan-and-making-decisions-creative-idea-for-website-mobile-magazine-vector.jpg" alt="Card image cap">
                     <div class="card-body">
                       <h5 class="card-title">Process</h5>
                       <p class="card-text">Learn more about the process of adoption</p>
@@ -134,7 +132,7 @@
                     </div>
                 </div>
                 <div class="card" style="width: 22rem; margin-top: 10px;">
-                    <img class="card-img-top" src="gettyimages-145671149.jpg" alt="Card image cap">
+                    <img class="card-img-top" src="../../images/istockphoto-1352004141-612x612.jpg" alt="Card image cap">
                     <div class="card-body">
                       <h5 class="card-title">Fees</h5>
                       <p class="card-text">Learn more about the fee for adoption</p>
@@ -142,7 +140,7 @@
                     </div>
                 </div>
                 <div class="card" style="width: 22rem; margin-top: 10px;">
-                    <img class="card-img-top" src="validate-requirements-prototyping.png" alt="Card image cap">
+                    <img class="card-img-top" src="../../images/flat-young-smiley-businessman-near-folder-with-task-list-holding-pencil_126523-2893.avif" alt="Card image cap">
                     <div class="card-body">
                       <h5 class="card-title">Requirements</h5>
                       <p class="card-text">Learn more about the requirement for adoption</p>

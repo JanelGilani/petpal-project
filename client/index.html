@@ -6,10 +6,11 @@
     <title>Home</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <link href="style/index.css" rel="stylesheet">
 </head>
-<body>
 
+<body>
 <div class="body">
     <nav class="navbar navbar-expand-lg navbar-light">
         <a class="navbar-brand" href="#">
@@ -23,8 +24,11 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="#">Home</a>
                 </li>
+                <li class="nav-item active">
+                    <a id="loginLink" class="nav-link" href="pages/login.html">Login</a>
+                </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="login.php">Login</a>
+                    <a class="nav-link" href="pages/seeker/search.html">Pet Search</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="register.php">Register</a>
@@ -40,22 +44,62 @@
             </ul>
         </div>
     </nav>
-    <!-- End Bootstrap Navbar -->
-
     <div class="header">
     </div>
 
-
     <div class="content">
         <div class="slide-show images">
-<!--            <img src="images/pet1-slideshow.jpeg" alt="Adopt Pet" class="images">-->
+            <div class="ui joined-search">
+                <div class="ui icon input">
+                    <input type="text" class="name" placeholder="Search your Pet">
+                </div>
+                <div class="ui icon input">
+                    <input type="text" class="location" placeholder="Your Desired Location">
+                    <i class="search icon"></i>
+                </div>
+            </div>
             <img src="images/pet2-slideshow.jpeg" alt="Adopt Pet" class="images">
-<!--            <img src="images/pet3-slideshow.jpeg" alt="Adopt Pet" class="images">-->
         </div>
+
+        <div class="info-container">
+            <h1 style="color: rgb(77,71,81)">PROVIDING THE BEST CARE</h1>
+            <div class="benefit-container">
+                <div class="ui cards home">
+                    <div class="ui card benefit" style="width: 18rem;">
+                        <div class="image">
+                            <i class="fas fa-heart fa-3x"></i>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">We Offer</h5>
+                            <p class="card-text">Find your perfect pet from a wide selection of adorable animals.</p>
+                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                    </div>
+                    <div class="ui card benefit" style="width: 18rem;">
+                        <img class="card-img-top" src="..." alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">We Care</h5>
+                            <p class="card-text">Experience a quick and hassle-free adoption process with PetPal.</p>
+                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                    </div>
+                    <div class="ui card benefit" style="width: 18rem;">
+                        <div class="image" style="background: none">
+                            <i class="fas fa-heart fa-3x"></i>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">You Get</h5>
+                            <p class="card-text">Give a loving home to a furry friend and make a difference by being a difference.</p>
+                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="adoption cards">
             <h1 class="adoption title">Looking to Adopt a Pet?</h1>
             <div class="ui cards home">
-
                 <div class="card">
                     <div class="curved-border">
                         <div class="card-image">
@@ -159,6 +203,13 @@
 
             </div>
         </div>
+        <script>
+            $(document).ready(function () {
+                $('#loginLink').click(function () {
+                    $('#exampleModalCenter').modal('show');
+                });
+            });
+        </script>
     </div>
     <div class="footer">
         <div class="wave">
