@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Petfinder App</title>
+    <!-- LInk Global CSS file -->
+    <link rel="stylesheet" href="global.css">
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #93c5fd;
+        }
+
+        /* Customize the navbar */
+        .navbar-custom {
+            background-color: #007bff; /* Blue background */
+        }
+
+        .navbar-custom .navbar-brand,
+        .navbar-custom .navbar-nav .nav-link {
+            color: #ffffff; /* White text */
+        }
+
+        .navbar-custom .navbar-toggler-icon {
+            background-color: #ffffff; /* White color for the hamburger icon */
+            font-family: 'Quicksand', sans-serif;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
+        <a class="navbar-brand" href="#">Petfinder</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Adopt</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Donate</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!--TRY 2 Listings on 1 row
+        Add Picture to the listings
+        Have edit buttons-->
+    <!-- <div class="container mt-4">
+        <div>
+            <a class="btn btn-primary" href="#" role="button">Add a New Listing</a>
+        </div>
+        <div class="d-flex flex-column align-items-center">
+            <p class="display-4">Pets Listed by your Shelter</p>
+            <div class="w-50 list-group list-group-flush text-center">
+                <a href="#" class="list-group-item list-group-item-action">Nemo: Orange Clownfish</a>
+                <a href="#" class="list-group-item list-group-item-action">Bolt: White Dog</a>
+                <a href="#" class="list-group-item list-group-item-action">Tom: Gray Cat</a>
+                <a href="#" class="list-group-item list-group-item-action">Scooby: Brown Dog</a>
+                <a href="#" class="list-group-item list-group-item-action">Donald: White Duck</a>
+            </div>
+        </div>
+    </div> -->
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-3">
+                <a class="btn btn-primary" href="Create_pet.html" role="link">Add a New Listing</a>
+            </div>
+            <div class="col-7">
+                <h1>Pets Listed by your Shelter</h1>
+            </div>
+            <div class="col-2">
+                <a class="btn btn-primary" href="acc_update_shelter.html" role="link">Edit Shelter Info</a>
+            </div>
+        </div>
+    </div>
+    <div class="w-50 container mt-4">
+        <div class="row justify-content-md-center">
+            <div class="col-sm">
+                <img src="nemo.jpg" width="200" height="200" alt="" class="rounded-circle float-left">
+                <label for="img">Nemo: Orange Clownfish</label>
+                <div class="container">
+                    <div class="row">
+                        <a class="btn btn-primary ml-3" href="#" role="link">View</a>
+                        <a class="btn btn-primary ml-5" href="Update_pet.html" role="link">Edit</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm text-center ml-5">
+                <img src="bolt.jpg" width="200" height="200" alt="" class="rounded-circle float-right mr-5">
+                <label class="mr-5" for="img">Bolt: White Dog</label>
+                <div class="container">
+                    <div class="row">
+                        <a class="btn btn-primary ml-4" href="#" role="link">View</a>
+                        <a class="btn btn-primary ml-5" href="Update_pet.html" role="link">Edit</a>
+                    </div>
+                </div>
+            </div>
+            <div class="w-100 mt-4"></div>
+            <div class="col-sm">
+                <img src="tom.jpg" width="200" height="200" alt="" class="rounded-circle float-left">
+                <label class="ml-5" for="img">Tom: Grey Cat</label>
+                <div class="container">
+                    <div class="row">
+                        <a class="btn btn-primary ml-3" href="#" role="link">View</a>
+                        <a class="btn btn-primary ml-5" href="Update_pet.html" role="link">Edit</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm text-center ml-5">
+                <img src="donald.jpg" width="200" height="200" alt="" class="rounded-circle float-right mr-5">
+                <label class="mr-5" for="img">Donald: White Duck</label>
+                <div class="container">
+                    <div class="row">
+                        <a class="btn btn-primary ml-4" href="#" role="link">View</a>
+                        <a class="btn btn-primary ml-5" href="Update_pet.html" role="link">Edit</a>
+                    </div>
+                </div>
+            </div>
+            <div class="w-100 mt-4"></div>
+            <div class="col-sm">
+                <img src="scooby.jpg" width="200" height="200" alt="" class="rounded-circle float-left">
+                <label class="ml-3" for="img">Scooby: Brown Dog</label>
+                <div class="container">
+                    <div class="row">
+                        <a class="btn btn-primary ml-3" href="#" role="link">View</a>
+                        <a class="btn btn-primary ml-5" href="Update_pet.html" role="link">Edit</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm">
+                <img src="" width="200" height="200" alt="" class="rounded-circle float-left">
+                <label for="img"></label>
+            </div>  
+        </div>
+    </div>
+    
+</body>
+
+    <!-- Bootstrap JS (optional, but needed for the responsive navbar) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
