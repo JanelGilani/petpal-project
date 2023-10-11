@@ -1,0 +1,9 @@
+@import "global.css";
+
+#shelter-fields {
+    display: none;
+}
+
+#user-shelter:checked ~ #shelter-fields {
+    display: block;
+}
