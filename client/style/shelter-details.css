@@ -1,7 +1,10 @@
 @import "global.css";
 
-body,p,h1,h2,form,#process {
+body,h1,h2,form,#process {
     background-color: #f8f9fa;
+    font-family: var(--font);
+}
+p{
     font-family: var(--font);
 }
 .btn.btn-primary{
@@ -12,6 +15,7 @@ body,p,h1,h2,form,#process {
     padding: 15px;
     margin: 10px;
     background-color: #fff;
+    border-radius: 4px;
 }
 .center-image {
     display: flex;
@@ -22,5 +26,28 @@ body,p,h1,h2,form,#process {
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: 30px; 
+    font-weight: bold;
+
 
 }
+.left-banner,
+        .right-banner {
+            position: fixed;
+            top: 0;
+            width: 100px; /* Adjust the width as needed */
+            height: 100%; /* Set the height to cover the entire page */
+            background-image: url("../images/modele-sans-couture-tetes-chiens-differentes-races_192280-226.avif");
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .left-banner {
+            left: 0;
+            z-index: -1;
+        }
+
+        .right-banner {
+            right: 0;
+            z-index: -1;
+        }
