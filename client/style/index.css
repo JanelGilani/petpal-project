@@ -4,6 +4,10 @@
     width: 100vw;
     font-family: var(--font);
     color: var(--primary-400);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    min-height: 100vh;
 }
 
 /*
@@ -42,6 +46,7 @@ button.ui.vertical.animated.button {
 
 img.logo {
     width: 120px;
+    margin: 0;
 }
 /*
 Body Content
@@ -132,8 +137,15 @@ Our Resource
     width: 300px;
     height: 250px;
     padding: 10px;
+    border: none;
+    color: var(--primary-600);
 }
 
+
+.ui.cards.home {
+    margin: 10px;
+    gap: 20px;
+}
 /*
 Card Layout
 */
@@ -153,14 +165,14 @@ Card Layout
 }
 
 h1.adoption.title {
-    font-size: 60px;
+    font-size: 45px;
     font-weight: 800;
     color: var(--primary-400);
     text-align: center;
     font-family: var(--font);
 }
 
-.adoption.card {
+.adoption-pet.card {
     overflow: hidden; /* Hide overflow to round the corners */
     width: 200px;
     height: auto;
@@ -180,16 +192,16 @@ h1.adoption.title {
     transform: scale(1.2);
     transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
 }
-.adoption.card:hover {
+.adoption-pet.card:hover {
     transform: scale(1.01);
     transition: transform 0.3s ease-in-out;
 }
-.adoption.card.card:hover {
+.adoption-pet.card:hover {
     outline: 2px solid blue;
-    transition: outline 0.3s ease-in-out;
+    transition: outline 0.1s ease-in-out;
 }
 
-.adoption.card:hover .curved-border {
+.adoption-pet.card:hover .curved-border {
     outline: none;
 }
 
@@ -243,7 +255,7 @@ h1.adoption.title {
     padding: 15px;
 }
 
-.adoption.card:hover .ui.button {
+.adoption-pet.card:hover .ui.button {
     background-color: var(--primary-500);
     color: #fff;
 }
@@ -256,13 +268,69 @@ h1.adoption.title {
 /*
 Footer
 */
-.wave {
-    bottom: 0;
-    left: 0;
+.footer {
+    position: relative;
     width: 100%;
-    height: 50px; /* Adjust the height as needed */
+    overflow: hidden;
 }
 
-.wave svg {
-    display: block;
+.footer {
+    background-color: var(--primary-50);
+    color: var(--secondary-black);
+    padding: 20px 0;
+}
+
+.logo {
+    max-width: 100%;
+    margin-bottom: 20px;
+}
+
+.footer .col-md-4, .footer .col-md-2 {
+    margin-top: 50px;
+}
+
+.footer .col-md-4 {
+    margin-bottom: 20px;
+}
+
+.footer h3 {
+    color: var(--primary-400);
+}
+
+.social-icons {
+    list-style: none;
+    padding: 0;
+}
+
+.social-icons li {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.social-icons a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.footer ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer ul li {
+    margin-bottom: 10px;
+}
+
+.footer ul a {
+    color: var(--secondary-black);
+    text-decoration: none;
+}
+
+/* Style the copyright text */
+.copyright {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 14px;
+    color: #999;
 }
