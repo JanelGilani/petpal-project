@@ -7,13 +7,14 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <link href="style/index.css" rel="stylesheet">
 </head>
 
 <body>
 <div class="body">
-    <nav class="navbar navbar-expand-lg navbar-light">
-        <a class="navbar-brand" href="#">
+    <nav class="navbar navbar-expand-lg navbar-light" style="height: 80px">
+        <a class="navbar-brand d-flex align-items-center" href="#">
             <img src="images/logo_large.png" alt="logo" class="logo">
         </a>
         <button aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navbarNav" data-toggle="collapse" type="button">
@@ -62,45 +63,48 @@
         </div>
 
         <div class="info-container">
-            <h1 style="color: rgb(77,71,81)">PROVIDING THE BEST CARE</h1>
+            <h1 style="color: rgb(77,71,81); font-family: var(--font); font-size: 45px">PROVIDING THE BEST CARE</h1>
             <div class="benefit-container">
                 <div class="ui cards home">
-                    <div class="ui card benefit" style="width: 18rem;">
-                        <div class="image">
-                            <i class="fas fa-heart fa-3x"></i>
+                    <div class="ui card benefit animate__animated animate__bounceIn" style="width: 18rem;">
+                        <div class="image" style="background: none">
+                            <i class="fas fa-paw fa-4x"></i>
                         </div>
                         <div class="card-body">
                             <h5 class="card-title">We Offer</h5>
                             <p class="card-text">Find your perfect pet from a wide selection of adorable animals.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                            <a href="#" class="btn btn-outline-info">Go somewhere</a>
                         </div>
                     </div>
-                    <div class="ui card benefit" style="width: 18rem;">
-                        <img class="card-img-top" src="..." alt="Card image cap">
+                    <div class="ui card benefit animate__animated animate__bounceIn" style="width: 18rem; border: none;">
+                        <div class="image" style="background: none">
+                            <i class="fas fa-check-circle fa-4x"></i>
+                        </div>
                         <div class="card-body">
                             <h5 class="card-title">We Care</h5>
                             <p class="card-text">Experience a quick and hassle-free adoption process with PetPal.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                            <a href="#" class="btn btn-outline-info">Go somewhere</a>
                         </div>
                     </div>
-                    <div class="ui card benefit" style="width: 18rem;">
+                    <div class="ui card benefit animate__animated animate__bounceIn" style="width: 18rem; border: none;">
                         <div class="image" style="background: none">
-                            <i class="fas fa-heart fa-3x"></i>
+                            <i class="fas fa-heart fa-4x"></i>
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title">You Get</h5>
+                            <h5 class="card-title">You Give</h5>
                             <p class="card-text">Give a loving home to a furry friend and make a difference by being a difference.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                            <a href="#" class="btn btn-outline-info">Go somewhere</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
+
         <div class="adoption cards">
             <h1 class="adoption title">Looking to Adopt a Pet?</h1>
             <div class="ui cards home">
-                <div class="card">
+                <div class="adoption-pet card">
                     <div class="curved-border">
                         <div class="card-image">
                             <img src="images/adoption/1.jpg" alt="Browny">
@@ -121,7 +125,7 @@
                 </div>
 
 
-                <div class="card">
+                <div class="adoption-pet card">
                     <div class="curved-border">
                         <div class="card-image">
                             <img src="images/adoption/2.jpg" alt="Browny">
@@ -141,7 +145,7 @@
                     </div>
                 </div>
 
-                <div class="card">
+                <div class="adoption-pet card">
                     <div class="curved-border">
                         <div class="card-image">
                             <img src="images/adoption/3.jpg" alt="Browny">
@@ -161,7 +165,7 @@
                     </div>
                 </div>
 
-                <div class="card">
+                <div class="adoption-pet card">
                     <div class="curved-border">
                         <div class="card-image">
                             <img src="images/adoption/4.jpeg" alt="Browny">
@@ -180,28 +184,14 @@
                         <a href="pages/seeker/pet-details.html" class="card-description ui button">Adopt</a>
                     </div>
                 </div>
-
-                <div class="card">
-                    <div class="curved-border">
-                        <div class="card-image">
-                            <img src="images/adoption/5.jpeg" alt="Browny">
-                            <i class="heart icon"></i>
-                        </div>
-                    </div>
-                    <div class="card-content">
-                        <div class="card-wave">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-                                <path fill="white" fill-opacity="1" d="M0,192L120,176C240,160,480,128,720,128C960,128,1200,160,1320,176L1440,192L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"></path>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="card-description">
-                        <h3 class="card-description title">Timber</h3>
-                        <button class="card-description ui button">Adopt</button>
-                    </div>
-                </div>
-
             </div>
+            <span style="width: 100%; padding: 0 70px; text-align: right">
+                <a href="pages/seeker/search.html" class="ui right labeled icon button bg-light">
+                <i class="right arrow icon bg-light"></i>
+                Pets Near You
+            </a>
+            </span>
+
         </div>
         <script>
             $(document).ready(function () {
@@ -211,14 +201,42 @@
             });
         </script>
     </div>
-    <div class="footer">
-        <div class="wave">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-                <path fill="black" fill-opacity="1" d="M0,160L120,154.7C240,149,480,139,720,144C960,149,1200,171,1320,181.3L1440,192L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"></path>
-            </svg>
-        </div>
-    </div>
 </div>
+
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2 text-center">
+                <img src="images/logo.png" alt="Pet Pal Logo" class="logo">
+            </div>
+            <div class="col-md-2 text-center">
+                <h3>Contact Us</h3>
+                <p>Email: info@petpal.com</p>
+                <p>Phone: +1 (123) 456-7890</p>
+            </div>
+            <div class="col-md-4 text-center ">
+                <h3>Follow Us</h3>
+                <p>Stay connected on social media</p>
+                <ul class="social-icons">
+                    <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                    <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                </ul>
+            </div>
+            <div class="col-md-4 text-center">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Adopt a Pet</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+        <p class="copyright text-center">&copy; 2023 Pet Pal. All rights reserved.</p>
+    </div>
+</footer>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.js"></script>
 </body>
 </html>

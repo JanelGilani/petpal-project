@@ -86,13 +86,12 @@
     </nav>
     <!--Navbar-->
 
-<div class="ui container" style="margin-top: 50px;">
+<div class="ui container search" style="margin-top: 50px;">
     <div class="ui form">
         <div class="fields">
-
             <div class="field">
                 <label>Type</label>
-                <select class="ui dropdown" id="typeFilter">
+                <select class="ui  dropdown" id="typeFilter">
                     <option value="">All</option>
                     <option value="dog">Dog</option>
                     <option value="cat">Cat</option>
@@ -136,15 +135,41 @@
                     <option value="Female">Female</option>
                 </select>
             </div>
-            <div class="field">
-                <label>Sort by Location</label>
-                <select class="ui dropdown" id="locationSort">
-                    <option value="asc">Ascending</option>
-                    <option value="desc">Descending</option>
-                </select>
+            <div class="filter-icon">
+                <div class="ui floating dropdown labeled icon button">
+                    <i class="filter icon"></i>
+                    <span class="text">Filter Posts</span>
+                    <div class="menu">
+                        <div class="ui icon search input">
+                            <i class="search icon"></i>
+                            <input type="text" placeholder="Search tags...">
+                        </div>
+                        <div class="divider"></div>
+                        <div class="header">
+                            <i class="tags icon"></i>
+                            Tag Label
+                        </div>
+                        <div class="scrolling menu">
+                            <div class="item">
+                                <div class="ui red empty circular label"></div>
+                                Location
+                            </div>
+                            <div class="item">
+                                <div class="ui blue empty circular label"></div>
+                                Date
+                            </div>
+                            <div class="item">
+                                <div class="ui green empty circular label"></div>
+                                Price
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+
     </div>
+
 
     <div class="applied-filters">
         <!-- Applied filters will be dynamically added here as labels -->
@@ -159,7 +184,7 @@
     <div class="ui cards">
         <div class="ui cards home">
 
-            <div class="card">
+            <div class="adoption-pet card">
                 <div class="curved-border">
                     <div class="card-image">
                         <img src="../../images/adoption/8.jpg" alt="Whitey">
@@ -179,7 +204,7 @@
                 </div>
             </div>
 
-            <div class="card">
+            <div class="adoption-pet card">
                 <div class="curved-border">
                     <div class="card-image">
                         <img src="../../images/adoption/7.jpeg" alt="Yin-Yang">
@@ -199,7 +224,7 @@
                 </div>
             </div>
 
-            <div class="card">
+            <div class="adoption-pet card">
                 <div class="curved-border">
                     <div class="card-image">
                         <img src="../../images/adoption/6.jpeg" alt="Green Parrot">
@@ -219,7 +244,7 @@
                 </div>
             </div>
 
-            <div class="card">
+            <div class="adoption-pet card">
                 <div class="curved-border">
                     <div class="card-image">
                         <img src="../../images/adoption/5.jpeg" alt="White Small Dog">
@@ -239,7 +264,7 @@
                 </div>
             </div>
 
-            <div class="card">
+            <div class="adoption-pet card">
                 <div class="curved-border">
                     <div class="card-image">
                         <img src="../../images/pet1-slideshow.jpeg" alt="Three Kittens">
@@ -259,7 +284,7 @@
                 </div>
             </div>
 
-            <div class="card">
+            <div class="adoption-pet card">
                 <div class="curved-border">
                     <div class="card-image">
                         <img src="../../images/pet3-slideshow.jpeg" alt="Browny">
@@ -289,45 +314,60 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
 <script>
     $(document).ready(function () {
-        // Initialize the modal
         $('#notificationButton').click(function () {
             $('.modal').modal('show');
         });
     });
 </script>
 <script>
-    function handleFilterSelection(filterId, label) {
-        const selectedValue = $(`#${filterId}`).val();
-        if (selectedValue) {
-            const filterTag = $(`<div class="ui label">${label}: ${selectedValue}<i class="delete icon"></i></div>`);
-            filterTag.find('.delete.icon').click(function () {
-                filterTag.remove();
-            });
+    $('.ui.dropdown').dropdown();
+</script>
 
-            $('.applied-filters').append(filterTag);
+<script>
+    $(document).ready(function () {
+        // Initialize the modal
+        $('#notificationButton').click(function () {
+            $('.modal').modal('show');
+        });
+
+        // Initialize Semantic UI dropdowns
+        $('.ui.dropdown').dropdown();
+
+        function handleFilterSelection(filterId, label) {
+            const selectedValue = $(`#${filterId}`).val();
+            if (selectedValue) {
+                const filterTag = $(`<div class="ui label">${label}: ${selectedValue}<i class="delete icon"></i></div>`);
+                filterTag.find('.delete.icon').click(function () {
+                    filterTag.remove();
+                });
+
+                $('.applied-filters').append(filterTag);
+            }
         }
-    }
 
-    $('#typeFilter').change(function () {
-        handleFilterSelection('typeFilter', 'Type');
-    });
+        $('#typeFilter').change(function () {
+            handleFilterSelection('typeFilter', 'Type');
+        });
 
-    $('#colorFilter').change(function () {
-        handleFilterSelection('colorFilter', 'Color');
-    });
+        $('#colorFilter').change(function () {
+            handleFilterSelection('colorFilter', 'Color');
+        });
 
-    $('#breedFilter').change(function () {
-        handleFilterSelection('breedFilter', 'Breed');
-    });
+        $('#breedFilter').change(function () {
+            handleFilterSelection('breedFilter', 'Breed');
+        });
 
-    $('#ageFilter').change(function () {
-        handleFilterSelection('ageFilter', 'Age');
-    });
+        $('#ageFilter').change(function () {
+            handleFilterSelection('ageFilter', 'Age');
+        });
 
-    $('#genderFilter').change(function () {
-        handleFilterSelection('genderFilter', 'Gender');
+        $('#genderFilter').change(function () {
+            handleFilterSelection('genderFilter', 'Gender');
+        });
+
     });
 </script>
+
 
 </body>
 </html>

@@ -1,3 +1,7 @@
+.ui.container.search {
+    width: 100%;
+}
+
 .ui.cards {
     display: flex;
     flex-wrap: wrap;
@@ -16,7 +20,7 @@
 .applied-filters .ui.label {
     margin-right: 5px;
     margin-bottom: 5px;
-    background-color: var( --primary-300);
+    background-color: var( --primary-500);
     color: white;
 }
 
@@ -67,4 +71,18 @@ select#locationSort {
     color: #777;
     margin-left: 10px;
     text-align: left;
+}
+
+.filter-icon {
+    margin: 0 5px 2px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    color: var(--secondary-black);
+}
+.ui.multiple.dropdown.filter {
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
+    align-items: center;
 }
