@@ -1,0 +1,70 @@
+.ui.cards {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.ui.card {
+    width: 300px;
+    margin: 10px;
+}
+
+.applied-filters {
+    margin-top: 10px;
+}
+
+.applied-filters .ui.label {
+    margin-right: 5px;
+    margin-bottom: 5px;
+    background-color: var( --primary-300);
+    color: white;
+}
+
+select.ui.dropdown {
+    height: 43px;
+}
+
+select#locationSort {
+    width: 250px;
+}
+
+.fields {
+    display: flex;
+    justify-content: center;
+}
+
+.modal-body {
+    display: flex;
+    align-items: flex-start;
+    font-size: 12px;
+    font-family: var(--font);
+}
+
+.notification-content {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: repeat(2, auto);
+    grid-gap: 5px;
+    border: none;
+}
+
+.notification-content img {
+    grid-row: span 2;
+}
+
+.notification-content .header {
+    grid-column: span 1;
+    grid-row: span 1;
+    margin: 0;
+    margin-left: 10px;
+    text-align: left;
+}
+
+.notification-content .description {
+    grid-column: span 1;
+    grid-row: span 1;
+    margin: 0;
+    color: #777;
+    margin-left: 10px;
+    text-align: left;
+}

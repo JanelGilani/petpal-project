@@ -67,12 +67,12 @@ h1.pet-info {
     font-family: var(--font);
 }
 
-button.ui.button.adopt-button {
+a.ui.button.adopt-button {
     background: var(--primary-400);
     color: white;
 }
 
-button.ui.button.adopt-button:hover {
+a.ui.button.adopt-button:hover {
     cursor: pointer;
     background: var(--primary-600);
     transition: all 0.3s ease-in-out;

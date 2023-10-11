@@ -1,0 +1,20 @@
+@import "global.css";
+
+body {
+    background-color: #f8f9fa;
+    font-family: var(--font);
+}
+/* Customize the navbar */
+.navbar-custom {
+    background-color: #007bff; /* Blue background */
+}
+
+.navbar-custom .navbar-brand,
+.navbar-custom .navbar-nav .nav-link {
+    color: #ffffff; /* White text */
+}
+
+.navbar-custom .navbar-toggler-icon {
+    background-color: #ffffff; /* White color for the hamburger icon */
+    font-family: 'Quicksand', sans-serif;
+}
