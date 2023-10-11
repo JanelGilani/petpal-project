@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Signup</title>
+    <!-- <link rel="stylesheet" href="style/index.css"> -->
+    <link rel="stylesheet" href="../style/signup.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.css">
+</head>
+<body>
+    <!-- Bootstrap Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Your Logo</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="login.php">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="register.php">Register</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!-- End Bootstrap Navbar -->
+
+    <div class="content">
+        <div class="container mt-5">
+            <h2>Sign Up</h2>
+            <form id="signup-form" action="register.php" method="post">
+                <!-- Basic Information -->
+                <div class="form-group">
+                    <label for="full-name">Full Name</label>
+                    <input type="text" class="form-control" id="full-name" name="full-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" id="password" name "password" required>
+                </div>
+                <div class="form-group">
+                    <label for="confirm-password">Confirm Password</label>
+                    <input type="password" class="form-control" id="confirm-password" name="confirm-password" required>
+                </div>
+                
+                <!-- User Type Selection -->
+                <div class="form-group">
+                    <label>I am a:</label><br>
+                    <input type="radio" id="user-seeker" name="user-type" value="seeker" checked>
+                    <label for="user-seeker">Pet Seeker</label>
+                    <input type="radio" id="user-shelter" name="user-type" value="shelter">
+                    <label for="user-shelter">Pet Shelter</label>
+                </div>
+                
+                <!-- Additional Fields for Pet Shelter -->
+                <div id="shelter-fields">
+                    <div class="form-group">
+                        <label for="shelter-name">Shelter Name</label>
+                        <input type="text" class="form-control" id="shelter-name" name="shelter-name">
+                    </div>
+                    <div class="form-group">
+                        <label for="shelter-address">Shelter Address</label>
+                        <input type="text" class="form-control" id="shelter-address" name="shelter-address">
+                    </div>
+                    <div class="form-group">
+                        <label for="shelter-license">Upload License</label>
+                        <input type="file" class="form-control-file" id="shelter-license" name="shelter-license">
+                    </div>
+                </div>
+                
+                <button class="ui button" type="submit" name="signup-submit">Sign Up</button>
+            </form>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <!-- Your footer links -->
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.js"></script>
+</body>
+</html>
