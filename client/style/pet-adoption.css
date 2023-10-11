@@ -1,7 +1,10 @@
 @import "global.css";
 
-body {
+body,p,h1,h2,form,#process {
     background-color: #f8f9fa;
+    font-family: var(--font);
+}
+.btn.btn-primary{
     font-family: var(--font);
 }
 /* Customize the navbar */

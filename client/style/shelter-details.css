@@ -1,0 +1,26 @@
+@import "global.css";
+
+body,p,h1,h2,form,#process {
+    background-color: #f8f9fa;
+    font-family: var(--font);
+}
+.btn.btn-primary{
+    font-family: var(--font);
+}
+.review-column {
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin: 10px;
+    background-color: #fff;
+}
+.center-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.name{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
