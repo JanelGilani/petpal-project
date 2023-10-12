@@ -4,15 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <!--Current File Title-->
-    <title>Signup | PetPal</title>
+    <title>Adoption Application Status | PetPal</title>
     <link rel="icon" type="image/x-icon" href="../../images/logo.png">
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" rel="stylesheet">
     <link href=" https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.css" rel="stylesheet">
     <link href=" https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="../../style/index.css" rel="stylesheet">
 
     <!--Current File CSS-->
@@ -123,121 +122,135 @@
 
 
             <!--Content-->
-            <div class="content acc-update">
+            <div class="container mt-4 ">
                 <div class="row">
-                    <!-- User Profile Picture -->
-                    <div class="col-md-4">
-                        <div class="profile-picture">
-                            <img class="profile-image" src="../../images/1_BlackPuppy-5ba50070c9e77c0082221c54.jpg"
-                                alt="Profile Picture">
-                            <!-- Upload Button -->
-                            <label for="profilePicture" class="upload-button">
-                                <i class="fas fa-camera"></i> Upload
-                            </label>
-                            <!-- File Input (Hidden) -->
-                            <input type="file" id="profilePicture" accept="image/*">
+                    <div class="col-lg-6">
+                        <p style="font-size: 30px; font-weight: bold;">Adoption Application Information</p>
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" class="form-control" id="name" name="name" value="John Doe" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" class="form-control" id="email" name="email" value="john@example.com"
+                                disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Home Address</label>
+                            <input type="text" class="form-control" id="address" name="address" value="123 Main St"
+                                disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="pettype">Pet Type</label>
+                            <input type="text" class="form-control" id="pettype" name="pettype" value="Dog" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="age">Preferred Pet Age</label>
+                            <input type="number" class="form-control" id="age" name="age" value="2" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="own">Have you owned pets before? If so, what happened to them?</label>
+                            <textarea class="form-control" rows="4" id="own"
+                                disabled>Had a cat before, it passed away due to old age.</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="plan">How do you plan to provide for your new pet's exercise and mental
+                                stimulation needs?</label>
+                            <textarea class="form-control" rows="4" id="plan"
+                                disabled>Plan to take daily walks and engage in interactive play.</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="reason">Reason for adoption</label>
+                            <textarea class="form-control" rows="4" id="reason"
+                                disabled>Looking for a furry companion.</textarea>
                         </div>
                     </div>
+                    <div class="col-lg-6">
+                        <p style="font-size: 30px; font-weight: bold;">Conversation with Pet Shelter</p>
 
-                    <!-- Account Update Form -->
-                    <div class="col-md-8">
-                        <h2 style="color: black">Account Update</h2>
-                        <form class="ui form" id="updateForm">
-                            <div class="field">
-                                <label for="name">Full Name</label>
-                                <input type="text" id="name" placeholder="Your Name" value="User's Name">
+                        <div class="conversation">
+
+                            <div class="message shelter-message">
+                                <strong> Shelter:</strong> Hi, John! Thanks for applying for adoption.
                             </div>
-                            <div class="field">
-                                <label for="email">Email</label>
-                                <input type="email" id="email" placeholder="Your Email" value="user@example.com">
+                            <div class="message user-message">
+                                <strong>You:</strong> Hello! I'm excited to adopt a dog.
                             </div>
-                            <div class="field">
-                                <label for="password">Password</label>
-                                <input type="password" id="password" placeholder="New Password">
+                            <div class="message shelter-message">
+                                <strong>Shelter:</strong> That's great to hear! We have some lovely dogs available for
+                                adoption.
                             </div>
-                            <div class="field">
-                                <label for="confirmPassword">Confirm Password</label>
-                                <input type="password" id="confirmPassword" placeholder="Confirm Password">
+                            <!-- Add more messages here with alternating classes for shelter and user -->
+                        </div>
+                        <!-- Conversation reply form -->
+                        <form class="conversation-form">
+                            <div class="form-group">
+                                <label for="reply" style="margin-top: 10px;"><strong> Your Reply </strong></label>
+                                <textarea class="form-control" rows="4" id="reply" placeholder="Enter your reply here"
+                                    required></textarea>
                             </div>
-                            <fieldset class="field additional-info">
-                                <h3>Additional Information</h3>
-                                <div class="field">
-                                    <label for="phone">Phone Number</label>
-                                    <input type="text" id="phone" placeholder="Your Phone Number" value="123-456-7890">
-                                </div>
-                                <div class="field">
-                                    <label for="location">Location</label>
-                                    <input type="text" id="location" placeholder="Your Location" value="Your Location">
-                                </div>
-                                <div class="field">
-                                    <label for="petPreferences">Pet Preferences</label>
-                                    <textarea id="petPreferences" placeholder="Your Pet Preferences"></textarea>
-                                </div>
-                            </fieldset>
-                            <button class="ui button" id="update-btn" type="button" name="signup-submit">Update</button>
+                            <button type="submit" class="btn btn-primary">Submit Reply</button>
                         </form>
                     </div>
                 </div>
             </div>
-        </div>
-
-        <footer class="footer">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-2 text-center">
-                        <img alt="Pet Pal Logo" class="logo" src="../../images/logo.png">
+            <footer class="footer">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-2 text-center">
+                            <img alt="Pet Pal Logo" class="logo" src="../../images/logo.png">
+                        </div>
+                        <div class="col-md-2 text-center">
+                            <h3>Contact Us</h3>
+                            <p>Email:
+                                <a class="email"
+                                    href="mailto:info@petpal.com?subject=Queries%20Regarding%20Pet">info@petpal.com</a>
+                            </p>
+                            <p>Phone: +1 (123) 456-7890</p>
+                        </div>
+                        <div class="col-md-4 text-center ">
+                            <h3>Follow Us</h3>
+                            <p>Stay connected on social media</p>
+                            <ul class="social-icons">
+                                <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4 text-center">
+                            <h3>Quick Links</h3>
+                            <ul>
+                                <li><a href="../../index.html">Home</a></li>
+                                <li><a href="pet-search.html">Adopt a Pet</a></li>
+                                <li><a href="#">About Us</a></li>
+                                <li><a href="#">Contact Us</a></li>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="col-md-2 text-center">
-                        <h3>Contact Us</h3>
-                        <p>Email:
-                            <a class="email"
-                                href="mailto:info@petpal.com?subject=Queries%20Regarding%20Pet">info@petpal.com</a>
-                        </p>
-                        <p>Phone: +1 (123) 456-7890</p>
-                    </div>
-                    <div class="col-md-4 text-center ">
-                        <h3>Follow Us</h3>
-                        <p>Stay connected on social media</p>
-                        <ul class="social-icons">
-                            <li><a href="#"><i class="fab fa-facebook"></i></a></li>
-                            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                            <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                        </ul>
-                    </div>
-                    <div class="col-md-4 text-center">
-                        <h3>Quick Links</h3>
-                        <ul>
-                            <li><a href="../../index.html">Home</a></li>
-                            <li><a href="pet-search.html">Adopt a Pet</a></li>
-                            <li><a href="#">About Us</a></li>
-                            <li><a href="#">Contact Us</a></li>
-                        </ul>
-                    </div>
+                    <p class="copyright text-center">&copy; 2023 Pet Pal. All rights reserved.</p>
                 </div>
-                <p class="copyright text-center">&copy; 2023 Pet Pal. All rights reserved.</p>
-            </div>
-        </footer>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.js"></script>
+            </footer>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.js"></script>
 
-        <script>
-            $('.ui.dropdown').dropdown();
-            $(document).ready(function () {
+            <script>
+                $('.ui.dropdown').dropdown();
                 $(document).ready(function () {
-                    $('#notificationButton').popup({
-                        popup: '#notificationPopup',
-                        on: 'click',
-                        position: 'bottom center',
+                    $(document).ready(function () {
+                        $('#notificationButton').popup({
+                            popup: '#notificationPopup',
+                            on: 'click',
+                            position: 'bottom center',
+                        });
+                    });
+                    $('.ui.sidebar').sidebar('setting', 'transition', 'overlay');
+
+                    $('.navbar-toggler').on('click', function () {
+                        $('.ui.sidebar').sidebar('toggle');
                     });
                 });
-                $('.ui.sidebar').sidebar('setting', 'transition', 'overlay');
-
-                $('.navbar-toggler').on('click', function () {
-                    $('.ui.sidebar').sidebar('toggle');
-                });
-            });
-        </script>
+            </script>
 </body>
 
 </html>

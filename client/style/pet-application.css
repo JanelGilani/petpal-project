@@ -1,12 +1,15 @@
 @import "global.css";
 
 body,p,h1,h2,form,#process {
-    background-color: #f8f9fa;
     font-family: var(--font);
+    color: black;
 }
 .btn.btn-primary{
     font-family: var(--font);
 }
+
+.form-group {
+color: gray;}
 
 .conversation {
     border: 1px solid #ccc;
@@ -26,6 +29,7 @@ body,p,h1,h2,form,#process {
     background-color: #d1e9ff;
     border-radius: 5px;
     margin-top: 30px;
+    color: black;
 }
 
 .user-message {
@@ -33,4 +37,5 @@ body,p,h1,h2,form,#process {
     background-color: #e9f7e1;
     border-radius: 5px;
     margin-top: 30px;
+    color: black;
 }
