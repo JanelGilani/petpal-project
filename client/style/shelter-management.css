@@ -94,23 +94,21 @@ select#locationSort {
     transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
 }
 
-/* Apply some basic styling to the button */
 .add_pet_btn {
-    width: 40px; /* Set the width and height to create a circle */
+    width: 40px;
     height: 40px;
-    border-radius: 50%; /* Make it a circle by setting border-radius to 50% */
-    background-color: var(--primary-400); /* Background color for the button */
-    color: #fff; /* Text color */
-    font-size: 24px; /* Font size for the plus sign */
-    border: none; /* Remove the border */
-    display: flex; /* Center the plus sign horizontally and vertically */
+    border-radius: 50%; 
+    background-color: var(--primary-400);
+    color: #fff;
+    font-size: 24px; 
+    border: none;
+    display: flex; 
     align-items: center;
     justify-content: center;
     margin-top: 10px;
     
   }
   
-  /* Change the button color on hover */
   .add_pet_btn:hover {
     background-color: var(--primary-500);
   }
@@ -124,19 +122,18 @@ select#locationSort {
   }
 
   .edit_btn{
-    width: 80px; /* Set the width and height to create a circle */
+    width: 80px;
     height: 40px;
-    border-radius: 2px; /* Make it a circle by setting border-radius to 50% */
-    background-color: var(--primary-400); /* Background color for the button */
-    color: #fff; /* Text color */
-    font-size: 12px; /* Font size for the plus sign */
-    border: none; /* Remove the border */
-    display: flex; /* Center the plus sign horizontally and vertically */
+    border-radius: 2px; 
+    background-color: var(--primary-400); 
+    color: #fff;
+    font-size: 12px;
+    border: none;
+    display: flex; 
     align-items: center;
     justify-content: center;
     text-align: center;
     margin-top: 10px;
-    /* margin-left: 30px; */
   }
 
   .edit_btn:hover {
