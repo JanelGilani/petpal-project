@@ -3,6 +3,7 @@
 body,p,h1,h2,form,#process {
     background-color: white;
     font-family: var(--font);
+    color: black;
 
 }
 .btn.btn-primary{
