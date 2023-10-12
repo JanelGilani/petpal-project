@@ -4,18 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <!--Current File Title-->
-    <title>Adoption Application Status | PetPal</title>
-    <link rel="icon" type="image/x-icon" href="../../images/logo.png">
     <meta charset="UTF-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Pet Search | PetPal</title>
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" rel="stylesheet">
     <link href=" https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.css" rel="stylesheet">
     <link href=" https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
     <link href="../../style/index.css" rel="stylesheet">
 
     <!--Current File CSS-->
-    <link href="../../style/account-update.css" rel="stylesheet">
+    <link href="../../style/search-pet.css" rel="stylesheet">
 
 <body>
     <div id="page-container">
@@ -122,230 +122,351 @@
 
 
             <!--Content-->
-            <div class="container mt-4">
-                <div class="row">
-                    <div class="col-lg-7">
-                        <!-- Check if the user already has an application for the same pet
-                        If the user has an application, show an error message or disable the link to this page -->
-                        <form class="adoption-form">
-                            <p style="font-size: 30px; font-weight: bold;">Adoption Application</p>
-                            <div class="form-group">
-                                <label for="name">Your Name</label>
-                                <input type="text" class="form-control" id="name" name="name" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="email">Email Address</label>
-                                <input type="email" class="form-control" id="email" name="email" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="address">Home Address</label>
-                                <input type="text" class="form-control" id="address" name="address" required>
-                            </div>
-            
-                            <div class="form-group">
-                                <label for="pettype">Pet Type</label>
-                                <select class="form-control" id="pettype" name="pettype" required>
-                                    <option value="dog">Dog</option>
-                                    <option value="cat">Cat</option>
-                                    <option value="rabbit">Rabbit</option>
-                                    <option value="bird">Bird</option>
-                                    <!-- Add more pet types as needed -->
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="age">Preffered Pet Age</label>
-                                <input type="number" class="form-control" id="age" name="age" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="own">Have you owned pets before? If so, what happened to them?</label>
-                                <textarea class="form-control" rows=4 id="own" placeholder="Enter Your answer here"required></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label for="plan">How do you plan to provide for your new pet's exercise and mental stimulation needs?</label>
-                                <textarea class="form-control" rows=4 id="plan" placeholder="Enter Your answer here"required></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label for="reason">Reason for adoption</label>
-                                <textarea class="form-control" rows=4 id="reason" placeholder="Enter Your reason here"required></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label for="ename">Emergency contact name</label>
-                                <input type="text" class="form-control" id="ename" name="ename" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="eemail">Emergency contact email address</label>
-                                <input type="email" class="form-control" id="eemail" name="eemail" required>
-                            </div>
-                            <div class="form-group">
-                                <input type="checkbox" id="agreement" name="agreement" value="Bike">
-                                <label for="agreement"> I acknowledge and agree to the shelter or rescue organization's adoption policies, including spaying/neutering, return policies, and commitment to providing proper care and love.</label><br>
-                            </div>
-                            
-                            <button type="submit" class="btn btn-primary">Submit Application</button>
-                        </form>
-                    </div>
-                    <div class="col-lg-1">
-            
-                    </div>
-                        <div class="col-lg-4">
-                            <p style="font-size: 30px; font-weight: bold;">Learn About Adoption</p>
-                            <div class="card" style="width: 22rem; margin-top: 10px;">
-                                <img class="card-img-top" src="../../images/strategic-planning-process-flat-concept-spot-illustration-editable-2d-cartoon-character-on-white-for-web-design-following-plan-and-making-decisions-creative-idea-for-website-mobile-magazine-vector.jpg" alt="Card image cap">
-                                <div class="card-body">
-                                  <h5 class="card-title">Process</h5>
-                                  <p class="card-text">Learn more about the process of adoption</p>
-                                  <a href="#process" class="btn btn-primary">Learn</a>
-                                </div>
-                            </div>
-                            <div class="card" style="width: 22rem; margin-top: 10px;">
-                                <img class="card-img-top" src="../../images/istockphoto-1352004141-612x612.jpg" alt="Card image cap">
-                                <div class="card-body">
-                                  <h5 class="card-title">Fees</h5>
-                                  <p class="card-text">Learn more about the fee for adoption</p>
-                                  <a href="#fees" class="btn btn-primary">Learn</a>
-                                </div>
-                            </div>
-                            <div class="card" style="width: 22rem; margin-top: 10px;">
-                                <img class="card-img-top" src="../../images/flat-young-smiley-businessman-near-folder-with-task-list-holding-pencil_126523-2893.avif" alt="Card image cap">
-                                <div class="card-body">
-                                  <h5 class="card-title">Requirements</h5>
-                                  <p class="card-text">Learn more about the requirement for adoption</p>
-                                  <a href="#requirement" class="btn btn-primary">Learn</a>
+            <div class="ui container search" style="margin-top: 50px;">
+                <div class="ui form">
+                    <div class="fields">
+                        <div class="field">
+                            <label>Type</label>
+                            <select class="ui dropdown" id="typeFilter">
+                                <option value="">All</option>
+                                <option value="dog">Dog</option>
+                                <option value="cat">Cat</option>
+                                <option value="cat">Bird</option>
+                                <option value="cat">Chicken</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label>Color</label>
+                            <select class="ui dropdown" id="colorFilter">
+                                <option value="">All</option>
+                                <option value="brown">Brown</option>
+                                <option value="black">Black</option>
+                                <option value="black">White</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label>Breed</label>
+                            <select class="ui dropdown" id="breedFilter">
+                                <option value="">All</option>
+                                <option value="breed 1">Breed 1</option>
+                                <option value="breed 2">Breed 2</option>
+                                <option value="breed 3">Breed 3</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label>Age</label>
+                            <select class="ui dropdown" id="ageFilter">
+                                <option value="">All</option>
+                                <option value="0-5">0-5</option>
+                                <option value="Young">Young</option>
+                                <option value="Adult">Adult</option>
+                                <option value="Senior">Senior</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label>Gender</label>
+                            <select class="ui dropdown" id="genderFilter">
+                                <option value="All">All</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                        </div>
+                        <div class="filter-icon">
+                            <div class="ui floating dropdown labeled icon button">
+                                <i class="filter icon"></i>
+                                <span class="text">Filter Posts</span>
+                                <div class="menu">
+                                    <div class="ui icon search input">
+                                        <i class="search icon"></i>
+                                        <input placeholder="Search tags..." type="text">
+                                    </div>
+                                    <div class="divider"></div>
+                                    <div class="header">
+                                        <i class="tags icon"></i>
+                                        Tag Label
+                                    </div>
+                                    <div class="scrolling menu">
+                                        <div class="item">
+                                            <div class="ui red empty circular label"></div>
+                                            Location
+                                        </div>
+                                        <div class="item">
+                                            <div class="ui blue empty circular label"></div>
+                                            Date
+                                        </div>
+                                        <div class="item">
+                                            <div class="ui green empty circular label"></div>
+                                            Price
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
+        
                 </div>
-                <div class="column">
-                    <div class="row-lg-4" style="margin-top: 40px;">
-                        <h2 id="process">Process</h2>
-                        <p>Pet adoption is a wonderful way to bring a new furry friend into your life while giving a deserving animal a loving home. The process of adopting a pet involves several steps,
-                             ensuring that both the potential pet owner and the animal are a good match for each other. 
-                             Here is a step-by-step guide to the pet adoption process:<br><br>
-                             1) Research: Start by researching the type of pet that suits your lifestyle and preferences. Consider factors like the pet's size, breed, energy level, and any specific requirements they may have. Think about whether you want a dog, cat, rabbit, bird, or another type of pet.<br><br>
-            
-            2) Choose a Shelter or Rescue Organization: Once you've decided on the type of pet you want, find a reputable animal shelter or rescue organization in your area. Many shelters have websites with information about available pets, so you can start your search online.<br><br>
-            
-            3) Visit the Shelter: Pay a visit to the shelter or rescue organization to meet the animals in person. Spend time interacting with the pets you're interested in and observe their behavior to see if there's a connection.<br><br>
-            
-            4) Ask Questions: Talk to the shelter staff or volunteers about the pet's history, temperament, health, and any special needs they may have. Be sure to ask about the pet's vaccination and spaying/neutering status.<br><br>
-            
-            5) Consider Your Lifestyle: Think about your daily routine, living situation, and any other pets you may have at home. Make sure the pet you're considering is a good fit for your lifestyle and that you can provide the necessary care, attention, and space.<br><br>
-            
-            6) Adoption Application: If you find a pet that you believe is a good match, you'll need to fill out an adoption application. This application may ask about your living situation, work hours, pet care experience, and other relevant details. Be honest and thorough in your responses.
-                            </p>
+        
+        
+                <div class="applied-filters">
+                    <!-- Applied filters will be dynamically added here as labels -->
+                    <!-- Example label:
+                    <div class="ui label">
+                        Type: Dog
+                        <i class="delete icon"></i>
                     </div>
-                    <div class="row-lg-4">
-                        <h2 id="fees">Fees</h2>
-                        <table class="table table-bordered">
-                            <thead>
-                              <tr>
-                                <th>SNo.</th>
-                                <th>Pet Type</th>
-                                <th>Fee</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                                <td>1</td>
-                                <td>Dog</td>
-                                <td>100$</td>
-                              </tr>
-                              <tr>
-                                <td>2</td>
-                                <td>Cat</td>
-                                <td>70$</td>
-                              </tr>
-                              <tr>
-                                <td>3</td>
-                                <td>Rabbit</td>
-                                <td>40$</td>
-                              </tr>
-                            </tbody>
-                          </table>
-            
+                    -->
+                </div>
+        
+                <div class="ui cards">
+                    <div class="ui cards home">
+        
+                        <div class="adoption-pet card">
+                            <div class="curved-border">
+                                <div class="card-image">
+                                    <img alt="Whitey" src="../../images/adoption/8.jpg">
+                                    <i class="heart icon"></i>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <div class="card-wave">
+                                    <svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M0,192L120,176C240,160,480,128,720,128C960,128,1200,160,1320,176L1440,192L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z" fill="white"
+                                              fill-opacity="1"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="card-description">
+                                <h3 class="card-description title">Whitey</h3>
+                                <a class="card-description ui button" href="pet-details.html">Adopt</a>
+                            </div>
+                        </div>
+        
+                        <div class="adoption-pet card">
+                            <div class="curved-border">
+                                <div class="card-image">
+                                    <img alt="Yin-Yang" src="../../images/adoption/7.jpeg">
+                                    <i class="heart icon"></i>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <div class="card-wave">
+                                    <svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M0,192L120,176C240,160,480,128,720,128C960,128,1200,160,1320,176L1440,192L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z" fill="white"
+                                              fill-opacity="1"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="card-description">
+                                <h3 class="card-description title">Yin-Yang</h3>
+                                <a class="card-description ui button" href="pet-details.html">Adopt</a>
+                            </div>
+                        </div>
+        
+                        <div class="adoption-pet card">
+                            <div class="curved-border">
+                                <div class="card-image">
+                                    <img alt="Green Parrot" src="../../images/adoption/6.jpeg">
+                                    <i class="heart icon"></i>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <div class="card-wave">
+                                    <svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M0,192L120,176C240,160,480,128,720,128C960,128,1200,160,1320,176L1440,192L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z" fill="white"
+                                              fill-opacity="1"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="card-description">
+                                <h3 class="card-description title">Tota</h3>
+                                <a class="card-description ui button" href="pet-details.html">Adopt</a>
+                            </div>
+                        </div>
+        
+                        <div class="adoption-pet card">
+                            <div class="curved-border">
+                                <div class="card-image">
+                                    <img alt="White Small Dog" src="../../images/adoption/5.jpeg">
+                                    <i class="heart icon"></i>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <div class="card-wave">
+                                    <svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M0,192L120,176C240,160,480,128,720,128C960,128,1200,160,1320,176L1440,192L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z" fill="white"
+                                              fill-opacity="1"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="card-description">
+                                <h3 class="card-description title">Mellow</h3>
+                                <a class="card-description ui button" href="pet-details.html">Adopt</a>
+                            </div>
+                        </div>
+        
+                        <div class="adoption-pet card">
+                            <div class="curved-border">
+                                <div class="card-image">
+                                    <img alt="Three Kittens" src="../../images/pet1-slideshow.jpeg">
+                                    <i class="heart icon"></i>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <div class="card-wave">
+                                    <svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M0,192L120,176C240,160,480,128,720,128C960,128,1200,160,1320,176L1440,192L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z" fill="white"
+                                              fill-opacity="1"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="card-description">
+                                <h3 class="card-description title">Hustle</h3>
+                                <a class="card-description ui button" href="pet-details.html">Adopt</a>
+                            </div>
+                        </div>
+        
+                        <div class="adoption-pet card">
+                            <div class="curved-border">
+                                <div class="card-image">
+                                    <img alt="Browny" src="../../images/pet3-slideshow.jpeg">
+                                    <i class="heart icon"></i>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <div class="card-wave">
+                                    <svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M0,192L120,176C240,160,480,128,720,128C960,128,1200,160,1320,176L1440,192L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z" fill="white"
+                                              fill-opacity="1"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="card-description">
+                                <h3 class="card-description title">Timber</h3>
+                                <a class="card-description ui button" href="pet-details.html">Adopt</a>
+                            </div>
+                        </div>
                     </div>
-                    <div class="row-lg-4">
-                        <h2 id="requirement">Requirements</h2>
-                        <p>
-            1) Age Requirements: Most shelters and rescue organizations require adopters to be at least 18 years old. Some may have higher age requirements for specific types of pets, such as large dog breeds.<br><br>
-            
-            2) Identification: You will likely need to provide a valid photo ID, such as a driver's license or passport, to verify your identity and age.<br><br>
-            
-            3) Adoption Application: Complete an adoption application, which typically includes personal information, questions about your lifestyle, experience with pets, and preferences for the type of pet you're looking to adopt.<br><br>
-            
-            4) Home Visit or Interview: Some organizations may conduct a home visit or interview to assess whether your living environment is suitable for the pet you want to adopt. This helps ensure that the pet will have a safe and comfortable home.<br><br>
-            
-            5) Landlord Approval: If you rent your home, you may need to provide proof of your landlord's permission to have pets. This could include a copy of your lease or a letter from your landlord.<br><br>
-            
-            6) Veterinary References: Be prepared to provide the name and contact information of your current or past veterinarian if you have previously owned pets. This can help demonstrate your commitment to responsible pet ownership.<br><br>
-            
-            7) Pet Compatibility: Shelters and rescues may consider your existing pets when evaluating your adoption application. They want to ensure that the new pet will get along well with any current animals in your household.<br><br>
-            
-            8) Adoption Fees: Be prepared to pay an adoption fee. This fee typically covers vaccinations, spaying/neutering, and other medical care the pet has received while in the organization's care.<br><br>
-            
-            9) Commitment to Responsible Ownership: Sign an adoption agreement or contract that outlines your responsibilities as a pet owner, including providing proper care, medical attention, and a loving home. You may also agree to return the pet to the organization if you can no longer care for it.<br><br>
-                        </p>
-                    </div>
-            
                 </div>
             </div>
-            <footer class="footer">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-2 text-center">
-                            <img alt="Pet Pal Logo" class="logo" src="../../images/logo.png">
-                        </div>
-                        <div class="col-md-2 text-center">
-                            <h3>Contact Us</h3>
-                            <p>Email:
-                                <a class="email"
-                                    href="mailto:info@petpal.com?subject=Queries%20Regarding%20Pet">info@petpal.com</a>
-                            </p>
-                            <p>Phone: +1 (123) 456-7890</p>
-                        </div>
-                        <div class="col-md-4 text-center ">
-                            <h3>Follow Us</h3>
-                            <p>Stay connected on social media</p>
-                            <ul class="social-icons">
-                                <li><a href="#"><i class="fab fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="col-md-4 text-center">
-                            <h3>Quick Links</h3>
-                            <ul>
-                                <li><a href="../../index.html">Home</a></li>
-                                <li><a href="pet-search.html">Adopt a Pet</a></li>
-                                <li><a href="#">About Us</a></li>
-                                <li><a href="#">Contact Us</a></li>
-                            </ul>
-                        </div>
+
+
+        <footer class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-2 text-center">
+                        <img alt="Pet Pal Logo" class="logo" src="../../images/logo.png">
                     </div>
-                    <p class="copyright text-center">&copy; 2023 Pet Pal. All rights reserved.</p>
+                    <div class="col-md-2 text-center">
+                        <h3>Contact Us</h3>
+                        <p>Email:
+                            <a class="email"
+                                href="mailto:info@petpal.com?subject=Queries%20Regarding%20Pet">info@petpal.com</a>
+                        </p>
+                        <p>Phone: +1 (123) 456-7890</p>
+                    </div>
+                    <div class="col-md-4 text-center ">
+                        <h3>Follow Us</h3>
+                        <p>Stay connected on social media</p>
+                        <ul class="social-icons">
+                            <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4 text-center">
+                        <h3>Quick Links</h3>
+                        <ul>
+                            <li><a href="../../index.html">Home</a></li>
+                            <li><a href="pet-search.html">Adopt a Pet</a></li>
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Contact Us</a></li>
+                        </ul>
+                    </div>
                 </div>
-            </footer>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.min.js"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.js"></script>
+                <p class="copyright text-center">&copy; 2023 Pet Pal. All rights reserved.</p>
+            </div>
+        </footer>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.js"></script>
 
-            <script>
-                $('.ui.dropdown').dropdown();
+        <script>
+            $('.ui.dropdown').dropdown();
+            $(document).ready(function () {
                 $(document).ready(function () {
-                    $(document).ready(function () {
-                        $('#notificationButton').popup({
-                            popup: '#notificationPopup',
-                            on: 'click',
-                            position: 'bottom center',
-                        });
-                    });
-                    $('.ui.sidebar').sidebar('setting', 'transition', 'overlay');
-
-                    $('.navbar-toggler').on('click', function () {
-                        $('.ui.sidebar').sidebar('toggle');
+                    $('#notificationButton').popup({
+                        popup: '#notificationPopup',
+                        on: 'click',
+                        position: 'bottom center',
                     });
                 });
-            </script>
+                $('.ui.sidebar').sidebar('setting', 'transition', 'overlay');
+
+                $('.navbar-toggler').on('click', function () {
+                    $('.ui.sidebar').sidebar('toggle');
+                });
+            });
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.js"></script>
+        
+        
+        <script>
+            $('.ui.dropdown').dropdown();
+            $('.nav-item.dropdown').dropdown();
+        </script>
+        
+        <script>
+            $(document).ready(function () {
+                $(document).ready(function () {
+                    $('#notificationButton').popup({
+                        popup: '#notificationPopup',
+                        on: 'click',
+                        position: 'bottom center',
+                    });
+                });
+                $('.ui.sidebar').sidebar('setting', 'transition', 'overlay');
+        
+                $('.navbar-toggler').on('click', function () {
+                    $('.ui.sidebar').sidebar('toggle');
+                });
+        
+                function handleFilterSelection(filterId, label) {
+                    const selectedValue = $(`#${filterId}`).val();
+                    if (selectedValue) {
+                        const filterTag = $(`<div class="ui label">${label}: ${selectedValue}<i class="delete icon"></i></div>`);
+                        filterTag.find('.delete.icon').click(function () {
+                            filterTag.remove();
+                        });
+        
+                        $('.applied-filters').append(filterTag);
+                    }
+                }
+        
+                $('#typeFilter').change(function () {
+                    handleFilterSelection('typeFilter', 'Type');
+                });
+        
+                $('#colorFilter').change(function () {
+                    handleFilterSelection('colorFilter', 'Color');
+                });
+        
+                $('#breedFilter').change(function () {
+                    handleFilterSelection('breedFilter', 'Breed');
+                });
+        
+                $('#ageFilter').change(function () {
+                    handleFilterSelection('ageFilter', 'Age');
+                });
+        
+                $('#genderFilter').change(function () {
+                    handleFilterSelection('genderFilter', 'Gender');
+                });
+        
+            });
+        </script>
 </body>
 
 </html>
