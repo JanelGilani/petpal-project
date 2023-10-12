@@ -10,6 +10,16 @@
     color: var(--primary-400);
 }
 
+#page-container {
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    min-height: 100vh;
+    font-family: var(--font);
+    color: var(--primary-400);
+}
+
 /*
 Navbar
 */

@@ -1,65 +1,36 @@
 @import "global.css";
 
-body,p,h1,h2,form,{
-    background-color: white;
-    font-family: var(--font);
 
-}
 .btn.btn-primary{
     font-family: var(--font);
 }
-/* Customize the navbar */
-.navbar-custom {
-    background-color: #007bff; /* Blue background */
+
+.adoption-form {
+    max-width: 500px;
+    margin: 0 auto;
+    color: black;
 }
 
-
-.navbar-custom .navbar-brand,
-.navbar-custom .navbar-nav .nav-link {
-    color: #ffffff; /* White text */
+.form-group {
+    margin-bottom: 20px;
 }
 
-.navbar-custom .navbar-toggler-icon {
-    background-color: #ffffff; /* White color for the hamburger icon */
-    font-family: 'Quicksand', sans-serif;
+label {
+    font-weight: bold;
+    margin-bottom: 10px;
 }
 
+.btn-primary {
+    background-color: #007bff;
+    color: #fff;
+}
 .pic {
-    position: relative;
-    width: 200px;
-    height: 200px;
-    overflow: hidden;
     border-radius: 50%;
-    outline: auto;
+    width: 300px;
+    height: 300px;
 }
 
-.image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
 
-.upld_btn {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    cursor: pointer;
-    background-color: var(--primary-200);
-    text-align: center;
-    padding: 5px;
-    color: white;
-    display: none;
-}
+/*
 
-.pic:hover .upld_btn {
-    display: block;
-}
-
-#petPic {
-    display: none;
-}
-
-.fas.fa-camera{
-    margin-right: 5px;
-}
+*/
