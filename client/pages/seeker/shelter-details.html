@@ -3,195 +3,348 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Petfinder App</title>
+    <!--Current File Title-->
+    <title>Shelter Details | PetPal</title>
+    <link rel="icon" type="image/x-icon" href="../../images/logo.png">
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../../style/shelter-details.css">
+    <link href=" https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.css" rel="stylesheet">
+    <link href=" https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <link href="../../style/index.css" rel="stylesheet">
 
-</head>
+    <!--Current File CSS-->
+    <link href="../../style/shelter-details.css" rel="stylesheet">
+
 <body>
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
-    <a class="navbar-brand" href="#">Petfinder</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Adopt</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Donate</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Contact</a>
-            </li>
-        </ul>
-    </div>
-</nav>
-
-<!-- Shelter Information -->
-<div class="container mt-4">
-    <div class="center-image">
-        <img src="../../images/64caae3acd560.image.jpg" alt="Avatar" style="border-radius: 50%; max-width: 100%; height: 300px;">
-    </div>
-</div>
-<div class="container mt-4">
-    <p class="name">Happy Tails Refuge</p>
-</div>
-
-<div class="container mt-4">
-    <div class="column">
-        <div class="row-lg-3">
-            <p style="font-size: 30px; font-weight: bold;">Contact Information</p>
-            <p>Email: shelter@example.com</p>
-            <p>Phone: (123) 456-7890</p>
-            <p>Address: 123 Shelter Street, City, State</p>
-        </div>
-        <div class="row-lg-3">
-            <p style="font-size: 30px; font-weight: bold;"" >Location</p>
-            <p>Our shelter is located in a beautiful and accessible area.</p><p> 123 Pet Haven Street
-                Serenityville, PA 12345
-                United States.</p> <p>Come visit us!</p>
-        </div>
-        <div class="row-lg-3">
-            <p style="font-size: 30px; font-weight: bold;">Mission Statement</p>
-            <p>"At Happy Tails Refuge, our mission is to be a beacon of hope and compassion for animals in need. We are committed to providing a safe, loving, and nurturing environment for abandoned, abused, and neglected pets. Our unwavering dedication is to ensure their well-being, rehabilitation, and the opportunity for a second chance at a happy and fulfilling life.
-
-                We strive to:</p>
-                
-                <p>Rescue and Protect: We rescue animals from dire situations, offering them refuge from 
-                    harm and suffering. Our doors are open to pets of all species, breeds, and ages.</p>
-                
-                <p>Provide Love and Care: Every animal in our care receives the love, attention, and medical 
-                    care they deserve. We are devoted to helping them heal, both physically and emotionally.</p>
-                
-                <p>Find Forever Homes: Our ultimate goal is to match each pet with a loving and
-                     responsible forever family. We take pride in thorough adoption processes, ensuring 
-                     the best possible match for both pets and adopters.</p>
-                
-                <p>Educate and Advocate: We believe in the power of education to promote responsible pet ownership. 
-                    We share our knowledge with the community, advocating for the welfare and rights of all animals.</p>
-                
-                <p>Foster a Community of Compassion: We aim to foster a community that shares our passion for animals. 
-                    Through collaboration, we can make a lasting impact on the lives of countless pets.</p>
-                
-                <p>At Happy Tails Refuge, we envision a world where every pet is valued and cherished, where no animal 
-                    is left to suffer, and where love knows no bounds. Our mission is driven by a deep sense of 
-                    compassion, and we invite all kindred spirits to join us on this journey of love, healing, and 
-                    transformation. Together, we can create a better world for our furry friends."</p>
-        </div>
-        <div class="row-lg-3">
-            <p style="font-size: 30px; font-weight: bold;">Availaible pets</p>
-            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                <ol class="carousel-indicators">
-                  <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                  <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                  <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                </ol>
-                <div class="carousel-inner">    
-                  <div class="carousel-item active" style="max-width: 100%; overflow: hidden; height: 400px;">
-                    <img class="d-block w-100" src="../../images/1_BlackPuppy-5ba50070c9e77c0082221c54.jpg" alt="First slide" style="object-fit: cover; height: 100%; width: 100%;">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5>Gary</h5>
-                        <p>Dog</p>
-                    </div>
-                    </div>
-                  <div class="carousel-item" style="max-width: 100%; overflow: hidden; height: 400px;">
-                    <img class="d-block w-100" src="../../images/gray-cat-walking-in-the-grass-id1149117335.avif" alt="Second slide" style="object-fit: cover; height: 100%; width: 100%;">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5>Mishu</h5>
-                        <p>Cat</p>
-                    </div>
-                  </div>
-                  <div class="carousel-item" style="max-width: 100%; overflow: hidden; height: 400px;">
-                    <img class="d-block w-100" src="../../images/GettyImages-694542042-e1586274805503-scaled.jpg"alt="Third slide" style="object-fit: cover; height: 100%; width: 100%;">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5>Jerry</h5>
-                        <p>Rabbit</p>
-                    </div>
-                  </div>
+    <div id="page-container">
+        <div id="content-wrap">
+            <!--Navbar-->
+            <div class="ui sidebar vertical menu">
+                <a href="../../index.html" class="item">Home</a>
+                <a href="" class="item">Login</a>
+                <a href="pet-search.html" class="item">Pet Search</a>
+                <a class="item">Register</a>
+                <div class="logo-container">
+                    <img alt="Logo" class="logo" src="../../images/logo_large.png">
                 </div>
-                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span class="sr-only">Next</span>
-                </a>
-              </div>
-        </div>
-    </div>
-</div>
+            </div>
 
-<div class="container mt-4">
-<p style="font-size: 30px; font-weight: bold;">Reviews</p>
-    <div class="row">
-        <div class="column-lg-4 review-column">
-            <p>Rating: ★★★★★ (5/5)
+            <div class="pusher">
+                <nav class="navbar navbar-expand-lg navbar-light" style="height: 80px">
+                    <a class="navbar-brand d-flex align-items-center" href="#">
+                        <img alt="logo" class="logo" src="../../images/logo_large.png">
+                    </a>
+                    <button aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"
+                        class="navbar-toggler navbar-toggler-start" type="button">
+                        <!--                    data-bs-toggle="collapse" data-bs-target="#navbarNav" -->
 
-                I recently had the privilege of visiting Happy Tails Refuge, and the experience left an indelible mark on my heart. This remarkable pet shelter is a beacon of hope for animals in need, and it's evident from the moment you step through their doors.
-                
-                Dedicated and Caring Staff:
-                The staff and volunteers at [Pet Shelter Name] are nothing short of heroes. Their unwavering dedication to the welfare of the animals in their care is truly inspiring. They are not only knowledgeable but also genuinely compassionate. It's heartwarming to see their commitment to finding loving forever homes for each and every one of their furry residents.</p>
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="navbar-collapse collapse" id="navbarNav">
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="../../index.html">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" id="loginLink">Login</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="pet-search.html">Pet Search</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Register</a>
+                            </li>
+                            </li>
+                            <li class="nav-item notification">
 
-        </div>
-        <div class="column-lg-4 review-column">
-            <p>Rating: ★★★★★ (5/5)
+                            </li>
+                            <li class="nav-item notification">
+                                <button class="ui vertical animated button" data-content="1 new message"
+                                    data-inverted="" data-position="bottom left" id="notificationButton">
+                                    <div class="hidden content">Notifications</div>
+                                    <div class="visible content">
+                                        <i class="mail icon"></i>
+                                        <span class="notification-count">1</span>
+                                    </div>
+                                </button>
+                            </li>
+                            <li class="ui dropdown">
+                                <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle"
+                                    data-toggle="dropdown" href="#" id="profileDropdown" role="button"
+                                    style="padding: 0">
+                                    <img alt="Profile" class="ui avatar image"
+                                        src="https://xsgames.co/randomusers/avatar.php?g=pixel"
+                                        style="width: 35px; height: 35px;">
+                                </a>
+                                <div class="menu">
+                                    <a class="item" data-value="1" href="account-update.html">Your Applications</a>
+                                    <div class="item" data-value="1">Account Update</div>
+                                    <div class="item" data-value="0">Logout</div>
+                                </div>
+                            </li>
+                        </ul>
+                        <!--Notification Dropdown-->
+                        <div class="ui bottom center popup" id="notificationPopup">
+                            <div class="list-group">
+                                <div class="list-group-item notification-content">
+                                    <img class="ui avatar image"
+                                        src="https://xsgames.co/randomusers/avatar.php?g=pixel">
+                                    <div class="header"><b>GoDoggy Adoption</b></div>
+                                    <div class="description"><b>Your application was rejected</b></div>
+                                </div>
+                                <div class="list-group-item notification-content">
+                                    <img class="ui avatar image"
+                                        src="https://xsgames.co/randomusers/avatar.php?g=pixel">
+                                    <div class="header">Meow Center</div>
+                                    <div class="description">Your application is still under consideration</div>
+                                </div>
+                                <div class="list-group-item notification-content">
+                                    <img class="ui avatar image"
+                                        src="https://xsgames.co/randomusers/avatar.php?g=pixel">
+                                    <div class="header">GetPets Org</div>
+                                    <div class="description">New update on your application</div>
+                                </div>
+                                <div class="list-group-item notification-content">
+                                    <img class="ui avatar image"
+                                        src="https://xsgames.co/randomusers/avatar.php?g=pixel">
+                                    <div class="header">Jenny Hess</div>
+                                    <div class="description">Welcome to PetPal</div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Notification Dropdown-->
+                    </div>
+                </nav>
+            </div>
+            <!--Navbar Finished-->
 
-                My visit to Happy Tails Refuge left me utterly impressed and touched by the depth of care and compassion that permeates every corner of this remarkable shelter. The dedication of the staff and volunteers is truly heartwarming. They are not only well-informed but also incredibly nurturing toward the animals under their watchful eye.
-                
-                Immaculate and Comfortable Environment:
-                The shelter's facilities are spotless and comfortable. The living spaces for animals are spacious and well-maintained, with plenty of room for dogs to run and play and cozy corners for cats to curl up. It's evident that every effort is made to ensure the animals' happiness and well-being.
-                
-                </p>
 
-        </div>
-        <div class="column-lg-4 review-column">
-            <p>Rating: ★★★★★ (5/5)
+            <!--Content-->
+            <div class="container mt-4">
+                <div class="center-image">
+                    <img src="../../images/64caae3acd560.image.jpg" alt="Avatar"
+                        style="border-radius: 50%; max-width: 100%; height: 300px;">
+                </div>
+            </div>
+            <div class="container mt-4">
+                <p class="name">Happy Tails Refuge</p>
+            </div>
 
-                Happy Tails Refuge is a true paradise for animals in need, and my visit there left me profoundly moved. The staff and volunteers radiate warmth and compassion, making this shelter a place of hope and transformation for countless animals.
-                
-                A Team of Dedicated Angels:
-                The people at Happy Tails Refuge are angels in disguise. Their unwavering commitment to the animals is evident in every interaction. They take the time to understand each pet's unique needs and personality, ensuring that they find the perfect forever home.
-                
-                </p>
-        </div>
-    </div>
-</div>
+            <div class="container mt-4">
+                <div class="column">
+                    <div class="row-lg-3">
+                        <p style="font-size: 30px; font-weight: bold; margin-bottom: 10px; margin-top: 50px;";>Contact Information</p>
+                        <p>Email: shelter@example.com</p>
+                        <p>Phone: (123) 456-7890</p>
+                        <p style="margin-bottom: 50px;">Address: 123 Shelter Street, City, State</p>
+                    </div>
+                    <div class="row-lg-3">
+                        <p style="font-size: 30px; font-weight: bold; margin-bottom: 10px"" >Location</p>
+                        <p>Our shelter is located in a beautiful and accessible area.</p><p> 123 Pet Haven Street
+                            Serenityville, PA 12345
+                            United States.</p> 
+                            <p style="margin-bottom: 50px;">Come visit us!</p>
+                    </div>
+                    <div class=" row-lg-3">
+                        <p style="font-size: 30px; font-weight: bold; margin-bottom: 10px">Mission Statement</p>
+                        <p>"At Happy Tails Refuge, our mission is to be a beacon of hope and compassion for animals in
+                            need. We are committed to providing a safe, loving, and nurturing environment for abandoned,
+                            abused, and neglected pets. Our unwavering dedication is to ensure their well-being,
+                            rehabilitation, and the opportunity for a second chance at a happy and fulfilling life.
 
-    <!-- <div class="row">  
-        <div class="column-md-3">
-            <h2>Reviews</h2>
-        </div>
-    </div>
-    <div class="row">
-    <div class="column-md-4">
-        <p>I recently had the privilege of visiting [Shelter Name], and I cannot express enough how impressed I am with the incredible work they do. From the moment I walked through the doors, I could feel the dedication and love that permeated the entire shelter.
+                            We strive to:</p>
 
-            Compassionate and Knowledgeable Staff:
-            The staff and volunteers at [Shelter Name] are true heroes. They are knowledgeable, compassionate, and genuinely care about the well-being of the animals in their care. It's evident that each team member is committed to finding forever homes for these deserving pets. They took the time to answer all of my questions, share heartwarming stories, and provide valuable information about responsible pet ownership.</p>
-    </div>
-    <div class="column-md-4">
-        <p>I recently had the privilege of visiting [Shelter Name], and I cannot express enough how impressed I am with the incredible work they do. From the moment I walked through the doors, I could feel the dedication and love that permeated the entire shelter.
+                        <p>Rescue and Protect: We rescue animals from dire situations, offering them refuge from
+                            harm and suffering. Our doors are open to pets of all species, breeds, and ages.</p>
 
-            Compassionate and Knowledgeable Staff:
-            The staff and volunteers at [Shelter Name] are true heroes. They are knowledgeable, compassionate, and genuinely care about the well-being of the animals in their care. It's evident that each team member is committed to finding forever homes for these deserving pets. They took the time to answer all of my questions, share heartwarming stories, and provide valuable information about responsible pet ownership.</p>
-    </div>
-    </div>
-</div> -->
+                        <p>Provide Love and Care: Every animal in our care receives the love, attention, and medical
+                            care they deserve. We are devoted to helping them heal, both physically and emotionally.</p>
 
+                        <p>Find Forever Homes: Our ultimate goal is to match each pet with a loving and
+                            responsible forever family. We take pride in thorough adoption processes, ensuring
+                            the best possible match for both pets and adopters.</p>
 
-<!-- Bootstrap JS (optional, but needed for the responsive navbar) -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+                        <p>Educate and Advocate: We believe in the power of education to promote responsible pet
+                            ownership.
+                            We share our knowledge with the community, advocating for the welfare and rights of all
+                            animals.</p>
+
+                        <p>Foster a Community of Compassion: We aim to foster a community that shares our passion for
+                            animals.
+                            Through collaboration, we can make a lasting impact on the lives of countless pets.</p>
+
+                        <p style="margin-bottom: 50px;">At Happy Tails Refuge, we envision a world where every pet is valued and cherished, where no
+                            animal
+                            is left to suffer, and where love knows no bounds. Our mission is driven by a deep sense of
+                            compassion, and we invite all kindred spirits to join us on this journey of love, healing,
+                            and
+                            transformation. Together, we can create a better world for our furry friends."</p>
+                    </div>
+                    <div class="row-lg-3">
+                        <p style="font-size: 30px; font-weight: bold; margin-bottom: 10px">Availaible pets</p>
+                        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                            <ol class="carousel-indicators">
+                                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                            </ol>
+                            <div class="carousel-inner">
+                                <div class="carousel-item active"
+                                    style="max-width: 100%; overflow: hidden; height: 400px;">
+                                    <img class="d-block w-100"
+                                        src="../../images/1_BlackPuppy-5ba50070c9e77c0082221c54.jpg" alt="First slide"
+                                        style="object-fit: cover; height: 100%; width: 100%;">
+                                    <div class="carousel-caption d-none d-md-block">
+                                        <h5>Gary</h5>
+                                        <p>Dog</p>
+                                    </div>
+                                </div>
+                                <div class="carousel-item" style="max-width: 100%; overflow: hidden; height: 400px;">
+                                    <img class="d-block w-100"
+                                        src="../../images/gray-cat-walking-in-the-grass-id1149117335.avif"
+                                        alt="Second slide" style="object-fit: cover; height: 100%; width: 100%;">
+                                    <div class="carousel-caption d-none d-md-block">
+                                        <h5>Mishu</h5>
+                                        <p>Cat</p>
+                                    </div>
+                                </div>
+                                <div class="carousel-item" style="max-width: 100%; overflow: hidden; height: 400px;">
+                                    <img class="d-block w-100"
+                                        src="../../images/GettyImages-694542042-e1586274805503-scaled.jpg"
+                                        alt="Third slide" style="object-fit: cover; height: 100%; width: 100%;">
+                                    <div class="carousel-caption d-none d-md-block">
+                                        <h5>Jerry</h5>
+                                        <p>Rabbit</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button"
+                                data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button"
+                                data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container mt-4">
+                <p style="font-size: 30px; font-weight: bold; margin-top: 50px; margin-bottom: 10px;">Reviews</p>
+                <div class="row">
+                    <div class="column-lg-4 review-column">
+                        <p>Rating: ★★★★★ (5/5)
+
+                            I recently had the privilege of visiting Happy Tails Refuge, and the experience left an
+                            indelible mark on my heart. This remarkable pet shelter is a beacon of hope for animals in
+                            need, and it's evident from the moment you step through their doors.
+
+                            Dedicated and Caring Staff:
+                            The staff and volunteers at [Pet Shelter Name] are nothing short of heroes. Their unwavering
+                            dedication to the welfare of the animals in their care is truly inspiring. They are not only
+                            knowledgeable but also genuinely compassionate. It's heartwarming to see their commitment to
+                            finding loving forever homes for each and every one of their furry residents.</p>
+
+                    </div>
+                    <div class="column-lg-4 review-column">
+                        <p>Rating: ★★★★★ (5/5)
+
+                            My visit to Happy Tails Refuge left me utterly impressed and touched by the depth of care
+                            and compassion that permeates every corner of this remarkable shelter. The dedication of the
+                            staff and volunteers is truly heartwarming. They are not only well-informed but also
+                            incredibly nurturing toward the animals under their watchful eye.
+
+                            Immaculate and Comfortable Environment:
+                            The shelter's facilities are spotless and comfortable. The living spaces for animals are
+                            spacious and well-maintained, with plenty of room for dogs to run and play and cozy corners
+                            for cats to curl up. It's evident that every effort is made to ensure the animals' happiness
+                            and well-being.
+
+                        </p>
+
+                    </div>
+                    <div class="column-lg-4 review-column">
+                        <p>Rating: ★★★★★ (5/5)
+
+                            Happy Tails Refuge is a true paradise for animals in need, and my visit there left me
+                            profoundly moved. The staff and volunteers radiate warmth and compassion, making this
+                            shelter a place of hope and transformation for countless animals.
+
+                            A Team of Dedicated Angels:
+                            The people at Happy Tails Refuge are angels in disguise. Their unwavering commitment to the
+                            animals is evident in every interaction. They take the time to understand each pet's unique
+                            needs and personality, ensuring that they find the perfect forever home.
+
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <footer class="footer">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-2 text-center">
+                            <img alt="Pet Pal Logo" class="logo" src="../../images/logo.png">
+                        </div>
+                        <div class="col-md-2 text-center">
+                            <h3>Contact Us</h3>
+                            <p>Email:
+                                <a class="email"
+                                    href="mailto:info@petpal.com?subject=Queries%20Regarding%20Pet">info@petpal.com</a>
+                            </p>
+                            <p>Phone: +1 (123) 456-7890</p>
+                        </div>
+                        <div class="col-md-4 text-center ">
+                            <h3>Follow Us</h3>
+                            <p>Stay connected on social media</p>
+                            <ul class="social-icons">
+                                <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4 text-center">
+                            <h3>Quick Links</h3>
+                            <ul>
+                                <li><a href="../../index.html">Home</a></li>
+                                <li><a href="pet-search.html">Adopt a Pet</a></li>
+                                <li><a href="#">About Us</a></li>
+                                <li><a href="#">Contact Us</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <p class="copyright text-center">&copy; 2023 Pet Pal. All rights reserved.</p>
+                </div>
+            </footer>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.js"></script>
+            <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+            <script>
+                $('.ui.dropdown').dropdown();
+                $(document).ready(function () {
+                    $(document).ready(function () {
+                        $('#notificationButton').popup({
+                            popup: '#notificationPopup',
+                            on: 'click',
+                            position: 'bottom center',
+                        });
+                    });
+                    $('.ui.sidebar').sidebar('setting', 'transition', 'overlay');
+
+                    $('.navbar-toggler').on('click', function () {
+                        $('.ui.sidebar').sidebar('toggle');
+                    });
+                });
+            </script>
 </body>
 
 </html>
