@@ -3,8 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.js" rel="stylesheet">
+
     <link rel="stylesheet" href="../../style/search-pet.css">
     <link rel="stylesheet" href="../../style/index.css">
     <title>Pet Search</title>
@@ -43,6 +46,18 @@
                             </div>
                         </button>
                     </li>
+                <li class="ui dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        <img src="https://xsgames.co/randomusers/avatar.php?g=pixel" alt="Profile" class="ui avatar image">
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="profileDropdown">
+                        <a class="dropdown-item" href="#">Profile</a>
+                        <a class="dropdown-item" href="#">Settings</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Logout</a>
+                    </div>
+                </li>
             </ul>
             <!--Modal for notification -->
             <div class="modal" id="notificationModal" tabindex="-1" role="dialog" aria-labelledby="notificationModalLabel" aria-hidden="true">
@@ -91,7 +106,7 @@
         <div class="fields">
             <div class="field">
                 <label>Type</label>
-                <select class="ui  dropdown" id="typeFilter">
+                <select class="ui dropdown" id="typeFilter">
                     <option value="">All</option>
                     <option value="dog">Dog</option>
                     <option value="cat">Cat</option>
@@ -321,17 +336,18 @@
 </script>
 <script>
     $('.ui.dropdown').dropdown();
+    $('.nav-item.dropdown').dropdown();
 </script>
 
 <script>
     $(document).ready(function () {
-        // Initialize the modal
         $('#notificationButton').click(function () {
             $('.modal').modal('show');
         });
 
         // Initialize Semantic UI dropdowns
         $('.ui.dropdown').dropdown();
+        $('.nav-item.dropdown').dropdown();
 
         function handleFilterSelection(filterId, label) {
             const selectedValue = $(`#${filterId}`).val();

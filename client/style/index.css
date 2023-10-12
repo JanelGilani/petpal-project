@@ -2,12 +2,12 @@
 
 .body {
     width: 100vw;
-    font-family: var(--font);
-    color: var(--primary-400);
     display: flex;
     flex-direction: column;
     position: relative;
     min-height: 100vh;
+    font-family: var(--font);
+    color: var(--primary-400);
 }
 
 /*
@@ -41,13 +41,38 @@ button.ui.vertical.animated.button {
 }
 
 .navbar.navbar-light {
-    color: white;
+    color: var(--primary-200);
 }
 
 img.logo {
     width: 120px;
     margin: 0;
 }
+
+.ui.sidebar.vertical.menu.left.overlay.visible {
+    background-color: var(--primary-50);
+    color: var(--primary-200);
+    padding: 1em;
+}
+
+.ui.sidebar a.item {
+    font-family: var(--font);
+    color: var(--secondary-black);
+    padding: 1em;
+    text-align: center;
+}
+
+.ui.sidebar .logo-container {
+    margin-top: calc(100vh - 250px);
+    text-align: center;
+}
+
+.ui.sidebar .logo {
+    width: 150px;
+    height: auto;
+}
+
+
 /*
 Body Content
 */
@@ -268,13 +293,11 @@ h1.adoption.title {
 /*
 Footer
 */
+
 .footer {
     position: relative;
     width: 100%;
     overflow: hidden;
-}
-
-.footer {
     background-color: var(--primary-50);
     color: var(--secondary-black);
     padding: 20px 0;
@@ -327,7 +350,6 @@ Footer
     text-decoration: none;
 }
 
-/* Style the copyright text */
 .copyright {
     margin-top: 20px;
     text-align: center;
