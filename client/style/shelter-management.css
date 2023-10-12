@@ -1,0 +1,141 @@
+@import url(global.css);
+
+.ui.container.search {
+    width: 100%;
+}
+
+.ui.cards {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.ui.card {
+    width: 300px;
+    margin: 10px;
+}
+
+
+select.ui.dropdown {
+    height: 43px;
+}
+
+select#locationSort {
+    width: 250px;
+}
+
+.fields {
+    display: flex;
+    justify-content: center;
+}
+
+.modal-body {
+    display: flex;
+    align-items: flex-start;
+    font-size: 12px;
+    font-family: var(--font);
+}
+
+.notification-content {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: repeat(2, auto);
+    grid-gap: 5px;
+    border: none;
+}
+
+.notification-content img {
+    grid-row: span 2;
+}
+
+.notification-content .header {
+    grid-column: span 1;
+    grid-row: span 1;
+    margin: 0;
+    margin-left: 10px;
+    text-align: left;
+}
+
+.notification-content .description {
+    grid-column: span 1;
+    grid-row: span 1;
+    margin: 0;
+    color: #777;
+    margin-left: 10px;
+    text-align: left;
+}
+
+.filter-icon {
+    margin: 0 5px 2px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    color: var(--secondary-black);
+}
+.ui.multiple.dropdown.filter {
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
+    align-items: center;
+}
+
+.edit.icon {
+    position: absolute;
+    top: 5px;
+    left: 10px;
+    color: white;
+    z-index: 2;
+    transform: scale(1.2);
+}
+.edit.icon.icon:hover {
+    cursor: pointer;
+    color: blue;
+    transform: scale(1.4);
+    transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.add_pet_btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%; 
+    background-color: var(--primary-400);
+    color: #fff;
+    font-size: 24px; 
+    border: none;
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    
+  }
+  
+  .add_pet_btn:hover {
+    background-color: var(--primary-500);
+  }
+
+  .pet-description {
+    text-align: center;
+  }
+
+  .heading{
+    color: var(--secondary-black);
+  }
+
+  .edit_btn{
+    width: 80px;
+    height: 40px;
+    border-radius: 2px; 
+    background-color: var(--primary-400); 
+    color: #fff;
+    font-size: 12px;
+    border: none;
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  .edit_btn:hover {
+    background-color: var(--primary-500);
+  }
