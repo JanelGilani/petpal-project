@@ -8,6 +8,8 @@
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.css" rel="stylesheet">
+    <link href=" https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
     <link href="../../style/pet-creation.css" rel="stylesheet">
     <link href="../../style/index.css" rel="stylesheet">
 </head>
@@ -101,7 +103,13 @@
 
         </div>
             <div class="col-lg-4">
-                    <img class="pic" src="../../images/doggy.jpg" alt="Cute Dog">
+                <div class="pic">
+                    <img class="image" src="../../images/upld_pic_dog.png" alt="Pet Picture">
+                    <label for="petPic" class="upld_btn">
+                        <i class="fas fa-camera"></i>Change
+                    </label>
+                    <input type="file" id="petPic" accept="image/*">
+                </div>
             </div>
     </div>
 </div>
