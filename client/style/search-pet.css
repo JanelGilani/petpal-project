@@ -37,41 +37,6 @@ select#locationSort {
     justify-content: center;
 }
 
-.modal-body {
-    display: flex;
-    align-items: flex-start;
-    font-size: 12px;
-    font-family: var(--font);
-}
-
-.notification-content {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    grid-template-rows: repeat(2, auto);
-    grid-gap: 5px;
-    border: none;
-}
-
-.notification-content img {
-    grid-row: span 2;
-}
-
-.notification-content .header {
-    grid-column: span 1;
-    grid-row: span 1;
-    margin: 0;
-    margin-left: 10px;
-    text-align: left;
-}
-
-.notification-content .description {
-    grid-column: span 1;
-    grid-row: span 1;
-    margin: 0;
-    color: #777;
-    margin-left: 10px;
-    text-align: left;
-}
 
 .filter-icon {
     margin: 0 5px 2px;

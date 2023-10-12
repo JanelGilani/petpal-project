@@ -22,7 +22,7 @@
         <a class="item">Pet Search</a>
         <a class="item">Register</a>
         <div class="logo-container">
-            <img class="logo" src="images/logo_large.png" alt="Logo">
+            <img alt="Logo" class="logo" src="images/logo_large.png">
         </div>
     </div>
 
@@ -33,7 +33,7 @@
             </a>
             <button aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"
                     class="navbar-toggler navbar-toggler-start" type="button">
-<!--                    data-bs-toggle="collapse" data-bs-target="#navbarNav" -->
+                <!--                    data-bs-toggle="collapse" data-bs-target="#navbarNav" -->
 
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -51,12 +51,18 @@
                     <li class="nav-item">
                         <a class="nav-link" href="register.php">Register</a>
                     </li>
-                    <li class="nav-item">
+                    </li>
+                    <li class="nav-item notification">
+
+                    </li>
+                    <li class="nav-item notification">
                         <button class="ui vertical animated button" data-content="1 new message" data-inverted=""
-                                data-position="bottom left">
-                            <div class="hidden content">Messages</div>
+                                data-position="bottom left"
+                                id="notificationButton">
+                            <div class="hidden content">Notifications</div>
                             <div class="visible content">
                                 <i class="mail icon"></i>
+                                <span class="notification-count">1</span>
                             </div>
                         </button>
                     </li>
@@ -76,6 +82,32 @@
                         </div>
                     </li>
                 </ul>
+                <!--Notification Dropdown-->
+                <div class="ui bottom center popup" id="notificationPopup">
+                    <div class="list-group">
+                        <div class="list-group-item notification-content">
+                            <img class="ui avatar image" src="https://xsgames.co/randomusers/avatar.php?g=pixel">
+                            <div class="header"><b>GoDoggy Adoption</b></div>
+                            <div class="description"><b>Your application was rejected</b></div>
+                        </div>
+                        <div class="list-group-item notification-content">
+                            <img class="ui avatar image" src="https://xsgames.co/randomusers/avatar.php?g=pixel">
+                            <div class="header">Meow Center</div>
+                            <div class="description">Your application is still under consideration</div>
+                        </div>
+                        <div class="list-group-item notification-content">
+                            <img class="ui avatar image" src="https://xsgames.co/randomusers/avatar.php?g=pixel">
+                            <div class="header">GetPets Org</div>
+                            <div class="description">New update on your application</div>
+                        </div>
+                        <div class="list-group-item notification-content">
+                            <img class="ui avatar image" src="https://xsgames.co/randomusers/avatar.php?g=pixel">
+                            <div class="header">Jenny Hess</div>
+                            <div class="description">Welcome to PetPal</div>
+                        </div>
+                    </div>
+                </div>
+                <!--Notification Dropdown-->
             </div>
         </nav>
     </div>
@@ -282,6 +314,13 @@
 <script>
     $('.ui.dropdown').dropdown();
     $(document).ready(function () {
+        $(document).ready(function () {
+            $('#notificationButton').popup({
+                popup: '#notificationPopup',
+                on: 'click',
+                position: 'bottom center',
+            });
+        });
         $('.ui.sidebar').sidebar('setting', 'transition', 'overlay');
 
         $('.navbar-toggler').on('click', function () {

@@ -19,11 +19,22 @@ nav.navbar {
     font-size: 14px;
     font-weight: 800;
     font-family: var(--font);
+    z-index: 100;
 }
 div.navbar-collapse {
     display: flex;
     justify-content: flex-end;
     color: white;
+}
+
+.nav-item.active a.nav-link {
+    color: white;
+    font-weight: 800;
+}
+
+.nav-item.active {
+    background-color: var(--primary-600);
+    border-radius: 20px;
 }
 
 button.ui.vertical.animated.button {
@@ -72,6 +83,39 @@ img.logo {
     height: auto;
 }
 
+.modal-body {
+    display: flex;
+    align-items: flex-start;
+    font-size: 12px;
+    font-family: var(--font);
+}
+
+.notification-content {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: repeat(2, auto);
+    grid-gap: 5px;
+    border: none;
+}
+
+.notification-content img {
+    grid-row: span 2;
+}
+
+.notification-content .header {
+    grid-column: span 1;
+    grid-row: span 1;
+    margin: 0 0 0 10px;
+    text-align: left;
+}
+
+.notification-content .description {
+    grid-column: span 1;
+    grid-row: span 1;
+    color: #777;
+    margin: 0 0 0 10px;
+    text-align: left;
+}
 
 /*
 Body Content
@@ -301,6 +345,7 @@ Footer
     background-color: var(--primary-50);
     color: var(--secondary-black);
     padding: 20px 0;
+    margin-top: 100px;
 }
 
 .logo {
