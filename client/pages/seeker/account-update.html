@@ -3,141 +3,181 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Seeker Account Update Page</title>
+    <!--Current File Title-->
+    <title>Signup | PetPal</title>
+    <link rel="icon" type="image/x-icon" href="../../images/logo.png">
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" rel="stylesheet">
     <link href=" https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.css" rel="stylesheet">
     <link href=" https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
     <link href="../../style/index.css" rel="stylesheet">
-    <link href="../../style/account-update.css" rel="stylesheet">
-</head>
 
+    <!--Current File CSS-->
+    <link href="../../style/account-update.css" rel="stylesheet">
 
 <body>
-
-    <div class="body">
-        <div id="page-container">
-            <div id="content-wrap">
-                <div class="ui sidebar vertical menu">
-                    <a class="item">Home</a>
-                    <a class="item">Login</a>
-                    <a class="item">Pet Search</a>
-                    <a class="item">Register</a>
-                    <div class="logo-container">
-                        <img class="logo" src="images/logo_large.png" alt="Logo">
-                    </div>
+    <div id="page-container">
+        <div id="content-wrap">
+            <!--Navbar-->
+            <div class="ui sidebar vertical menu">
+                <a href="../../index.html" class="item">Home</a>
+                <a href="" class="item">Login</a>
+                <a href="pet-search.html" class="item">Pet Search</a>
+                <a class="item">Register</a>
+                <div class="logo-container">
+                    <img alt="Logo" class="logo" src="../../images/logo_large.png">
                 </div>
+            </div>
 
-                <div class="pusher">
-                    <nav class="navbar navbar-expand-lg navbar-light" style="height: 80px">
-                        <a class="navbar-brand d-flex align-items-center" href="#">
-                            <img alt="logo" class="logo" src="../../images/logo_large.png">
-                        </a>
-                        <button aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"
-                            class="navbar-toggler navbar-toggler-start" type="button">
-                            <!--                    data-bs-toggle="collapse" data-bs-target="#navbarNav" -->
+            <div class="pusher">
+                <nav class="navbar navbar-expand-lg navbar-light" style="height: 80px">
+                    <a class="navbar-brand d-flex align-items-center" href="#">
+                        <img alt="logo" class="logo" src="../../images/logo_large.png">
+                    </a>
+                    <button aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"
+                        class="navbar-toggler navbar-toggler-start" type="button">
+                        <!--                    data-bs-toggle="collapse" data-bs-target="#navbarNav" -->
 
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="navbar-collapse collapse" id="navbarNav">
-                            <ul class="nav navbar-nav">
-                                <li class="nav-item active">
-                                    <a class="nav-link" href="#">Home</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="pages/login.html" id="loginLink">Login</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="pages/seeker/search.html">Pet Search</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="register.php">Register</a>
-                                </li>
-                                <li class="nav-item">
-                                    <button class="ui vertical animated button" data-content="1 new message"
-                                        data-inverted="" data-position="bottom left">
-                                        <div class="hidden content">Messages</div>
-                                        <div class="visible content">
-                                            <i class="mail icon"></i>
-                                        </div>
-                                    </button>
-                                </li>
-                                <li class="ui dropdown">
-                                    <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle"
-                                        data-toggle="dropdown" href="#" id="profileDropdown" role="button"
-                                        style="padding: 0">
-                                        <img alt="Profile" class="ui avatar image"
-                                            src="https://xsgames.co/randomusers/avatar.php?g=pixel"
-                                            style="width: 35px; height: 35px;">
-                                    </a>
-                                    <div class="menu">
-                                        <a class="item" data-value="1" href="pages/seeker/account-update.html">Your
-                                            Applications</a>
-                                        <div class="item" data-value="1">Account Update</div>
-                                        <div class="item" data-value="0">Logout</div>
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="navbar-collapse collapse" id="navbarNav">
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="../../index.html">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" id="loginLink">Login</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="pet-search.html">Pet Search</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Register</a>
+                            </li>
+                            </li>
+                            <li class="nav-item notification">
+
+                            </li>
+                            <li class="nav-item notification">
+                                <button class="ui vertical animated button" data-content="1 new message"
+                                    data-inverted="" data-position="bottom left" id="notificationButton">
+                                    <div class="hidden content">Notifications</div>
+                                    <div class="visible content">
+                                        <i class="mail icon"></i>
+                                        <span class="notification-count">1</span>
                                     </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </nav>
-                </div>
-
-                <div class="content acc-update">
-                    <div class="row">
-                        <!-- User Profile Picture -->
-                        <div class="col-md-4">
-                            <div class="profile-picture">
-                                <img class="profile-image" src="../../images/1_BlackPuppy-5ba50070c9e77c0082221c54.jpg" alt="Profile Picture">
-                                <!-- Upload Button -->
-                                <label for="profilePicture" class="upload-button">
-                                    <i class="fas fa-camera"></i> Upload
-                                </label>
-                                <!-- File Input (Hidden) -->
-                                <input type="file" id="profilePicture" accept="image/*">
+                                </button>
+                            </li>
+                            <li class="ui dropdown">
+                                <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle"
+                                    data-toggle="dropdown" href="#" id="profileDropdown" role="button"
+                                    style="padding: 0">
+                                    <img alt="Profile" class="ui avatar image"
+                                        src="https://xsgames.co/randomusers/avatar.php?g=pixel"
+                                        style="width: 35px; height: 35px;">
+                                </a>
+                                <div class="menu">
+                                    <a class="item" data-value="1" href="account-update.html">Your Applications</a>
+                                    <div class="item" data-value="1">Account Update</div>
+                                    <div class="item" data-value="0">Logout</div>
+                                </div>
+                            </li>
+                        </ul>
+                        <!--Notification Dropdown-->
+                        <div class="ui bottom center popup" id="notificationPopup">
+                            <div class="list-group">
+                                <div class="list-group-item notification-content">
+                                    <img class="ui avatar image"
+                                        src="https://xsgames.co/randomusers/avatar.php?g=pixel">
+                                    <div class="header"><b>GoDoggy Adoption</b></div>
+                                    <div class="description"><b>Your application was rejected</b></div>
+                                </div>
+                                <div class="list-group-item notification-content">
+                                    <img class="ui avatar image"
+                                        src="https://xsgames.co/randomusers/avatar.php?g=pixel">
+                                    <div class="header">Meow Center</div>
+                                    <div class="description">Your application is still under consideration</div>
+                                </div>
+                                <div class="list-group-item notification-content">
+                                    <img class="ui avatar image"
+                                        src="https://xsgames.co/randomusers/avatar.php?g=pixel">
+                                    <div class="header">GetPets Org</div>
+                                    <div class="description">New update on your application</div>
+                                </div>
+                                <div class="list-group-item notification-content">
+                                    <img class="ui avatar image"
+                                        src="https://xsgames.co/randomusers/avatar.php?g=pixel">
+                                    <div class="header">Jenny Hess</div>
+                                    <div class="description">Welcome to PetPal</div>
+                                </div>
                             </div>
                         </div>
+                        <!--Notification Dropdown-->
+                    </div>
+                </nav>
+            </div>
+            <!--Navbar Finished-->
 
-                        <!-- Account Update Form -->
-                        <div class="col-md-8">
-                            <h2 style="color: black">Account Update</h2>
-                            <form class="ui form" id="updateForm">
-                                <div class="field">
-                                    <label for="name">Full Name</label>
-                                    <input type="text" id="name" placeholder="Your Name" value="User's Name">
-                                </div>
-                                <div class="field">
-                                    <label for="email">Email</label>
-                                    <input type="email" id="email" placeholder="Your Email" value="user@example.com">
-                                </div>
-                                <div class="field">
-                                    <label for="password">Password</label>
-                                    <input type="password" id="password" placeholder="New Password">
-                                </div>
-                                <div class="field">
-                                    <label for="confirmPassword">Confirm Password</label>
-                                    <input type="password" id="confirmPassword" placeholder="Confirm Password">
-                                </div>
-                                <fieldset class="field additional-info">
-                                    <h3>Additional Information</h3>
-                                    <div class="field">
-                                        <label for="phone">Phone Number</label>
-                                        <input type="text" id="phone" placeholder="Your Phone Number" value="123-456-7890">
-                                    </div>
-                                    <div class="field">
-                                        <label for="location">Location</label>
-                                        <input type="text" id="location" placeholder="Your Location" value="Your Location">
-                                    </div>
-                                    <div class="field">
-                                        <label for="petPreferences">Pet Preferences</label>
-                                        <textarea id="petPreferences" placeholder="Your Pet Preferences"></textarea>
-                                    </div>
-                                </fieldset>
-                                <button class="ui button" id="update-btn" type="button" name="signup-submit">Update</button>
-                            </form>
+
+            <!--Content-->
+            <div class="content acc-update">
+                <div class="row">
+                    <!-- User Profile Picture -->
+                    <div class="col-md-4 pp">
+                        <div class="profile-picture">
+                            <img class="profile-image" src="../../images/1_BlackPuppy-5ba50070c9e77c0082221c54.jpg"
+                                alt="Profile Picture">
+                            <!-- Upload Button -->
+                            <label for="profilePicture" class="upload-button">
+                                <i class="fas fa-camera"></i> Upload
+                            </label>
+                            <!-- File Input (Hidden) -->
+                            <input type="file" id="profilePicture" accept="image/*">
                         </div>
                     </div>
+
+                    <!-- Account Update Form -->
+                    <div class="col-md-8">
+                        <h2 style="color: black">Account Update</h2>
+                        <form class="ui form" id="updateForm">
+                            <div class="field">
+                                <label for="name">Full Name</label>
+                                <input type="text" id="name" placeholder="Your Name" value="User's Name">
+                            </div>
+                            <div class="field">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" placeholder="Your Email" value="user@example.com">
+                            </div>
+                            <div class="field">
+                                <label for="password">Password</label>
+                                <input type="password" id="password" placeholder="New Password">
+                            </div>
+                            <div class="field">
+                                <label for="confirmPassword">Confirm Password</label>
+                                <input type="password" id="confirmPassword" placeholder="Confirm Password">
+                            </div>
+                            <fieldset class="field additional-info">
+                                <h3>Additional Information</h3>
+                                <div class="field">
+                                    <label for="phone">Phone Number</label>
+                                    <input type="text" id="phone" placeholder="Your Phone Number" value="123-456-7890">
+                                </div>
+                                <div class="field">
+                                    <label for="location">Location</label>
+                                    <input type="text" id="location" placeholder="Your Location" value="Your Location">
+                                </div>
+                                <div class="field">
+                                    <label for="petPreferences">Pet Preferences</label>
+                                    <textarea id="petPreferences" placeholder="Your Pet Preferences"></textarea>
+                                </div>
+                            </fieldset>
+                            <button class="ui button" id="update-btn" type="button" name="signup-submit">Update</button>
+                        </form>
                     </div>
+                </div>
             </div>
         </div>
 
@@ -149,7 +189,10 @@
                     </div>
                     <div class="col-md-2 text-center">
                         <h3>Contact Us</h3>
-                        <p>Email: info@petpal.com</p>
+                        <p>Email:
+                            <a class="email"
+                                href="mailto:info@petpal.com?subject=Queries%20Regarding%20Pet">info@petpal.com</a>
+                        </p>
                         <p>Phone: +1 (123) 456-7890</p>
                     </div>
                     <div class="col-md-4 text-center ">
@@ -164,8 +207,8 @@
                     <div class="col-md-4 text-center">
                         <h3>Quick Links</h3>
                         <ul>
-                            <li><a href="#">Home</a></li>
-                            <li><a href="#">Adopt a Pet</a></li>
+                            <li><a href="../../index.html">Home</a></li>
+                            <li><a href="pet-search.html">Adopt a Pet</a></li>
                             <li><a href="#">About Us</a></li>
                             <li><a href="#">Contact Us</a></li>
                         </ul>
@@ -174,24 +217,27 @@
                 <p class="copyright text-center">&copy; 2023 Pet Pal. All rights reserved.</p>
             </div>
         </footer>
-    </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.js"></script>
 
+        <script>
+            $('.ui.dropdown').dropdown();
+            $(document).ready(function () {
+                $(document).ready(function () {
+                    $('#notificationButton').popup({
+                        popup: '#notificationPopup',
+                        on: 'click',
+                        position: 'bottom center',
+                    });
+                });
+                $('.ui.sidebar').sidebar('setting', 'transition', 'overlay');
 
-    <script>
-        $('.ui.dropdown').dropdown();
-        $(document).ready(function () {
-            $('.ui.sidebar').sidebar('setting', 'transition', 'overlay');
-
-            $('.navbar-toggler').on('click', function () {
-                $('.ui.sidebar').sidebar('toggle');
+                $('.navbar-toggler').on('click', function () {
+                    $('.ui.sidebar').sidebar('toggle');
+                });
             });
-        });
-    </script>
-
+        </script>
 </body>
 
 </html>

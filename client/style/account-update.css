@@ -51,6 +51,10 @@ img.logo {
     overflow: hidden;
     border-radius: 50%;
 }
+.pp{
+    display: flex;
+    justify-content: center;
+}
 
 .profile-image {
     width: 100%;
@@ -243,16 +247,17 @@ img.logo {
     }
     .col-md-4 {
         width: 100%;
-        order: 2; /* Move the profile picture below */
+        order: 1; /* Move the profile picture below */
     }
     .col-md-8 {
         width: 100%;
-        order: 1; /* Move the update form above */
+        order: 2; /* Move the update form above */
     }
 
     .profile-picture {
         width: 150px; /* Adjust the size as needed */
         height: 150px; /* Adjust the size as needed */
+        margin-bottom: 50px;
     }
 
     .upload-button {
