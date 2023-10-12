@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <!--Current File Title-->
-    <title>Shelter Management | PetPal</title>
+    <title>Shelter Account | PetPal</title>
     <link href="../../images/logo.png" rel="icon" type="image/x-icon">
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -16,7 +16,7 @@
     <link href="../../style/index.css" rel="stylesheet">
 
     <!--Current File CSS-->
-    <link rel="stylesheet" href="../../style/shelter-management.css">
+    <link href="../../style/account-update.css" rel="stylesheet">
 
 <body>
 <div id="page-container">
@@ -122,158 +122,62 @@
 
         <!--Content-->
         <div class="content">
-            <div class="container mt-4">
-                <div class="row d-flex justify-content-center align-items-center">
-                    <div class="col-2 d-flex flex-column align-items-center text-center">
-                        <a href="#" class="add_pet_btn" style="margin-bottom: 5px">
-                            <i class="fa-solid fa-paw"></i>
-                        </a>
-                        Edit Shelter
-                    </div>
-                    <div class="col-4 d-flex flex-column align-items-center text-center">
-                        <h1 class="heading">List of Pets in your Shelter</h1>
-                    </div>
-                    <div class="col-2 d-flex flex-column align-items-center text-center">
-                        <a href="pet-creation.html" class="add_pet_btn"  style="margin-bottom: 5px">
-                            <i class="fas fa-plus"></i>
-                        </a>
-                        Add Pet
-                    </div>
-                </div>
-            </div>
-            <div class="ui cards">
-                <div class="ui cards home">
+            <div class="content acc-update">
+                <div class="row">
+                    <div class="col-md-8">
+                        <h2 style="color: black">Account Update</h2>
+                        <form class="ui form" id="updateForm">
+                            <fieldset class="field additional-info">
+                                <h3>Contact Information</h3>
+                                <div class="field">
+                                    <label for="name">Shelter Name</label>
+                                    <input id="name" placeholder="Shelter Name" type="text" value="PetCenter">
+                                </div>
+                                <div class="field">
+                                    <label for="email">Email</label>
+                                    <input id="email" placeholder="Shelter Email" type="email"
+                                           value="PetCenter@example.com">
+                                </div>
+                                <div class="field">
+                                    <label for="phone">Phone Number</label>
+                                    <input id="phone" placeholder="Shelter contact" type="text" value="647 123 5678">
+                                </div>
+                                <div class="field">
+                                    <label for="address">Address</label>
+                                    <input id="address" placeholder="Your Email" type="email"
+                                           value="123 Shelter Street, Toronto, ON">
+                                </div>
+                            </fieldset>
+                            <fieldset class="field additional-info">
+                                <h3>Additional Information</h3>
+                                <div class="field">
+                                    <label for="shelterDesc">Shelter Description</label>
+                                    <textarea id="shelterDesc" placeholder="Description of the Shelter"></textarea>
+                                </div>
+                                <div class="field">
+                                    <label for="shelterMission">Shelter Mission Statement</label>
+                                    <textarea id="shelterMission"
+                                              placeholder="Mission Statement for the Shelter"></textarea>
+                                </div>
 
-                    <div class="adoption-pet card">
-                        <div class="curved-border">
-                            <div class="card-image">
-                                <img src="../../images/adoption/8.jpg" alt="Whitey">
-                                <a href="pet-update.html"><i class="edit icon"></i></a>
-                            </div>
-                        </div>
-                        <div class="card-content">
-                            <div class="card-wave">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-                                    <path fill="white" fill-opacity="1" d="M0,192L120,176C240,160,480,128,720,128C960,128,1200,160,1320,176L1440,192L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"></path>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="card-description">
-                            <h3 class="card-description title">Whitey</h3>
-                            <p class="pet-description">Siberian Husky Aged 7 years</p>
-                            <a href="../../pages/seeker/pet-details.html" class="card-description ui button">View Pet</a>
+                            </fieldset>
+                            <button class="ui button" id="update-btn" name="signup-submit" type="button">Update</button>
+                        </form>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="shelter-picture">
+                            <img alt="Shelter Image" class="shelter-image" src="../../images/shelter_img.jpg">
+                            <!-- Upload Button -->
+                            <label class="upload-button" for="shelterPicture">
+                                <i class="fas fa-camera"></i> Upload
+                            </label>
+                            <!-- File Input (Hidden) -->
+                            <input accept="image/*" id="shelterPicture" type="file">
                         </div>
                     </div>
-
-                    <div class="adoption-pet card">
-                        <div class="curved-border">
-                            <div class="card-image">
-                                <img src="../../images/adoption/7.jpeg" alt="Yin-Yang">
-                                <a href="pet-update.html"><i class="edit icon"></i></a>
-                            </div>
-                        </div>
-                        <div class="card-content">
-                            <div class="card-wave">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-                                    <path fill="white" fill-opacity="1" d="M0,192L120,176C240,160,480,128,720,128C960,128,1200,160,1320,176L1440,192L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"></path>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="card-description">
-                            <h3 class="card-description title">Yin-Yang</h3>
-                            <p class="pet-description">2 Cats, both 9 years old</p>
-                            <a href="../../pages/seeker/pet-details.html" class="card-description ui button">View Pet</a>
-                        </div>
-                    </div>
-
-                    <div class="adoption-pet card">
-                        <div class="curved-border">
-                            <div class="card-image">
-                                <img src="../../images/adoption/6.jpeg" alt="Green Parrot">
-                                <a href="pet-update.html"><i class="edit icon"></i></a>
-                            </div>
-                        </div>
-                        <div class="card-content">
-                            <div class="card-wave">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-                                    <path fill="white" fill-opacity="1" d="M0,192L120,176C240,160,480,128,720,128C960,128,1200,160,1320,176L1440,192L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"></path>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="card-description">
-                            <h3 class="card-description title">Tota</h3>
-                            <p class="pet-description">Green Parrot, 30 years old</p>
-                            <a href="../../pages/seeker/pet-details.html" class="card-description ui button">View Pet</a>
-                        </div>
-                    </div>
-
-                    <div class="adoption-pet card">
-                        <div class="curved-border">
-                            <div class="card-image">
-                                <img src="../../images/adoption/5.jpeg" alt="White Small Dog">
-                                <a href="pet-update.html"><i class="edit icon"></i></a>
-                            </div>
-                        </div>
-                        <div class="card-content">
-                            <div class="card-wave">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-                                    <path fill="white" fill-opacity="1" d="M0,192L120,176C240,160,480,128,720,128C960,128,1200,160,1320,176L1440,192L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"></path>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="card-description">
-                            <h3 class="card-description title">Mellow</h3>
-                            <p class="pet-description">Fluffy Dog, 3 years old</p>
-                            <a href="../../pages/seeker/pet-details.html" class="card-description ui button">View Pet</a>
-                        </div>
-                    </div>
-
-                    <div class="adoption-pet card">
-                        <div class="curved-border">
-                            <div class="card-image">
-                                <img src="../../images/pet1-slideshow.jpeg" alt="Three Kittens">
-                                <a href="pet-update.html"><i class="edit icon"></i></a>
-                            </div>
-                        </div>
-                        <div class="card-content">
-                            <div class="card-wave">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-                                    <path fill="white" fill-opacity="1" d="M0,192L120,176C240,160,480,128,720,128C960,128,1200,160,1320,176L1440,192L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"></path>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="card-description">
-                            <h3 class="card-description title">Hustle</h3>
-                            <p class="pet-description">A retired service dog</p>
-                            <a href="../../pages/seeker/pet-details.html" class="card-description ui button">View Pet</a>
-                        </div>
-                    </div>
-
-                    <div class="adoption-pet card">
-                        <div class="curved-border">
-                            <div class="card-image">
-                                <img src="../../images/pet3-slideshow.jpeg" alt="Browny">
-                                <a href="pet-update.html"><i class="edit icon"></i></a>
-                            </div>
-                        </div>
-                        <div class="card-content">
-                            <div class="card-wave">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-                                    <path fill="white" fill-opacity="1" d="M0,192L120,176C240,160,480,128,720,128C960,128,1200,160,1320,176L1440,192L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"></path>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="card-description">
-                            <h3 class="card-description title">Timber</h3>
-                            <p class="pet-description">One of three cat triplets</p>
-                            <a href="../../pages/seeker/pet-details.html" class="card-description ui button">View Pet</a>
-                        </div>
-                    </div>
-
                 </div>
             </div>
         </div>
-
     </div>
 
 </div>
