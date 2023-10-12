@@ -1,29 +1,29 @@
 @import "global.css";
 
-body,p,h1,h2,form,{
-    background-color: white;
-    font-family: var(--font);
 
-}
 .btn.btn-primary{
     font-family: var(--font);
 }
-/* Customize the navbar */
-.navbar-custom {
-    background-color: #007bff; /* Blue background */
+
+.adoption-form {
+    max-width: 500px;
+    margin: 0 auto;
+    color: black;
 }
 
-
-.navbar-custom .navbar-brand,
-.navbar-custom .navbar-nav .nav-link {
-    color: #ffffff; /* White text */
+.form-group {
+    margin-bottom: 20px;
 }
 
-.navbar-custom .navbar-toggler-icon {
-    background-color: #ffffff; /* White color for the hamburger icon */
-    font-family: 'Quicksand', sans-serif;
+label {
+    font-weight: bold;
+    margin-bottom: 10px;
 }
 
+.btn-primary {
+    background-color: #007bff;
+    color: #fff;
+}
 .pic {
     border-radius: 50%;
     width: 300px;
