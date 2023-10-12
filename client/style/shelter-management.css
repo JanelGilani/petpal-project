@@ -106,11 +106,10 @@ select#locationSort {
     align-items: center;
     justify-content: center;
     margin-top: 10px;
-    
   }
   
   .add_pet_btn:hover {
-    background-color: var(--primary-500);
+      cursor: pointer;
   }
 
   .pet-description {

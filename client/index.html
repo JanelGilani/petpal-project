@@ -17,9 +17,9 @@
 
 <div class="body">
     <div class="ui sidebar vertical menu">
-        <a class="item">Home</a>
-        <a class="item">Login</a>
-        <a class="item">Pet Search</a>
+        <a href="#" class="item">Home</a>
+        <a href="" class="item">Login</a>
+        <a href="pages/seeker/pet-search.html" class="item">Pet Search</a>
         <a class="item">Register</a>
         <div class="logo-container">
             <img alt="Logo" class="logo" src="images/logo_large.png">
@@ -46,7 +46,7 @@
                         <a class="nav-link" href="pages/login.html" id="loginLink">Login</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/seeker/search.html">Pet Search</a>
+                        <a class="nav-link" href="pages/seeker/pet-search.html">Pet Search</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="register.php">Register</a>
@@ -189,7 +189,7 @@
                     </div>
                     <div class="card-description">
                         <h3 class="card-description title">Browny</h3>
-                        <button class="card-description ui button">Adopt</button>
+                        <a class="card-description ui button" href="pages/seeker/pet-details.html">Adopt</a>
                     </div>
                 </div>
 
@@ -212,7 +212,7 @@
                     </div>
                     <div class="card-description">
                         <h3 class="card-description title">Mellow</h3>
-                        <button class="card-description ui button">Adopt</button>
+                        <a class="card-description ui button" href="pages/seeker/pet-details.html">Adopt</a>
                     </div>
                 </div>
 
@@ -234,7 +234,7 @@
                     </div>
                     <div class="card-description">
                         <h3 class="card-description title">Neo</h3>
-                        <button class="card-description ui button">Adopt</button>
+                        <a class="card-description ui button" href="pages/seeker/pet-details.html">Adopt</a>
                     </div>
                 </div>
 
@@ -261,7 +261,7 @@
                 </div>
             </div>
             <span style="width: 100%; padding: 0 70px; text-align: right">
-                <a class="ui right labeled icon button bg-light" href="pages/seeker/search.html">
+                <a class="ui right labeled icon button bg-light" href="pages/seeker/pet-search.html">
                 <i class="right arrow icon bg-light"></i>
                 Pets Near You
             </a>
@@ -279,7 +279,10 @@
             </div>
             <div class="col-md-2 text-center">
                 <h3>Contact Us</h3>
-                <p>Email: info@petpal.com</p>
+                <p>Email:
+                <a
+                        class="email"
+                        href="mailto:info@petpal.com?subject=Queries%20Regarding%20Pet">info@petpal.com</a></p>
                 <p>Phone: +1 (123) 456-7890</p>
             </div>
             <div class="col-md-4 text-center ">
@@ -295,7 +298,7 @@
                 <h3>Quick Links</h3>
                 <ul>
                     <li><a href="#">Home</a></li>
-                    <li><a href="#">Adopt a Pet</a></li>
+                    <li><a href="pages/seeker/pet-search.html">Adopt a Pet</a></li>
                     <li><a href="#">About Us</a></li>
                     <li><a href="#">Contact Us</a></li>
                 </ul>
