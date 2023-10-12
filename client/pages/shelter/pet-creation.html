@@ -4,102 +4,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Petfinder App</title>
-    <!-- LInk Global CSS file -->
-    <link rel="stylesheet" href="global.css">
+    <title>Create Pet</title>
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-
-    <style>
-        body {
-            background-color: #93c5fd;
-        }
-
-        /* Customize the navbar */
-        .navbar-custom {
-            background-color: #007bff; /* Blue background */
-        }
-
-        .navbar-custom .navbar-brand,
-        .navbar-custom .navbar-nav .nav-link {
-            color: #ffffff; /* White text */
-        }
-
-        .navbar-custom .navbar-toggler-icon {
-            background-color: #ffffff; /* White color for the hamburger icon */
-            font-family: 'Quicksand', sans-serif;
-        }
-
-    </style>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.css" rel="stylesheet">
+    <link href="../../style/pet-creation.css" rel="stylesheet">
+    <link href="../../style/index.css" rel="stylesheet">
 </head>
 <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
-        <a class="navbar-brand" href="#">Petfinder</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Adopt</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Donate</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Contact</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-    <div class="container mt-4">
-        <div class="row">
-            <div class="col-lg-8 offset-lg-2 ">
-                <!-- Check if the user already has an application for the same pet
-                If the user has an application, show an error message or disable the link to this page -->
-                <form>
-                    <h2>List a New Pet</h2>
-                    <div class="form-group">
-                        <label for="name">Pet Name</label>
-                        <input type="text" class="form-control" id="name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="file">Please Uplaod a Picture</label>
-                        <input type="file" class="form-control" id="file" name="file" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="Category">Animal Category</label>
-                        <input type="text" class="form-control" id="category" name="category" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="color">Skin/Fur color</label>
-                        <input type="text" class="form-control" id="color" name="color" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="age">Pet Age</label>
-                        <input type="number" class="form-control" id="age" name="age" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="shelter">Shelter Name</label>
-                        <input type="text" class="form-control" id="shelter" name="shelter" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="info">Additional Information</label>
-                        <textarea class="form-control" rows=4 id="info" placeholder="Enter additional information if required"></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Register Pet</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</body>
 
-    <!-- Bootstrap JS (optional, but needed for the responsive navbar) -->
+<!-- Navbar -->
+<div class="body">
+<nav class="navbar navbar-expand-lg navbar-light">
+    <a class="navbar-brand" href="../../index.html">
+        <img alt="logo" class="logo" src="../../images/logo_large.png">
+    </a>
+    <button aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"
+            data-target="#navbarNav" data-toggle="collapse" type="button">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="login.php">Login</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="register.php">Register</a>
+            </li>
+            <li class="nav-item notification">
+                <button class="ui vertical animated button" data-content="1 new message" data-inverted=""
+                        data-position="bottom left">
+                    <div class="hidden content">Notifications</div>
+                    <div class="visible content">
+                        <i class="mail icon"></i>
+                        <span class="notification-count">1</span>
+                    </div>
+                </button>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+</div>
+<!-- Adoption Form -->
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-lg-7">
+            <!-- Check if the user already has an application for the same pet
+            If the user has an application, show an error message or disable the link to this page -->
+            <form class="adoption-form">
+                <p style="font-size: 30px; font-weight: bold;">Pet Creation</p>
+                <div class="form-group">
+                    <label for="name">Pet Name</label>
+                    <input type="text" class="form-control" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="desc">Description of the Pet</label>
+                    <input type="text" class="form-control" id="desc" name="desc" required>
+                </div>
+                <div class="form-group">
+                    <label for="breed">Breed</label>
+                    <input type="text" class="form-control" id="breed" name="breed" required>
+                </div>
+                <div class="form-group">
+                    <label for="age">Age</label>
+                    <input type="number" class="form-control" id="age" name="age" required>
+                </div>
+                <div class="form-group">
+                    <label for="size">Size</label>
+                    <input type="text" class="form-control" id="size" name="size" required>
+                </div>
+                <div class="form-group">
+                    <label for="chars">Characteristic</label>
+                    <input type="email" class="form-control" id="chars" name="chars" required>
+                </div>
+                <div class="form-group">
+                    <label for="train">House-trained?</label>
+                    <input type="text" class="form-control" id="train" name="train" required>
+                </div>
+                <div class="form-group">
+                    <label for="health">Health</label>
+                    <input type="text" class="form-control" id="health" name="health" required>
+                </div>
+                <div class="form-group">
+                    <label for="fee">Adoption Fee (in $)</label>
+                    <input type="number" class="form-control" id="fee" name="fee" required>
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Register Pet</button>
+            </form>
+        </div>
+        <div class="col-lg-1">
+
+        </div>
+            <div class="col-lg-4">
+                    <img class="pic" src="../../images/doggy.jpg" alt="Cute Dog">
+            </div>
+    </div>
+</div>
+<!-- Bootstrap JS (optional, but needed for the responsive navbar) -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
