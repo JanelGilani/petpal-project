@@ -77,19 +77,19 @@
                         <form class="ui form" id="updateForm">
                             <div class="field">
                                 <label for="name">Full Name</label>
-                                <input type="text" id="name" placeholder="Your Name" value="User's Name">
+                                <input type="text" id="name" placeholder="Your Name" value="User's Name" required>
                             </div>
                             <div class="field">
                                 <label for="email">Email</label>
-                                <input type="email" id="email" placeholder="Your Email" value="user@example.com">
+                                <input type="email" id="email" placeholder="Your Email" value="user@example.com" required>
                             </div>
                             <div class="field">
                                 <label for="password">Password</label>
-                                <input type="password" id="password" placeholder="New Password">
+                                <input type="password" id="password" placeholder="New Password" required>
                             </div>
                             <div class="field">
                                 <label for="confirmPassword">Confirm Password</label>
-                                <input type="password" id="confirmPassword" placeholder="Confirm Password">
+                                <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
                             </div>
                             <fieldset class="field additional-info">
                                 <h3>Additional Information</h3>
@@ -106,7 +106,7 @@
                                     <textarea id="petPreferences" placeholder="Your Pet Preferences"></textarea>
                                 </div>
                             </fieldset>
-                            <button class="ui button" id="update-btn" type="button" name="signup-submit">Update</button>
+                            <a class="ui button" id="update-btn" type="button" name="signup-submit" href="../../error.html">Update</a>
                         </form>
                     </div>
                 </div>
