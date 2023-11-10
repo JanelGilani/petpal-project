@@ -1,0 +1,9 @@
+{% for field in form %}
+{{ field.label_tag }}{{ field }}
+{% if field.errors %}
+{% for error in field.errors %}
+<label>{# empty label for grid column #}</label>
+<p class="error">{{ error }}</p>
+{% endfor %}
+{% endif %}
+{% endfor %}
