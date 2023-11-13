@@ -1,21 +1,162 @@
-from django.shortcuts import redirect
-from django.contrib.auth import login as login_user, \
-                                logout as logout_user
-from django.urls import reverse
-from django.views.generic.edit import FormView
-from .forms import LoginForm
+# accounts/views.py
 
-class LoginView(FormView):
-    form_class = LoginForm
-    template_name = 'accounts/login.html'
+from rest_framework import generics
+from rest_framework.response import Response
+from rest_framework import status
+from rest_framework.authtoken.models import Token
+from rest_framework.permissions import IsAuthenticated
 
-    def form_valid(self, form):
-        login_user(self.request, form.cleaned_data['user'])
-        return super().form_valid(form)
-    
-    def get_success_url(self):
-        return reverse("shop")
+from .models import Shelter, PetSeeker
+from .serializers import ShelterSerializer, PetSeekerSerializer
 
-def logout(request):
-    logout_user(request)
-    return redirect('accounts:login')
+# accounts/views.py
+
+from rest_framework import generics
+from rest_framework.response import Response
+from rest_framework import status
+from django.contrib.auth.models import User
+from .models import Shelter
+from .serializers import ShelterSerializer
+
+class ShelterRegistrationView(generics.CreateAPIView):
+    serializer_class = ShelterSerializer
+    def perform_create(self, serializer):
+        user_data = serializer.validated_data.pop('user')
+        user = User.objects.create_user(**user_data)
+        serializer.save(user=user)
+
+class PetSeekerRegistrationView(generics.CreateAPIView):
+    serializer_class = PetSeekerSerializer
+
+    def perform_create(self, serializer):
+        user_data = serializer.validated_data.pop('user')
+        user = User.objects.create_user(**user_data)
+        serializer.save(user=user)
+
+# accounts/views.py
+
+from django.contrib.auth import authenticate, login
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+
+class LoginView(APIView):
+    def post(self, request, *args, **kwargs):
+        username = request.data.get('username')
+        password = request.data.get('password')
+
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+            return Response({'detail': 'Successfully logged in'}, status=status.HTTP_200_OK)
+        else:
+            return Response({'detail': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
+
+from django.shortcuts import get_object_or_404
+from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
+from rest_framework.permissions import IsAdminUser, IsAuthenticated
+from .models import Shelter, PetSeeker
+from .serializers import ShelterSerializer, PetSeekerSerializer
+from rest_framework import status
+from rest_framework.response import Response
+
+
+# accounts/views.py
+
+from rest_framework.generics import RetrieveAPIView
+from .models import Shelter, PetSeeker
+from .serializers import ShelterSerializer, PetSeekerSerializer
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
+from rest_framework import status
+from django.contrib.auth.models import User
+
+class ShelterProfileView(RetrieveAPIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = ShelterSerializer
+
+    def retrieve(self, request, *args, **kwargs):
+        username = kwargs['username']
+        user = get_object_or_404(User, username=username)
+
+        try:
+            shelter = Shelter.objects.get(user=user)
+            serializer = self.get_serializer(shelter)
+            return Response(serializer.data)
+        except Shelter.DoesNotExist:
+            return Response({'detail': 'Shelter not found.'}, status=status.HTTP_404_NOT_FOUND)
+        
+
+class PetSeekerProfileView(RetrieveAPIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = PetSeekerSerializer
+
+    def retrieve(self, request, *args, **kwargs):
+        username = kwargs['username']
+        user = get_object_or_404(User, username=username)
+
+        try:
+            pet_seeker = PetSeeker.objects.get(user=user)
+            serializer = self.get_serializer(pet_seeker)
+            return Response(serializer.data)
+        except PetSeeker.DoesNotExist:
+            return Response({'detail': 'Pet Seeker not found.'}, status=status.HTTP_404_NOT_FOUND)
+
+class ListSheltersView(ListCreateAPIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = ShelterSerializer
+    queryset = Shelter.objects.all()
+
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
+
+# accounts/views.py
+
+from rest_framework.generics import RetrieveUpdateDestroyAPIView
+from rest_framework.permissions import IsAdminUser, IsAuthenticated
+from rest_framework.response import Response
+from rest_framework import status
+from .models import Shelter
+from .serializers import ShelterSerializer
+
+class ShelterDeleteView(RetrieveUpdateDestroyAPIView):
+    permission_classes = [IsAuthenticated]  # Change to IsAuthenticated
+    serializer_class = ShelterSerializer
+    queryset = Shelter.objects.all()
+
+    def delete(self, request, *args, **kwargs):
+        shelter = self.get_object()
+
+        # Check if the current user is the owner of the shelter
+        if request.user == shelter.user:
+            user = shelter.user
+            shelter.delete()
+            user.delete()
+            return Response({'detail': 'Shelter and associated User deleted successfully'}, status=status.HTTP_204_NO_CONTENT)
+        else:
+            return Response({'detail': 'You do not have permission to delete this shelter.'}, status=status.HTTP_403_FORBIDDEN)
+
+
+
+from rest_framework.generics import RetrieveUpdateDestroyAPIView
+from rest_framework.permissions import IsAdminUser, IsAuthenticated
+from rest_framework.response import Response
+from rest_framework import status
+from .models import PetSeeker
+from .serializers import PetSeekerSerializer
+
+class PetSeekerDeleteView(RetrieveUpdateDestroyAPIView):
+    permission_classes = [IsAuthenticated]  # Change to IsAuthenticated
+    serializer_class = PetSeekerSerializer
+    queryset = PetSeeker.objects.all()
+
+    def delete(self, request, *args, **kwargs):
+        pet_seeker = self.get_object()
+
+        # Check if the current user is the owner of the pet seeker profile
+        if request.user == pet_seeker.user:
+            pet_seeker.delete()
+            return Response({'detail': 'Pet Seeker profile deleted successfully'}, status=status.HTTP_204_NO_CONTENT)
+        else:
+            return Response({'detail': 'You do not have permission to delete this pet seeker profile.'}, status=status.HTTP_403_FORBIDDEN)
