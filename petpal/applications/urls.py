@@ -9,7 +9,7 @@ urlpatterns = [
      path('applications/', ApplicationListCreateView.as_view(), name='application-list-create'),
 
     # Retrieve and Update a specific Application
-    path('applications/<int:pk>/', ApplicationRetrieveUpdateView.as_view(), name='application-retrieve-update'),
+    path('applications/<int:application_id>/', ApplicationRetrieveUpdateView.as_view(), name='application-retrieve-update'),
 
     # List Applications based on user role
     path('applications/list/', ApplicationListView.as_view(), name='application-list'),
