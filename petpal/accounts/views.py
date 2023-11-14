@@ -1,37 +1,39 @@
 # accounts/views.py
 
-from rest_framework import generics
-from rest_framework.response import Response
 from rest_framework import status
-from rest_framework.authtoken.models import Token
-from rest_framework.permissions import IsAuthenticated
-
+from rest_framework.response import Response
+from rest_framework.generics import CreateAPIView
+from rest_framework.permissions import AllowAny
 from .models import Shelter, PetSeeker
-from .serializers import ShelterSerializer, PetSeekerSerializer
+from .serializers import CustomUserSerializer, ShelterSerializer, PetSeekerSerializer
+from rest_framework.generics import ListAPIView
+from .models import CustomUser, Shelter, PetSeeker
 
-# accounts/views.py
-
-from rest_framework import generics
-from rest_framework.response import Response
-from rest_framework import status
-from django.contrib.auth.models import User
-from .models import Shelter
-from .serializers import ShelterSerializer
-
-class ShelterRegistrationView(generics.CreateAPIView):
+class ShelterRegistrationView(CreateAPIView):
+    queryset = Shelter.objects.all()
     serializer_class = ShelterSerializer
-    def perform_create(self, serializer):
-        user_data = serializer.validated_data.pop('user')
-        user = User.objects.create_user(**user_data)
-        serializer.save(user=user)
+    permission_classes = [AllowAny]
 
-class PetSeekerRegistrationView(generics.CreateAPIView):
+    def perform_create(self, serializer):
+        user_serializer = CustomUserSerializer(data=self.request.data.get('user'))
+        if user_serializer.is_valid():
+            user = user_serializer.save()
+            serializer.save(user=user)
+        else:
+            Response(user_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class PetSeekerRegistrationView(CreateAPIView):
+    queryset = PetSeeker.objects.all()
     serializer_class = PetSeekerSerializer
+    permission_classes = [AllowAny]
 
     def perform_create(self, serializer):
-        user_data = serializer.validated_data.pop('user')
-        user = User.objects.create_user(**user_data)
-        serializer.save(user=user)
+        user_serializer = CustomUserSerializer(data=self.request.data.get('user'))
+        if user_serializer.is_valid():
+            user = user_serializer.save()
+            serializer.save(user=user)
+        else:
+            Response(user_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 # accounts/views.py
 
@@ -70,15 +72,15 @@ from .serializers import ShelterSerializer, PetSeekerSerializer
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework import status
-from django.contrib.auth.models import User
 
-class ShelterProfileView(RetrieveAPIView):
+class ShelterProfileView(APIView): 
+    
     permission_classes = [IsAuthenticated]
     serializer_class = ShelterSerializer
 
     def retrieve(self, request, *args, **kwargs):
         username = kwargs['username']
-        user = get_object_or_404(User, username=username)
+        user = get_object_or_404(CustomUser, username=username)
 
         try:
             shelter = Shelter.objects.get(user=user)
@@ -88,13 +90,13 @@ class ShelterProfileView(RetrieveAPIView):
             return Response({'detail': 'Shelter not found.'}, status=status.HTTP_404_NOT_FOUND)
         
 
-class PetSeekerProfileView(RetrieveAPIView):
+class PetSeekerProfileView(APIView):
     permission_classes = [IsAuthenticated]
     serializer_class = PetSeekerSerializer
 
     def retrieve(self, request, *args, **kwargs):
         username = kwargs['username']
-        user = get_object_or_404(User, username=username)
+        user = get_object_or_404(CustomUser, username=username)
 
         try:
             pet_seeker = PetSeeker.objects.get(user=user)
@@ -103,7 +105,7 @@ class PetSeekerProfileView(RetrieveAPIView):
         except PetSeeker.DoesNotExist:
             return Response({'detail': 'Pet Seeker not found.'}, status=status.HTTP_404_NOT_FOUND)
 
-class ListSheltersView(ListCreateAPIView):
+class ListSheltersView(ListAPIView): 
     permission_classes = [IsAuthenticated]
     serializer_class = ShelterSerializer
     queryset = Shelter.objects.all()
