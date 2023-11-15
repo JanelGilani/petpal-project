@@ -9,7 +9,7 @@ from .serializers import CommentSerializer
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from django.shortcuts import get_object_or_404
-
+from notifications.models import Notifications
 
 class IsShelterOrPetSeeker(permissions.BasePermission):
 
@@ -41,6 +41,16 @@ class CommentListCreateView(generics.ListCreateAPIView):
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
+        # Send notification to the user who owns the post
+        Notifications.objects.create(
+            title=f'New comment on post {comment.id}',
+            body=f'New comment on your post {comment.id}',
+            user=user,
+            content_type=ContentType.objects.get_for_model(comment),
+            object_id=comment.id
+        )
+
+    
 
 # class ShelterCommentListCreateView(CommentListCreateView):
 #     permission_classes = [IsAuthenticated]

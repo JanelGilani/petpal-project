@@ -83,43 +83,43 @@ class NotificationListView(ListAPIView):
 #         else:
 #             return Response({'detail': 'Related object URL not found in the notification'}, status=400)
 
-    def get_related_object_url(self, obj):
-        try:
-            if obj.content_type.model == 'comment':
-                return reverse('comment-detail', args=[str(obj.object_id)], request=self.request)
-            elif obj.content_type.model == 'application':
-                return reverse('application-detail', args=[str(obj.object_id)], request=self.request)
-            # Add more conditions for other models if needed
+    # def get_related_object_url(self, obj):
+    #     try:
+    #         if obj.content_type.model == 'comment':
+    #             return reverse('comment-detail', args=[str(obj.object_id)], request=self.request)
+    #         elif obj.content_type.model == 'application':
+    #             return reverse('application-detail', args=[str(obj.object_id)], request=self.request)
+    #         # Add more conditions for other models if needed
 
-        except NoReverseMatch:
-            return None
+    #     except NoReverseMatch:
+    #         return None
 
 
 
-from rest_framework.generics import ListCreateAPIView
-from rest_framework.response import Response
-from rest_framework import status
-from .models import Comment, Notifications
-from .serializers import CommentSerializer
-from django.contrib.contenttypes.models import ContentType
-from rest_framework.permissions import AllowAny
-from rest_framework_simplejwt.authentication import JWTAuthentication
+# from rest_framework.generics import ListCreateAPIView
+# from rest_framework.response import Response
+# from rest_framework import status
+# from .models import Comment, Notifications
+# from .serializers import CommentSerializer
+# from django.contrib.contenttypes.models import ContentType
+# from rest_framework.permissions import AllowAny
+# from rest_framework_simplejwt.authentication import JWTAuthentication
      
-class CommentCreateView(ListCreateAPIView):
-    authentication_classes = [JWTAuthentication]
-    serializer_class = CommentSerializer
-    permission_classes = [IsAuthenticated]  # Set the permission class to IsAuthenticated
+# class CommentCreateView(ListCreateAPIView):
+#     authentication_classes = [JWTAuthentication]
+#     serializer_class = CommentSerializer
+#     permission_classes = [IsAuthenticated]  # Set the permission class to IsAuthenticated
 
-    def perform_create(self, serializer):
-        user = self.request.user  # Get the currently logged-in user
-        comment = serializer.save(user=user)
+#     def perform_create(self, serializer):
+#         user = self.request.user  # Get the currently logged-in user
+#         comment = serializer.save(user=user)
 
-        Notifications.objects.create(
-            title=f'New comment on post {comment.id}',
-            body=f'New comment on your post {comment.id}',
-            user=user,
-            content_type=ContentType.objects.get_for_model(comment),
-            object_id=comment.id
-        )
+#         Notifications.objects.create(
+#             title=f'New comment on post {comment.id}',
+#             body=f'New comment on your post {comment.id}',
+#             user=user,
+#             content_type=ContentType.objects.get_for_model(comment),
+#             object_id=comment.id
+#         )
         
-        return Response({'detail': 'Comment created successfully'}, status=status.HTTP_201_CREATED)
+#         return Response({'detail': 'Comment created successfully'}, status=status.HTTP_201_CREATED)

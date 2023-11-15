@@ -30,16 +30,16 @@ class Notifications(models.Model):
 
 # Create Comments Model for Notifications
 
-class Comment(models.Model):
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
-    body = models.TextField()
-    created_at = models.DateTimeField(auto_now_add=True)
+# class Comment(models.Model):
+#     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+#     body = models.TextField()
+#     created_at = models.DateTimeField(auto_now_add=True)
 
-    def __str__(self):
-        return self.body
+#     def __str__(self):
+#         return self.body
     
-    class Meta:
-        ordering = ['-created_at']
-        verbose_name = 'Comment'
-        verbose_name_plural = 'Comments'
+#     class Meta:
+#         ordering = ['-created_at']
+#         verbose_name = 'Comment'
+#         verbose_name_plural = 'Comments'
 
