@@ -39,6 +39,18 @@ class NotificationDetailView(RetrieveAPIView):
 
         serializer = self.get_serializer(instance)
         return Response(serializer.data, status=status.HTTP_200_OK)
+    
+    def delete(self, request, *args, **kwargs):
+        # Get the notification pk from the URL parameter
+        notification_pk = self.kwargs.get('pk')
+
+        # Get the notification instance
+        instance = get_object_or_404(self.get_queryset(), pk=notification_pk)
+
+        # Perform the delete action
+        instance.delete()
+
+        return Response({'detail': 'Notification deleted successfully'}, status=status.HTTP_204_NO_CONTENT)
 
 class NotificationListView(ListAPIView):
     authentication_classes = [JWTAuthentication]
