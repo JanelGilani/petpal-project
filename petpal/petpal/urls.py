@@ -24,5 +24,5 @@ urlpatterns = [
     path('applications/', include('applications.urls', namespace='applications')),
     path('comments/', include('comments.urls', namespace='comments')),
     path('notifications/', include('notifications.urls', namespace='notifications')),
-    path('pet_listings/', include('pet_listings.urls', namespace='pet_listings')),
+    path('pets/', include('pet_listings.urls', namespace='pet_listings')),
 ]
