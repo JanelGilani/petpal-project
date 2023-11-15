@@ -22,7 +22,7 @@ class IsShelterOrPetSeeker(permissions.BasePermission):
             application = Application.objects.get(id=application_id)
 
         # Check if the user is the pet seeker or the shelter related to the application
-            return application.user == request.user or application.shelter.user == request.user
+            return application.user == request.user or application.pet.shelter == request.user
         except Application.DoesNotExist:
             return False
         
@@ -30,7 +30,7 @@ class IsShelterOrPetSeeker(permissions.BasePermission):
     def has_object_permission(self, request, view, obj):
         application = obj.application
 
-        return application.user == request.user or application.shelter.user == request.user
+        return application.user == request.user or application.per.shelter == request.user
 
 class CommentListCreateView(generics.ListCreateAPIView):
     queryset = Comment.objects.all()
@@ -65,8 +65,15 @@ class ShelterCommentListCreateView(CommentListCreateView):
     
 
 class ApplicationCommentListCreateView(CommentListCreateView):
+    permission_classes = [IsAuthenticated]
+    authentication_classes = [JWTAuthentication]
     permission_classes = [IsShelterOrPetSeeker]
 
     def get_queryset(self):
         application_id = self.kwargs['application_id']
         return Comment.objects.filter(application__id=application_id)
+    
+    def perform_create(self, serializer):
+        application_id = self.kwargs['application_id']
+        application = get_object_or_404(Application, pk=application_id)
+        serializer.save(user=self.request.user, application=application)
