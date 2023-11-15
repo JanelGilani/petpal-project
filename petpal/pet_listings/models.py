@@ -14,7 +14,7 @@ class Pets(models.Model):
     species = models.CharField(max_length=100, blank=False, default='')
     breed = models.CharField(max_length=100, blank=False, default='')
     description = models.TextField(blank=False, default='')
-    # image = models.ImageField(upload_to='pets')
+    image = models.ImageField(upload_to='static', blank=True, null=True)
     location = models.CharField(max_length=100, blank=False, default='')
     color = models.CharField(max_length=100, blank=False, default='')
     date_added = models.DateTimeField(auto_now_add=True, blank=False, null=True)

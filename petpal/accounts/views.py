@@ -8,7 +8,7 @@ from rest_framework.permissions import AllowAny
 from django.contrib.auth import authenticate, login
 from rest_framework.permissions import IsAuthenticated
 from django.shortcuts import get_object_or_404
-from .models import Application, CustomUser, Shelter, PetSeeker
+from .models import CustomUser, Shelter, PetSeeker
 from .serializers import CustomUserSerializer, ShelterSerializer, PetSeekerSerializer
 from rest_framework.generics import ListAPIView
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
