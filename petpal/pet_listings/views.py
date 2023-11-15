@@ -4,9 +4,10 @@ from rest_framework.response import Response
 from rest_framework.generics import CreateAPIView, ListCreateAPIView, RetrieveAPIView, ListAPIView
 from rest_framework.views import APIView
 from rest_framework.permissions import AllowAny
+from rest_framework_simplejwt.authentication import JWTAuthentication
 from django.contrib.auth import authenticate, login
 from rest_framework.permissions import IsAuthenticated
-from rest_framework.decorators import api_view, permission_classes
+from rest_framework.decorators import api_view, permission_classes, authentication_classes
 from django.shortcuts import get_object_or_404
 from .models import Pets
 from .serializers import PetsSerializer, PetsListSerializer
@@ -14,13 +15,15 @@ from io import BytesIO
 from PIL import Image
 from django.core.files.uploadedfile import InMemoryUploadedFile
 
-class PetCreateView(ListCreateAPIView):
+class PetCreateView(CreateAPIView):
     serializer_class = PetsSerializer
-    permission_classes = [AllowAny]
+    permission_classes = [IsAuthenticated]
+    authentication_classes = [JWTAuthentication]
 
     def perform_create(self, serializer):
-        shelter = self.request.user.shelter
-        if shelter:
+        user = self.request.user
+
+        if user.shelter:
             # Handle image upload if provided in the request
             image_data = self.request.data.get('image')
             if image_data:
@@ -43,11 +46,12 @@ class PetCreateView(ListCreateAPIView):
                                     status=status.HTTP_400_BAD_REQUEST)
 
             # Save the pet with the shelter information
-            serializer.save(shelter=self.request.user)
+            serializer.save(shelter=user)
+            # Explicitly return the desired response without including the serialized pet data
             return Response({'detail': 'Pet created successfully'}, status=status.HTTP_201_CREATED)
         else:
-            return Response({'detail': 'User is not a shelter.'}, status=status.HTTP_400_BAD_REQUEST)
-        
+            return Response({'detail': 'You do not have permission to create a pet listing.'}, status=status.HTTP_403_FORBIDDEN)
+
 
 class PetListView(ListAPIView):
     queryset = Pets.objects.all()
@@ -112,10 +116,10 @@ class PetSearchView(ListAPIView):
 
         # Add image URL to each pet in the response
         for pet_data in serializer.data:
-            pet_instance = Pets.objects.get(pk=pet_data['id'])
+            pet_instance = Pets.objects.get(id=pet_data['id'])
             pet_data['image'] = request.build_absolute_uri(pet_instance.image.url) if pet_instance.image else None
 
-        return self.get_paginated_response(serializer.data)
+        return Response(serializer.data)
 
 
 @api_view(['GET'])
@@ -132,6 +136,7 @@ def pet_detail(request, pet_id):
 
 @api_view(['PUT', 'DELETE'])
 @permission_classes([IsAuthenticated])
+@authentication_classes([JWTAuthentication])
 def pet_update(request, pet_id):
     pet = get_object_or_404(Pets, id=pet_id)
 
