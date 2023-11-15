@@ -83,9 +83,18 @@ class ApplicationCommentListCreateView(CommentListCreateView):
     def perform_create(self, serializer):
         application_id = self.kwargs['application_id']
         application = get_object_or_404(Application, pk=application_id)
-        serializer.save(user=self.request.user, application=application)
-
-
+        comment = serializer.save(user=self.request.user, application=application)
+        user = get_object_or_404(CustomUser, pk=self.request.user.id)
+        reverse_url = reverse('comments:application-comment-details', args=[str(application_id), str(comment.id)])
+        # Send notification to the user who owns the application
+        Notifications.objects.create(
+            title=f'New comment on application {comment.id}',
+            body=f'New comment on your application {comment.id}',
+            user=user,
+            content_type=ContentType.objects.get_for_model(comment),
+            object_id=comment.id,
+            model_url = reverse_url
+        )
 
 class CommentDetailView(APIView):
     permission_classes = [IsAuthenticated]
