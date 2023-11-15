@@ -18,6 +18,7 @@ from rest_framework import status
 from rest_framework.generics import CreateAPIView
 from rest_framework.permissions import AllowAny
 from rest_framework.generics import UpdateAPIView
+from rest_framework.generics import DestroyAPIView
 
 class ShelterRegistrationView(CreateAPIView):
     permission_classes = [AllowAny]
@@ -94,6 +95,13 @@ class PetSeekerRegistrationView(CreateAPIView):
         except Exception as e:
             return Response({'detail': f'An error occurred: {str(e)}'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
         
+class ListSheltersView(ListAPIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = ShelterSerializer
+
+    def get_queryset(self):
+        return Shelter.objects.all()
+
 
 class ShelterProfileView(APIView): 
     permission_classes = [IsAuthenticated]
@@ -142,25 +150,17 @@ class PetSeekerProfileView(APIView):
             return Response({'detail': 'Pet Seeker not found.'}, status=status.HTTP_404_NOT_FOUND)
 
 
-class ListSheltersView(ListAPIView):
+
+class ShelterUpdateView(APIView):
     permission_classes = [IsAuthenticated]
     serializer_class = ShelterSerializer
 
-    def get_queryset(self):
-        return Shelter.objects.all()
-
-
-
-class ShelterUpdateView(UpdateAPIView):
-    permission_classes = [IsAuthenticated]
-    serializer_class = ShelterSerializer
-
-    def get_object(self):
-        username = self.kwargs['username']
+    def get_object(self, username):
         return get_object_or_404(Shelter, user__username=username)
 
-    def update(self, request, *args, **kwargs):
-        instance = self.get_object()
+
+    def put(self, request, username, *args, **kwargs):
+        instance = self.get_object(username)
         data = request.data
 
         # Ensure that the user making the request is the owner of the shelter
@@ -192,18 +192,31 @@ class ShelterUpdateView(UpdateAPIView):
 
         except Exception as e:
             return Response({'detail': f'An error occurred: {str(e)}'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+    def delete(self, request, username, *args, **kwargs):
+        instance = self.get_object(username)
+
+        # Ensure that the user making the request is the owner of the shelter
+        if request.user != instance.user:
+            return Response({'detail': 'Permission denied. You are not the owner of this shelter.'}, status=status.HTTP_403_FORBIDDEN)
+
+        try:
+            instance.user.delete()
+            return Response({'detail': 'Shelter deleted successfully'}, status=status.HTTP_204_NO_CONTENT)
+
+        except Exception as e:
+            return Response({'detail': f'An error occurred: {str(e)}'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
         
 
-class PetSeekerUpdateView(UpdateAPIView):
+class PetSeekerUpdateView(APIView):
     permission_classes = [IsAuthenticated]
     serializer_class = PetSeekerSerializer
 
-    def get_object(self):
-        username = self.kwargs['username']
+    def get_object(self, username):
         return get_object_or_404(PetSeeker, user__username=username)
 
-    def update(self, request, *args, **kwargs):
-        instance = self.get_object()
+    def put(self, request, username, *args, **kwargs):
+        instance = self.get_object(username)
         data = request.data
 
         # Ensure that the user making the request is the owner of the pet seeker profile
@@ -232,6 +245,20 @@ class PetSeekerUpdateView(UpdateAPIView):
 
         except IntegrityError:
             return Response({'detail': 'Username or email already exists'}, status=status.HTTP_400_BAD_REQUEST)
+
+        except Exception as e:
+            return Response({'detail': f'An error occurred: {str(e)}'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+    def delete(self, request, username, *args, **kwargs):
+        instance = self.get_object(username)
+
+        # Ensure that the user making the request is the owner of the pet seeker profile
+        if request.user != instance.user:
+            return Response({'detail': 'Permission denied. You are not the owner of this pet seeker profile.'}, status=status.HTTP_403_FORBIDDEN)
+
+        try:
+            instance.user.delete()
+            return Response({'detail': 'Pet Seeker deleted successfully'}, status=status.HTTP_204_NO_CONTENT)
 
         except Exception as e:
             return Response({'detail': f'An error occurred: {str(e)}'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
