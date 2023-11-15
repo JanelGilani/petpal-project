@@ -6,9 +6,9 @@ NOADD  := db.sqlite3 $(wildcard *.tar)
 FILES  := $(filter-out $(NOADD), $(wildcard *))
 OUTPUT := $(notdir $(abspath .))
 
-all: zip
+all: clean
 
-.PHONY: clean zip setup
+.PHONY: clean
 clean:
 	rm -rf myenv
 	rm -rf static/*
@@ -20,6 +20,3 @@ setup: clean
 	./manage.py makemigrations
 	./manage.py migrate
 	./manage.py loaddata test.json
-
-zip: clean
-	tar cvf $(OUTPUT).tar $(FILES)

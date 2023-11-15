@@ -23,6 +23,7 @@ from rest_framework.generics import DestroyAPIView
 from PIL import Image
 from io import BytesIO
 from django.core.files.uploadedfile import InMemoryUploadedFile
+from rest_framework_simplejwt.authentication import JWTAuthentication
 
 class ShelterRegistrationView(CreateAPIView):
     permission_classes = [AllowAny]
@@ -123,6 +124,7 @@ class ListSheltersView(ListAPIView):
 
 
 class ShelterProfileView(APIView): 
+    authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
     serializer_class = ShelterSerializer
 
@@ -142,6 +144,7 @@ class ShelterProfileView(APIView):
 
 
 class PetSeekerProfileView(APIView):
+    authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
     serializer_class = PetSeekerSerializer
 
@@ -179,6 +182,7 @@ class PetSeekerProfileView(APIView):
 
 
 class ShelterUpdateView(APIView):
+    authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
     serializer_class = ShelterSerializer
 
@@ -236,6 +240,7 @@ class ShelterUpdateView(APIView):
         
 
 class PetSeekerUpdateView(APIView):
+    authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
     serializer_class = PetSeekerSerializer
 
