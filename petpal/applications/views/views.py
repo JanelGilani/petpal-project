@@ -8,7 +8,8 @@ from rest_framework import filters
 
 from ..models import Application
 from ..serializers import ApplicationSerializer
-from accounts.models import Shelter, PetSeeker
+from accounts.models import CustomUser
+from pet_listings.models import Pets
 from accounts.serializers import ShelterSerializer, PetSeekerSerializer
 from django.contrib.auth.models import User
         
@@ -25,16 +26,23 @@ class ApplicationListCreateView(APIView):
 
     def post(self, request, *args, **kwargs):
         # Create an application
-    
-            if request.pet_status == 'Available' and request.user.seeker:
-
+        pet_id = request.data.get('pet')  # Assuming the 'pet' field is sent in the request data
+        user_id = request.data.get('user')
+        try:
+            pet = Pets.objects.get(id=pet_id)
+            user = CustomUser.objects.get(id=user_id)
+            
+            if pet.status == 'Available' and user.seeker:
                 serializer = ApplicationSerializer(data=request.data)
                 if serializer.is_valid():
                     serializer.save()
                     return Response(serializer.data, status=status.HTTP_201_CREATED)
                 return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-            #else:
-                #return Response({'error': 'You can only apply for available pet listings.'}, status=status.HTTP_400_BAD_REQUEST)
+            else:
+                return Response({'error': 'You can only apply for available pet listings.'}, status=status.HTTP_400_BAD_REQUEST)
+        except Pets.DoesNotExist:
+            return Response({'error': 'Pet not found'}, status=status.HTTP_404_NOT_FOUND)
+
 
 
 

@@ -1,16 +1,17 @@
 from django.db import models
-
+from accounts.models import CustomUser
+from pet_listings.models import Pets
 
 # class CustomUser(AbstractUser):
 #     # Common fields for both Shelter and Pet Seeker
 #     email = models.EmailField(unique=True)
 
 class Application(models.Model):
-    user = models.ForeignKey('accounts.CustomUser', on_delete=models.CASCADE)
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     # user = models.IntegerField(default=1)
     # app_status = models.ForeignKey('Pets.status', on_delete=models.CASCADE)
     app_status = models.CharField(max_length=20,default='pending', editable=False)
-    shelter = models.ForeignKey('Pets.owner', on_delete=models.CASCADE)
+    pet = models.ForeignKey(Pets, on_delete=models.CASCADE,default=1)
     #shelter = models.IntegerField(default=1)
     name = models.CharField(max_length=100)
     email = models.EmailField(max_length=254)
@@ -25,7 +26,6 @@ class Application(models.Model):
     acknowledge = models.BooleanField()
     created_at = models.DateTimeField(auto_now_add=True)
     last_update_time = models.DateTimeField(auto_now=True)
-    pet_status = models.ForeignKey('Pets.status', on_delete=models.CASCADE)
 
 
     def __str__(self):
