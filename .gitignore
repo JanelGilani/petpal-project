@@ -1,6 +1,15 @@
-# Django #
-*.log
-*.pot
+# Byte-compiled / optimized / DLL files
+__pycache__/
 *.pyc
-__pycache__
+*.pyo
+*.pyd
+
+# Django
 db.sqlite3
+
+# Petpal (replace with the actual name of your app or directory)
+petpal/
+
+# Log files
+*.log
+*.sqlite3
