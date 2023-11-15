@@ -90,3 +90,18 @@ def pet_detail(request, pet_id):
     serializer = PetsSerializer(pet)
     return Response(serializer.data)
 
+
+@api_view(['PUT'])
+@permission_classes([IsAuthenticated])
+def pet_update(request, pet_id):
+    pet = get_object_or_404(Pets, id=pet_id)
+
+    requesting_user = request.user
+    if requesting_user.id != pet.shelter.id:
+        return Response({'detail': 'You do not have permission to edit this pet.'}, status=status.HTTP_403_FORBIDDEN)
+
+    serializer = PetsSerializer(pet, data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
