@@ -26,7 +26,7 @@ class IsShelterOrPetSeeker(permissions.BasePermission):
             application = Application.objects.get(id=application_id)
 
         # Check if the user is the pet seeker or the shelter related to the application
-            return application.user == request.user or application.shelter.user == request.user
+            return application.user == request.user or application.pet.shelter == request.user
         except Application.DoesNotExist:
             return False
         
@@ -34,7 +34,7 @@ class IsShelterOrPetSeeker(permissions.BasePermission):
     def has_object_permission(self, request, view, obj):
         application = obj.application
 
-        return application.user == request.user or application.shelter.user == request.user
+        return application.user == request.user or application.per.shelter == request.user
 
 class CommentListCreateView(generics.ListCreateAPIView):
     queryset = Comment.objects.all()
@@ -72,13 +72,29 @@ class ShelterCommentListCreateView(CommentListCreateView):
     
 
 class ApplicationCommentListCreateView(CommentListCreateView):
+    permission_classes = [IsAuthenticated]
+    authentication_classes = [JWTAuthentication]
     permission_classes = [IsShelterOrPetSeeker]
 
     def get_queryset(self):
         application_id = self.kwargs['application_id']
         return Comment.objects.filter(application__id=application_id)
-
-
+    
+    def perform_create(self, serializer):
+        application_id = self.kwargs['application_id']
+        application = get_object_or_404(Application, pk=application_id)
+        comment = serializer.save(user=self.request.user, application=application)
+        user = get_object_or_404(CustomUser, pk=self.request.user.id)
+        reverse_url = reverse('comments:application-comment-details', args=[str(application_id), str(comment.id)])
+        # Send notification to the user who owns the application
+        Notifications.objects.create(
+            title=f'New comment on application {comment.id}',
+            body=f'New comment on your application {comment.id}',
+            user=user,
+            content_type=ContentType.objects.get_for_model(comment),
+            object_id=comment.id,
+            model_url = reverse_url
+        )
 
 class CommentDetailView(APIView):
     permission_classes = [IsAuthenticated]
