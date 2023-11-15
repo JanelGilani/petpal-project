@@ -8,8 +8,12 @@ from accounts.models import Shelter, CustomUser, PetSeeker
 from .serializers import CommentSerializer
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.authentication import JWTAuthentication
+from rest_framework.views import APIView
+from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
 from notifications.models import Notifications
+from django.contrib.contenttypes.models import ContentType
+from django.urls import reverse
 
 class IsShelterOrPetSeeker(permissions.BasePermission):
 
@@ -41,24 +45,6 @@ class CommentListCreateView(generics.ListCreateAPIView):
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
-        # Send notification to the user who owns the post
-        Notifications.objects.create(
-            title=f'New comment on post {comment.id}',
-            body=f'New comment on your post {comment.id}',
-            user=user,
-            content_type=ContentType.objects.get_for_model(comment),
-            object_id=comment.id
-        )
-
-    
-
-# class ShelterCommentListCreateView(CommentListCreateView):
-#     permission_classes = [IsAuthenticated]
-#     authentication_classes = [JWTAuthentication]
-    
-#     def get_queryset(self):
-#         shelter_id = self.kwargs['shelter_id']
-#         return Comment.objects.filter(shelter__id=shelter_id)
 
 class ShelterCommentListCreateView(CommentListCreateView):
     permission_classes = [IsAuthenticated]
@@ -71,7 +57,18 @@ class ShelterCommentListCreateView(CommentListCreateView):
     def perform_create(self, serializer):
         shelter_id = self.kwargs['shelter_id']
         shelter = get_object_or_404(Shelter, pk=shelter_id)
-        serializer.save(user=self.request.user, shelter=shelter)
+        comment = serializer.save(user=self.request.user, shelter=shelter)
+        user = get_object_or_404(CustomUser, pk=self.request.user.id)
+        reverse_url = reverse('comments:shelter-comment-details', args=[str(shelter_id), str(comment.id)])
+        # Send notification to the user who owns the post
+        Notifications.objects.create(
+            title=f'New comment on post {comment.id}',
+            body=f'New comment on your post {comment.id}',
+            user=user,
+            content_type=ContentType.objects.get_for_model(comment),
+            object_id=comment.id,
+            model_url = reverse_url
+        )
     
 
 class ApplicationCommentListCreateView(CommentListCreateView):
@@ -80,3 +77,15 @@ class ApplicationCommentListCreateView(CommentListCreateView):
     def get_queryset(self):
         application_id = self.kwargs['application_id']
         return Comment.objects.filter(application__id=application_id)
+
+
+
+class CommentDetailView(APIView):
+    permission_classes = [IsAuthenticated]
+    authentication_classes = [JWTAuthentication]
+
+    def get(self, request, *args, **kwargs):
+        comment_id = self.kwargs['comment_id']
+        comment = get_object_or_404(Comment, pk=comment_id)
+        serializer = CommentSerializer(comment)
+        return Response(serializer.data)

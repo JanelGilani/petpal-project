@@ -18,6 +18,7 @@ class Notifications(models.Model):
     content_object = GenericForeignKey('content_type', 'object_id')
     created_at = models.DateTimeField(auto_now_add=True)
     is_read = models.CharField(max_length=10, choices=STATUS_CHOICES, default='unread')
+    model_url = models.CharField(max_length=100, default='')
 
     def __str__(self):
         return self.title
@@ -26,20 +27,3 @@ class Notifications(models.Model):
         ordering = ['-created_at']
         verbose_name = 'Notification'
         verbose_name_plural = 'Notifications'
-
-
-# Create Comments Model for Notifications
-
-# class Comment(models.Model):
-#     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
-#     body = models.TextField()
-#     created_at = models.DateTimeField(auto_now_add=True)
-
-#     def __str__(self):
-#         return self.body
-    
-#     class Meta:
-#         ordering = ['-created_at']
-#         verbose_name = 'Comment'
-#         verbose_name_plural = 'Comments'
-
