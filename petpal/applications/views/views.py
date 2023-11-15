@@ -1,5 +1,5 @@
 from rest_framework import generics, serializers
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import AllowAny
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -15,7 +15,7 @@ from django.contrib.auth.models import User
 # Create your views here.
 
 class ApplicationListCreateView(APIView):
-    #permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
 
     def get(self, request, *args, **kwargs):
         # List applications
@@ -26,7 +26,7 @@ class ApplicationListCreateView(APIView):
     def post(self, request, *args, **kwargs):
         # Create an application
     
-            #if app_status == 'available' and user.seeker:
+            if request.pet_status == 'Available' and request.user.seeker:
 
                 serializer = ApplicationSerializer(data=request.data)
                 if serializer.is_valid():
@@ -39,7 +39,7 @@ class ApplicationListCreateView(APIView):
 
 
 class ApplicationRetrieveUpdateView(APIView):
-    #permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
 
     def get(self, request, application_id, *args, **kwargs):
         # Retrieve an application
@@ -55,9 +55,7 @@ class ApplicationRetrieveUpdateView(APIView):
         try:
             application = Application.objects.get(id=application_id)
             app_status = request.data.get('app_status')
-            #if (app_status == 'withdrawn' and user.seeker) or (app_status == 'accepted' or 'denied' and user.shelter):
-            if app_status == 'withdrawn':
-                    
+            if (app_status == 'withdrawn' and request.user.seeker) or (app_status == 'accepted' or 'denied' and request.user.shelter):
                     application.app_status = app_status
                     application.save()
                     serializer = ApplicationSerializer(application)
@@ -109,7 +107,7 @@ class ApplicationListView(APIView):
 
 
 class ApplicationRetrieveView(APIView):
-    #permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
 
     def get(self, request, application_id, *args, **kwargs):
         # Retrieve an application

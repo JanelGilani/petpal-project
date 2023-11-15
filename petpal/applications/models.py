@@ -6,12 +6,12 @@ from django.db import models
 #     email = models.EmailField(unique=True)
 
 class Application(models.Model):
-    #user = models.ForeignKey('accounts.CustomUser', on_delete=models.CASCADE)
-    user = models.IntegerField(default=1)
-    #app_status = models.ForeignKey('Pets.status', on_delete=models.CASCADE)
+    user = models.ForeignKey('accounts.CustomUser', on_delete=models.CASCADE)
+    # user = models.IntegerField(default=1)
+    # app_status = models.ForeignKey('Pets.status', on_delete=models.CASCADE)
     app_status = models.CharField(max_length=20,default='pending', editable=False)
-    #shelter = models.ForeignKey('Pets.owner', on_delete=models.CASCADE)
-    shelter = models.IntegerField(default=1)
+    shelter = models.ForeignKey('Pets.owner', on_delete=models.CASCADE)
+    #shelter = models.IntegerField(default=1)
     name = models.CharField(max_length=100)
     email = models.EmailField(max_length=254)
     address = models.TextField()
@@ -25,6 +25,7 @@ class Application(models.Model):
     acknowledge = models.BooleanField()
     created_at = models.DateTimeField(auto_now_add=True)
     last_update_time = models.DateTimeField(auto_now=True)
+    pet_status = models.ForeignKey('Pets.status', on_delete=models.CASCADE)
 
 
     def __str__(self):
