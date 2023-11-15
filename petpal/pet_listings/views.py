@@ -108,18 +108,11 @@ class PetSearchView(ListAPIView):
         else:
             queryset = queryset.order_by('name')
 
+        # Add image URL to each pet in the queryset
+        for pet in queryset:
+            pet.image_url = self.request.build_absolute_uri(pet.image.url) if pet.image else None
+
         return queryset
-    
-    def list(self, request, *args, **kwargs):
-        queryset = self.get_queryset()
-        serializer = self.get_serializer(queryset, many=True)
-
-        # Add image URL to each pet in the response
-        for pet_data in serializer.data:
-            pet_instance = Pets.objects.get(id=pet_data['id'])
-            pet_data['image'] = request.build_absolute_uri(pet_instance.image.url) if pet_instance.image else None
-
-        return Response(serializer.data)
 
 
 @api_view(['GET'])
