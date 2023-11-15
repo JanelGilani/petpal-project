@@ -2,40 +2,71 @@ from django.shortcuts import render
 
 # Create your views here.
 # views.py
-
-from rest_framework import generics
+from rest_framework import generics, permissions
+from ..models import Comment, Application
+from accounts.models import Shelter, CustomUser, PetSeeker
+from .serializers import CommentSerializer
 from rest_framework.permissions import IsAuthenticated
-from rest_framework.pagination import PageNumberPagination
-from .models import ShelterComment, ApplicationComment
-from .serializers import ShelterCommentSerializer, ApplicationCommentSerializer
+from rest_framework_simplejwt.authentication import JWTAuthentication
+from django.shortcuts import get_object_or_404
 
-class SetPagination(PageNumberPagination):
-    page_size = 10
-    page_size_query_param = 'page_size'
-    max_page_size = 100
 
-class ShelterCommentListCreateView(generics.ListCreateAPIView):
-    serializer_class = ShelterCommentSerializer
-    permission_classes = [IsAuthenticated]
-    pagination_class = SetPagination
+class IsShelterOrPetSeeker(permissions.BasePermission):
+
+    def has_permission(self, request, view):
+        if not request.user or not request.user.is_authenticated:
+            return False
+        
+        application_id = view.kwargs['application_id']
+        try:
+            application = Application.objects.get(id=application_id)
+
+        # Check if the user is the pet seeker or the shelter related to the application
+            return application.user == request.user or application.shelter.user == request.user
+        except Application.DoesNotExist:
+            return False
+        
+ 
+    def has_object_permission(self, request, view, obj):
+        application = obj.application
+
+        return application.user == request.user or application.shelter.user == request.user
+
+class CommentListCreateView(generics.ListCreateAPIView):
+    queryset = Comment.objects.all()
+    serializer_class = CommentSerializer
 
     def get_queryset(self):
-        shelter_id = self.request.query_params.get('shelter')
-        return ShelterComment.objects.filter(shelter=shelter_id).order_by('-creation_time')
+        return super().get_queryset()
 
     def perform_create(self, serializer):
-        shelter_id = self.request.data.get('shelter')
-        serializer.save(user=self.request.user, shelter=shelter_id)
+        serializer.save(user=self.request.user)
 
-class ApplicationCommentListCreateView(generics.ListCreateAPIView):
-    serializer_class = ApplicationCommentSerializer
+# class ShelterCommentListCreateView(CommentListCreateView):
+#     permission_classes = [IsAuthenticated]
+#     authentication_classes = [JWTAuthentication]
+    
+#     def get_queryset(self):
+#         shelter_id = self.kwargs['shelter_id']
+#         return Comment.objects.filter(shelter__id=shelter_id)
+
+class ShelterCommentListCreateView(CommentListCreateView):
     permission_classes = [IsAuthenticated]
-    pagination_class = SetPagination
+    authentication_classes = [JWTAuthentication]
 
     def get_queryset(self):
-        user_id = self.request.query_params.get('applied_user')
-        return ApplicationComment.objects.filter(applied_user=user_id).order_by('-creation_time')
+        shelter_id = self.kwargs['shelter_id']
+        return Comment.objects.filter(shelter__id=shelter_id)
 
     def perform_create(self, serializer):
-        user_id = self.request.data.get('applied_user')
-        serializer.save(user=self.request.user, applied_user=user_id)
+        shelter_id = self.kwargs['shelter_id']
+        shelter = get_object_or_404(Shelter, pk=shelter_id)
+        serializer.save(user=self.request.user, shelter=shelter)
+    
+
+class ApplicationCommentListCreateView(CommentListCreateView):
+    permission_classes = [IsShelterOrPetSeeker]
+
+    def get_queryset(self):
+        application_id = self.kwargs['application_id']
+        return Comment.objects.filter(application__id=application_id)

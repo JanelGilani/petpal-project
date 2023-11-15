@@ -1,12 +1,14 @@
 from rest_framework import serializers
-from comments.models import ShelterComment, ApplicationComment
+from ..models import Comment
 
-class ShelterCommentSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = ShelterComment
-        fields = '__all__'
+# class CommentSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = Comment
+#         fields = ['id', 'text', 'created_at', 'user', 'shelter', 'application']
 
-class ApplicationCommentSerializer(serializers.ModelSerializer):
+class CommentSerializer(serializers.ModelSerializer):
+    user = serializers.PrimaryKeyRelatedField(read_only=True)
+
     class Meta:
-        model = ApplicationComment
-        fields = '__all__'
+        model = Comment
+        fields = ['id', 'text', 'created_at', 'user', 'shelter', 'application']
