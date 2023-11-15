@@ -17,6 +17,5 @@ urlpatterns = [
     path('shelters/profile/<str:username>/', ShelterProfileView.as_view(), name='shelter-profile'),
     path('petseekers/profile/<str:username>/', PetSeekerProfileView.as_view(), name='petseeker-profile'),
     path('all_shelters/', ListSheltersView.as_view(), name='list-shelters'),
-    # path('shelters/<str:username>/', ShelterDeleteView.as_view(), name='shelter-detail'),  # Changed path
-    # path('petseekers/<str:username>/', PetSeekerDeleteView.as_view(), name='petseeker-detail'),  # Changed path
+
 ]
