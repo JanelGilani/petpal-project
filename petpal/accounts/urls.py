@@ -1,15 +1,17 @@
 # accounts/urls.py
 
 from django.urls import path
-from .views import ShelterCreateView, ShelterRegistrationView, PetSeekerRegistrationView, LoginView, ShelterProfileView, \
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+from .views import  ShelterRegistrationView, PetSeekerRegistrationView, ShelterProfileView, \
     PetSeekerProfileView, ListSheltersView, ShelterDeleteView, PetSeekerDeleteView
 
 app_name = 'accounts'
 
 urlpatterns = [
-    path('shelters/', ShelterCreateView.as_view(), name='shelter-register'),
+    path('shelters/', ShelterRegistrationView.as_view(), name='shelter-register'),
+    path('login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('login/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('petseekers/', PetSeekerRegistrationView.as_view(), name='petseeker-register'),
-    path('login/', LoginView.as_view(), name='login'),
     path('shelters/profile/<str:username>/', ShelterProfileView.as_view(), name='shelter-profile'),
     path('petseekers/profile/<str:username>/', PetSeekerProfileView.as_view(), name='petseeker-profile'),
     path('shelters/', ListSheltersView.as_view(), name='list-shelters'),
