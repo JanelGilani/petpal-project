@@ -26,28 +26,20 @@ class NotificationDetailView(RetrieveAPIView):
         return Notifications.objects.filter(user=self.request.user)
 
     def retrieve(self, request, *args, **kwargs):
-        # Get the notification pk from the URL parameter
         notification_pk = self.kwargs.get('pk')
 
-        # Get the notification instance
         instance = get_object_or_404(self.get_queryset(), pk=notification_pk)
 
-        # Check if the notification is not read and update is_read to True
-        if not instance.is_read:
-            instance.is_read = True
+        if instance.is_read == 'unread':
+            instance.is_read = 'read'
             instance.save()
 
         serializer = self.get_serializer(instance)
         return Response(serializer.data, status=status.HTTP_200_OK)
     
     def delete(self, request, *args, **kwargs):
-        # Get the notification pk from the URL parameter
         notification_pk = self.kwargs.get('pk')
-
-        # Get the notification instance
         instance = get_object_or_404(self.get_queryset(), pk=notification_pk)
-
-        # Perform the delete action
         instance.delete()
 
         return Response({'detail': 'Notification deleted successfully'}, status=status.HTTP_204_NO_CONTENT)
@@ -62,11 +54,12 @@ class NotificationListView(ListAPIView):
         queryset = Notifications.objects.filter(user=self.request.user)
 
         # Read the 'is_read' query parameter and filter accordingly
-        is_read_param = self.request.query_params.get('is_read', None)
-        if is_read_param is not None:
-            is_read_param = bool(int(is_read_param))  # Convert 0/1 to False/True
-            queryset = queryset.filter(is_read=is_read_param)
-
+        status_param = self.request.query_params.get('status', None)
+        if status_param == 'read':
+            queryset = queryset.filter(is_read='read')
+        elif status_param == 'unread':
+            queryset = queryset.filter(is_read='unread')
+        
         # Sorting notifications by creation time
         queryset = queryset.order_by('-created_at')
 
@@ -90,16 +83,16 @@ class NotificationListView(ListAPIView):
 #         else:
 #             return Response({'detail': 'Related object URL not found in the notification'}, status=400)
 
-#     def get_related_object_url(self, obj):
-#         try:
-#             if obj.content_type.model == 'comment':
-#                 return reverse('comment-detail', args=[str(obj.object_id)], request=self.request)
-#             elif obj.content_type.model == 'application':
-#                 return reverse('application-detail', args=[str(obj.object_id)], request=self.request)
-#             # Add more conditions for other models if needed
+    def get_related_object_url(self, obj):
+        try:
+            if obj.content_type.model == 'comment':
+                return reverse('comment-detail', args=[str(obj.object_id)], request=self.request)
+            elif obj.content_type.model == 'application':
+                return reverse('application-detail', args=[str(obj.object_id)], request=self.request)
+            # Add more conditions for other models if needed
 
-#         except NoReverseMatch:
-#             return None
+        except NoReverseMatch:
+            return None
 
 
 
