@@ -7,10 +7,11 @@ from pet_listings.models import Pets
 #     email = models.EmailField(unique=True)
 
 class Application(models.Model):
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    seeker_user = models.ForeignKey(CustomUser, on_delete=models.CASCADE , related_name = "seeker_applications")
+    shelter_user = models.ForeignKey(CustomUser, on_delete=models.CASCADE , related_name = "shelter_applications")
     # user = models.IntegerField(default=1)
     # app_status = models.ForeignKey('Pets.status', on_delete=models.CASCADE)
-    app_status = models.CharField(max_length=20,default='pending', editable=False)
+    app_status = models.CharField(max_length=20,default='pending')
     pet = models.ForeignKey(Pets, on_delete=models.CASCADE,default=1)
     #shelter = models.IntegerField(default=1)
     name = models.CharField(max_length=100)
