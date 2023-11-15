@@ -10,6 +10,8 @@ all: zip
 
 .PHONY: clean zip setup
 clean:
+	rm -rf myenv
+	rm -rf static/*
 	rm -rf */__pycache__/ */*/__pycache__/ */*/*/__pycache__/ */migrations/0*.py
 	rm -rf $(NOADD) *~ *.tar
 	
@@ -17,7 +19,7 @@ setup: clean
 	chmod a+x ./manage.py
 	./manage.py makemigrations
 	./manage.py migrate
-	./manage.py loaddata midterm.json
+	./manage.py loaddata test.json
 
 zip: clean
 	tar cvf $(OUTPUT).tar $(FILES)
