@@ -78,7 +78,7 @@ class PetSeekerRegistrationView(CreateAPIView):
 
         # Validate required fields
         if not (username and email and password and seeker_name):
-            return Response({'detail': 'All fields are required'}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({'detail': ' username, email, password and seeker_name required'}, status=status.HTTP_400_BAD_REQUEST)
 
         try:
             # Create CustomUser instance
