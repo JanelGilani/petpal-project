@@ -13,8 +13,3 @@ class Comment(models.Model):
 
     class Meta:
         ordering = ['-created_at']
-
-# class Application(models.Model):
-#     shelter = models.ForeignKey('accounts.Shelter', on_delete=models.CASCADE)
-#     pet_seeker = models.ForeignKey('accounts.PetSeeker', on_delete=models.CASCADE)
-#     is_active = models.BooleanField(default=False)

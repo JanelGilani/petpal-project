@@ -42,14 +42,6 @@ class CommentListCreateView(generics.ListCreateAPIView):
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
 
-# class ShelterCommentListCreateView(CommentListCreateView):
-#     permission_classes = [IsAuthenticated]
-#     authentication_classes = [JWTAuthentication]
-    
-#     def get_queryset(self):
-#         shelter_id = self.kwargs['shelter_id']
-#         return Comment.objects.filter(shelter__id=shelter_id)
-
 class ShelterCommentListCreateView(CommentListCreateView):
     permission_classes = [IsAuthenticated]
     authentication_classes = [JWTAuthentication]
