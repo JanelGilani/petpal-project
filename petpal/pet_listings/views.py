@@ -22,7 +22,8 @@ class PetCreateView(CreateAPIView):
 
     def perform_create(self, serializer):
         user = self.request.user
-
+        if not user.shelter:
+            self.permission_denied(self.request, message='You do not have permission to create a pet listing.')
         if user.shelter:
             # Handle image upload if provided in the request
             image_data = self.request.data.get('image')
