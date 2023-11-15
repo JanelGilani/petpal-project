@@ -26,8 +26,58 @@ class PetCreateView(ListCreateAPIView):
 
 class PetListView(ListAPIView):
     queryset = Pets.objects.all()
-    serializer_class = PetsListSerializer
+    serializer_class = PetsSerializer
     permission_classes = [AllowAny]
 
 
-    
+class PetSearchView(ListAPIView):
+    queryset = Pets.objects.all()
+    serializer_class = PetsListSerializer
+    permission_classes = [AllowAny]
+
+    def get_queryset(self):
+        # Default status filter is "Available" unless specified
+        status_filter = self.request.GET.get('status', 'Available')
+
+        queryset = Pets.objects.filter(status__iexact=status_filter)
+
+        shelter_filter = self.request.GET.get('shelter')
+        if shelter_filter:
+            queryset = queryset.filter(shelter__iexact=shelter_filter)
+
+        breed_filter = self.request.GET.get('breed')
+        if breed_filter:
+            queryset = queryset.filter(breed__iexact=breed_filter)
+
+        age_filter = self.request.GET.get('age')
+        if age_filter:
+            queryset = queryset.filter(age__iexact=age_filter)
+
+        size_filter = self.request.GET.get('size')
+        if size_filter:
+            queryset = queryset.filter(size__iexact=size_filter)
+
+        color_filter = self.request.GET.get('color')
+        if color_filter:
+            queryset = queryset.filter(color__iexact=color_filter)
+
+        gender_filter = self.request.GET.get('gender')
+        if gender_filter:
+            queryset = queryset.filter(gender__iexact=gender_filter)
+
+        # Assuming date_added_filter is in the format 'YYYY-MM-DD'
+        date_added_filter = self.request.GET.get('date_added')
+        if date_added_filter:
+            queryset = queryset.filter(date_added__date=date_added_filter)
+
+        # Sorting options
+        sort_by = self.request.GET.get('sort_by', 'name')
+        if sort_by == 'age':
+            queryset = queryset.order_by('age')
+        elif sort_by == 'size':
+            queryset = queryset.order_by('size')
+        else:
+            queryset = queryset.order_by('name')
+
+        return queryset
+
