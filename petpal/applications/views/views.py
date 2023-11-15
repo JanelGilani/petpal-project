@@ -6,8 +6,9 @@ from rest_framework import status
 from rest_framework import filters
 from rest_framework.generics import ListAPIView
 from rest_framework_simplejwt.authentication import JWTAuthentication
-
-
+from notifications.models import Notifications
+from django.contrib.contenttypes.models import ContentType
+from django.urls import reverse
 from ..models import Application
 from ..serializers import ApplicationSerializer
 from accounts.models import CustomUser, PetSeeker, Shelter
@@ -40,7 +41,17 @@ class ApplicationListCreateView(APIView):
             if pet.status == 'Available' and seeker_user.seeker:
                 serializer = ApplicationSerializer(data=request.data)
                 if serializer.is_valid():
-                    serializer.save(shelter_user=shelter_user, pet=pet, seeker_user=seeker_user)
+                    application = serializer.save(shelter_user=shelter_user, pet=pet, seeker_user=seeker_user)
+                     # Send notification to the shelter user
+                    reverse_url = reverse('applications:application-retrieve', args=[str(application.id)])
+                    Notifications.objects.create(
+                        title=f'New application on pet {pet.id}',
+                        body=f'New application on pet {pet.id}',
+                        user=shelter_user,
+                        content_type=ContentType.objects.get_for_model(application),
+                        object_id=application.id,
+                        model_url = reverse_url
+                    )
                     return Response(serializer.data, status=status.HTTP_201_CREATED)
                 return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
             else:
@@ -66,12 +77,32 @@ class ApplicationRetrieveUpdateView(APIView):
                     application.app_status = app_status
                     application.save()
                     serializer = ApplicationSerializer(application)
+                    # Send notification to the shelter user
+                    reverse_url = reverse('applications:application-retrieve', args=[str(application.id)])
+                    Notifications.objects.create(
+                        title=f'Application {application.id} withdrawn',
+                        body=f'Application {application.id} withdrawn',
+                        user=application.shelter_user,
+                        content_type=ContentType.objects.get_for_model(application),
+                        object_id=application.id,
+                        model_url = reverse_url
+                    )
                     return Response(serializer.data, status=status.HTTP_200_OK)
             
             if  ((app_status == 'accepted' or app_status == 'denied') and user.shelter):
                     application.app_status = app_status
                     application.save()
                     serializer = ApplicationSerializer(application)
+                    # Send notification to the seeker user
+                    reverse_url = reverse('applications:application-retrieve', args=[str(application.id)])
+                    Notifications.objects.create(
+                        title=f'Application {application.id} {app_status}',
+                        body=f'Application {application.id} {app_status}',
+                        user=application.seeker_user,
+                        content_type=ContentType.objects.get_for_model(application),
+                        object_id=application.id,
+                        model_url = reverse_url
+                    )
                     return Response(serializer.data, status=status.HTTP_200_OK)
 
             else:

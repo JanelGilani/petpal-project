@@ -9,6 +9,8 @@ from django.contrib.auth import authenticate, login
 from rest_framework.permissions import IsAuthenticated
 from django.shortcuts import get_object_or_404
 from .models import CustomUser, Shelter, PetSeeker
+from applications.models import Application
+from pet_listings.models import Pets
 from .serializers import CustomUserSerializer, ShelterSerializer, PetSeekerSerializer
 from rest_framework.generics import ListAPIView
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
@@ -77,8 +79,8 @@ class PetSeekerRegistrationView(CreateAPIView):
         profile_picture = data.get('profile_picture')
 
         # Validate required fields
-        if not (username and email and password and seeker_name and location):
-            return Response({'detail': 'All fields are required'}, status=status.HTTP_400_BAD_REQUEST)
+        if not (username and email and password and seeker_name):
+            return Response({'detail': ' username, email, password and seeker_name required'}, status=status.HTTP_400_BAD_REQUEST)
 
         try:
             # Create CustomUser instance
@@ -152,23 +154,26 @@ class PetSeekerProfileView(APIView):
         username = kwargs['username']
         
         try:
-            user = CustomUser.objects.get(username=username)
-            pet_seeker = PetSeeker.objects.get(user=user)
+            seeker_user = CustomUser.objects.get(username=username)
+            pet_seeker = PetSeeker.objects.get(user=seeker_user)
 
-            if (not request.user.shelter) and (request.user != pet_seeker.user):
+            if (not self.request.user.shelter) and (self.request.user != pet_seeker.user):
                 return Response({'detail': 'Permission denied. User is not a shelter or the owner of the pet seeker profile'}, status=status.HTTP_403_FORBIDDEN)
+            
+            if self.request.user.shelter:
+                shelter_user = CustomUser.objects.filter(id=self.request.user.id).first()
 
-            # if Application.objects.filter(shelter__user=shelter_user, pet_seeker=pet_seeker, is_active=True).exists():
-            #     serializer = self.serializer_class(pet_seeker)
-            #     return Response(serializer.data)
-            # else:
-            #     return Response({'detail': 'Permission denied. No active application.'}, status=status.HTTP_403_FORBIDDEN)
-
-            # Update the profile_picture field in the serializer before sending the response
-            serializer = self.serializer_class(pet_seeker)
-            serializer.data['profile_picture'] = self.get_profile_picture_url(request, pet_seeker.profile_picture)
-
-            return Response(serializer.data)
+                if Application.objects.filter(shelter_user=shelter_user, seeker_user=seeker_user).exists():
+                    serializer = self.serializer_class(pet_seeker)
+                    serializer.data['profile_picture'] = self.get_profile_picture_url(request, pet_seeker.profile_picture)
+                    return Response(serializer.data)
+                else:
+                    return Response({'detail': 'Permission denied. No active application.'}, status=status.HTTP_403_FORBIDDEN)
+            
+            elif self.request.user == pet_seeker.user:
+                serializer = self.serializer_class(pet_seeker)
+                serializer.data['profile_picture'] = self.get_profile_picture_url(request, pet_seeker.profile_picture)
+                return Response(serializer.data)
 
         except PetSeeker.DoesNotExist:
             return Response({'detail': 'Pet Seeker not found.'}, status=status.HTTP_404_NOT_FOUND)
