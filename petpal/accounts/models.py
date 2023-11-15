@@ -33,10 +33,11 @@ class PetSeeker(models.Model):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, related_name='seeker_user', )
     seeker_name = models.CharField(max_length=255)
     location = models.CharField(max_length=255)
-    profile_picture = models.ImageField(upload_to='profile_pictures', blank=True, null=True)
-    applications = models.ManyToManyField('Application', related_name='pet_seeker_applications')
+    preferences = models.CharField(max_length=255)
+    profile_picture = models.ImageField(upload_to='static', blank=True, null=True)
+    # applications = models.ManyToManyField('Application', related_name='pet_seeker_applications')
 
-class Application(models.Model):
-    shelter = models.ForeignKey('Shelter', on_delete=models.CASCADE)
-    pet_seeker = models.ForeignKey('PetSeeker', on_delete=models.CASCADE)
-    is_active = models.BooleanField(default=False)
+# class Application(models.Model):
+#     shelter = models.ForeignKey('Shelter', on_delete=models.CASCADE)
+#     pet_seeker = models.ForeignKey('PetSeeker', on_delete=models.CASCADE)
+#     is_active = models.BooleanField(default=False)
