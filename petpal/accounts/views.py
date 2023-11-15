@@ -77,7 +77,7 @@ class PetSeekerRegistrationView(CreateAPIView):
         profile_picture = data.get('profile_picture')
 
         # Validate required fields
-        if not (username and email and password and seeker_name and location):
+        if not (username and email and password and seeker_name):
             return Response({'detail': 'All fields are required'}, status=status.HTTP_400_BAD_REQUEST)
 
         try:
