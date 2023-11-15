@@ -26,6 +26,7 @@ SECRET_KEY = 'django-insecure-z%_v#95joeg6!1^@tvvf^6jwbs55&co+!!pga9=2g%c%%a38sj
 DEBUG = True
 
 ALLOWED_HOSTS = []
+AUTH_USER_MODEL = 'accounts.CustomUser'
 
 # Application definition
 
@@ -121,7 +122,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
-# STATICFILES_DIRS = [ BASE_DIR / 'static', ]
+STATICFILES_DIRS = [ BASE_DIR / 'static', ]
 
 
 # Default primary key field type
@@ -142,6 +143,12 @@ REST_FRAMEWORK = {
       'rest_framework.authentication.BasicAuthentication',
     ),
 }
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10,
+}
+
 
 from datetime import timedelta
 
