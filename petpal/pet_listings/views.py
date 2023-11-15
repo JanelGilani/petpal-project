@@ -5,6 +5,7 @@ from rest_framework.views import APIView
 from rest_framework.permissions import AllowAny
 from django.contrib.auth import authenticate, login
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.decorators import api_view, permission_classes
 from django.shortcuts import get_object_or_404
 from .models import Pets
 from .serializers import PetsSerializer, PetsListSerializer
@@ -80,4 +81,12 @@ class PetSearchView(ListAPIView):
             queryset = queryset.order_by('name')
 
         return queryset
+
+
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def pet_detail(request, pet_id):
+    pet = get_object_or_404(Pets, id=pet_id)
+    serializer = PetsSerializer(pet)
+    return Response(serializer.data)
 
