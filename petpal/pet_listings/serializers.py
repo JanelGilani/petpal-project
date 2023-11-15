@@ -6,7 +6,7 @@ from . import models
 class PetsSerializer(ModelSerializer):
     shelter = PrimaryKeyRelatedField(read_only=True)
     # shelter = HyperlinkedRelatedField(read_only=True, view_name='shelter-detail')
-    image = ImageField(max_length=None, use_url=True, required=False)
+    image = ImageField(max_length=None, required=False)
 
     class Meta:
         model = models.Pets
