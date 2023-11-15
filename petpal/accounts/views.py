@@ -96,7 +96,7 @@ class PetSeekerRegistrationView(CreateAPIView):
             return Response({'detail': f'An error occurred: {str(e)}'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
         
 class ListSheltersView(ListAPIView):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
     serializer_class = ShelterSerializer
 
     def get_queryset(self):
@@ -133,8 +133,8 @@ class PetSeekerProfileView(APIView):
             user = CustomUser.objects.get(username=username)
             pet_seeker = PetSeeker.objects.get(user=user)
 
-            if not request.user.shelter:
-                return Response({'detail': 'Permission denied. User is not a shelter.'}, status=status.HTTP_403_FORBIDDEN)
+            if (not request.user.shelter) and (request.user != pet_seeker.user):
+                return Response({'detail': 'Permission denied. User is not a shelter or the owner of the pet seeker profile'}, status=status.HTTP_403_FORBIDDEN)
 
             # if Application.objects.filter(shelter__user=shelter_user, pet_seeker=pet_seeker, is_active=True).exists():
             #     serializer = self.serializer_class(pet_seeker)

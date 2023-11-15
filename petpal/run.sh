@@ -10,5 +10,4 @@ python3 manage.py runserver
 
 # Press Ctrl+C to stop the server
 
-# Deactivate the virtual environment (UNCOMMENT THIS IF YOU WANT TO DEACTIVATE THE VENV)
-# deactivate
+# Deactivate the virtual environment by running 'deactivate' in the terminal
