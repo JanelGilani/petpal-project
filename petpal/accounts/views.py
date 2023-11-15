@@ -1,3 +1,4 @@
+import sys
 from django.db import IntegrityError
 from rest_framework import status
 from rest_framework.response import Response
@@ -19,6 +20,10 @@ from rest_framework.generics import CreateAPIView
 from rest_framework.permissions import AllowAny
 from rest_framework.generics import UpdateAPIView
 from rest_framework.generics import DestroyAPIView
+from PIL import Image
+from io import BytesIO
+from django.core.files.uploadedfile import InMemoryUploadedFile
+from rest_framework_simplejwt.authentication import JWTAuthentication
 
 class ShelterRegistrationView(CreateAPIView):
     permission_classes = [AllowAny]
@@ -83,6 +88,21 @@ class PetSeekerRegistrationView(CreateAPIView):
                 password=password,
                 seeker=True
             )
+
+            if profile_picture:
+                image = Image.open(BytesIO(profile_picture.read()))
+                # Resize the image or perform any other processing if needed
+                # Save the processed image back to profile_picture field
+                output_buffer = BytesIO()
+                image.save(output_buffer, format='JPEG') 
+                profile_picture = InMemoryUploadedFile(
+                    output_buffer,
+                    'ImageField',
+                    f'{username}_profile.jpg',
+                    'image/jpeg',
+                    sys.getsizeof(output_buffer),
+                    None
+                )
             
             # Create PetSeeker instance
             PetSeeker(user=user, seeker_name=seeker_name, location=location, profile_picture=profile_picture).save()
@@ -104,6 +124,7 @@ class ListSheltersView(ListAPIView):
 
 
 class ShelterProfileView(APIView): 
+    authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
     serializer_class = ShelterSerializer
 
@@ -122,7 +143,8 @@ class ShelterProfileView(APIView):
             return Response({'detail': 'Shelter not found.'}, status=status.HTTP_404_NOT_FOUND)
 
 
-class PetSeekerProfileView(APIView): 
+class PetSeekerProfileView(APIView):
+    authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
     serializer_class = PetSeekerSerializer
 
@@ -141,7 +163,11 @@ class PetSeekerProfileView(APIView):
             #     return Response(serializer.data)
             # else:
             #     return Response({'detail': 'Permission denied. No active application.'}, status=status.HTTP_403_FORBIDDEN)
+
+            # Update the profile_picture field in the serializer before sending the response
             serializer = self.serializer_class(pet_seeker)
+            serializer.data['profile_picture'] = self.get_profile_picture_url(request, pet_seeker.profile_picture)
+
             return Response(serializer.data)
 
         except PetSeeker.DoesNotExist:
@@ -149,9 +175,14 @@ class PetSeekerProfileView(APIView):
         except CustomUser.DoesNotExist:
             return Response({'detail': 'Pet Seeker not found.'}, status=status.HTTP_404_NOT_FOUND)
 
+    def get_profile_picture_url(self, request, profile_picture):
+        if profile_picture:
+            return request.build_absolute_uri(profile_picture.url)
+        return None
 
 
 class ShelterUpdateView(APIView):
+    authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
     serializer_class = ShelterSerializer
 
@@ -209,6 +240,7 @@ class ShelterUpdateView(APIView):
         
 
 class PetSeekerUpdateView(APIView):
+    authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
     serializer_class = PetSeekerSerializer
 
@@ -225,13 +257,16 @@ class PetSeekerUpdateView(APIView):
 
         # Fields to update
         fields_to_update = ['username', 'email', 'password', 'seeker_name', 'location', 'profile_picture']
-
+        global_username = data.get('username')
         for field in fields_to_update:
             value = data.get(field)
 
             if value is not None:
                 if field in ['username', 'email', 'password']:
                     setattr(instance.user, field, value)
+                elif field == 'profile_picture':
+                    # Handle updating profile picture
+                    instance.profile_picture = self.process_profile_picture(value, username=global_username)
                 else:
                     setattr(instance, field, value)
 
@@ -257,8 +292,30 @@ class PetSeekerUpdateView(APIView):
             return Response({'detail': 'Permission denied. You are not the owner of this pet seeker profile.'}, status=status.HTTP_403_FORBIDDEN)
 
         try:
+            # Handle deleting profile picture
+            if instance.profile_picture:
+                instance.profile_picture.delete()
+
             instance.user.delete()
             return Response({'detail': 'Pet Seeker deleted successfully'}, status=status.HTTP_204_NO_CONTENT)
 
         except Exception as e:
             return Response({'detail': f'An error occurred: {str(e)}'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+    def process_profile_picture(self, profile_picture, username):
+        # Process and save profile picture
+        if profile_picture:
+            image = Image.open(BytesIO(profile_picture.read()))
+            # Resize the image or perform any other processing if needed
+            output_buffer = BytesIO()
+            image.save(output_buffer, format='JPEG')  # You can change the format as needed
+            profile_picture = InMemoryUploadedFile(
+                output_buffer,
+                'ImageField',
+                f'{username}_profile.jpg',
+                'image/jpeg',
+                sys.getsizeof(output_buffer),
+                None
+            )
+            return profile_picture
+        return None
