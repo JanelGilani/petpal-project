@@ -15,7 +15,9 @@ class PetsSerializer(ModelSerializer):
 class PetsListSerializer(ModelSerializer):
     shelter = PrimaryKeyRelatedField(read_only=True)
     # shelter = HyperlinkedRelatedField(read_only=True, view_name='shelter-detail')
+    image = ImageField(max_length=None, required=False)
+
     class Meta:
         model = models.Pets
-        fields = ['name', 'shelter', 'breed', 'age', 'size', 'color', 'gender', 'date_added', 'species', 'status']
+        fields = ['id', 'name', 'shelter', 'breed', 'age', 'size', 'color', 'gender', 'date_added', 'species', 'status']
 
