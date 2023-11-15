@@ -1,3 +1,4 @@
+from django.db import IntegrityError
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.generics import CreateAPIView, ListCreateAPIView, RetrieveAPIView
@@ -6,14 +7,22 @@ from rest_framework.permissions import AllowAny
 from django.contrib.auth import authenticate, login
 from rest_framework.permissions import IsAuthenticated
 from django.shortcuts import get_object_or_404
-from .models import CustomUser, Shelter, PetSeeker
+from .models import Application, CustomUser, Shelter, PetSeeker
 from .serializers import CustomUserSerializer, ShelterSerializer, PetSeekerSerializer
 from rest_framework.generics import ListAPIView
+from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
+from rest_framework.permissions import IsAdminUser, IsAuthenticated
+from rest_framework import status
+from rest_framework.response import Response
+from rest_framework import status
+from rest_framework.generics import CreateAPIView
+from rest_framework.permissions import AllowAny
+from rest_framework.generics import UpdateAPIView
 
 class ShelterRegistrationView(CreateAPIView):
     permission_classes = [AllowAny]
     serializer_class = ShelterSerializer
-    
+
     def create(self, request, *args, **kwargs):
         data = request.data
         username = data.get('username')
@@ -23,189 +32,206 @@ class ShelterRegistrationView(CreateAPIView):
         location = data.get('location')
         mission_statement = data.get('mission_statement')
 
-        user = CustomUser.objects.create_user(
-            username=username,
-            email=email,
-            password=password,
-            shelter=True
-        )
-        Shelter(user=user, shelter_name=shelter_name, location=location, mission_statement=mission_statement).save()
-        return Response({'detail': 'Shelter created successfully'}, status=status.HTTP_201_CREATED)
-
-# # accounts/views.py
-# from rest_framework import generics
-# from rest_framework.permissions import IsAuthenticated, AllowAny
-
-# from .models import Shelter, PetSeeker
-# from .serializers import ShelterSerializer, PetSeekerSerializer
-
-# class ShelterCreateView(generics.CreateAPIView):
-#     serializer_class = ShelterSerializer
-#     permission_classes = [AllowAny]
-
-#     def perform_create(self, serializer):
-#         serializer.save(user=self.request.user, shelter_user=self.request.user)
-
-# class PetSeekerCreateView(generics.CreateAPIView):
-#     serializer_class = PetSeekerSerializer
-#     permission_classes = [AllowAny]
-
-#     def perform_create(self, serializer):
-#         serializer.save(user=self.request.user, seeker_user=self.request.user)
-
-
-class ShelterProfileView(RetrieveAPIView):
-    # permission_classes = [IsAuthenticated]
-    serializer_class = ShelterSerializer
-
-    def retrieve(self, request, *args, **kwargs):
-        username = kwargs['username']
-        user = get_object_or_404(CustomUser, username=username)
+        # Validate required fields
+        if not (username and email and password and shelter_name and location and mission_statement):
+            return Response({'detail': 'All fields are required'}, status=status.HTTP_400_BAD_REQUEST)
 
         try:
-            shelter = Shelter.objects.get(user=user)
-            serializer = self.get_serializer(shelter)
-            return Response(serializer.data)
-        except Shelter.DoesNotExist:
-            return Response({'detail': 'Shelter not found.'}, status=status.HTTP_404_NOT_FOUND)
-        
+            # Create CustomUser instance
+            user = CustomUser.objects.create_user(
+                username=username,
+                email=email,
+                password=password,
+                shelter=True
+            )
+            
+            # Create Shelter instance
+            Shelter(user=user, shelter_name=shelter_name, location=location, mission_statement=mission_statement).save()
+
+            return Response({'detail': 'Shelter created successfully'}, status=status.HTTP_201_CREATED)
+
+        except IntegrityError:
+            return Response({'detail': 'Username or email already exists'}, status=status.HTTP_400_BAD_REQUEST)
+
+        except Exception as e:
+            return Response({'detail': f'An error occurred: {str(e)}'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
 class PetSeekerRegistrationView(CreateAPIView):
-    queryset = PetSeeker.objects.all()
-    serializer_class = PetSeekerSerializer
     permission_classes = [AllowAny]
-
-    def perform_create(self, serializer):
-        user_serializer = CustomUserSerializer(data=self.request.data.get('user'))
-        if user_serializer.is_valid():
-            user = user_serializer.save()
-            serializer.save(user=user)
-        else:
-            Response(user_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-# accounts/views.py
-
-from django.contrib.auth import authenticate, login
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from rest_framework import status
-
-# class LoginView(APIView):
-#     def post(self, request, *args, **kwargs):
-#         username = request.data.get('username')
-#         password = request.data.get('password')
-
-#         user = authenticate(request, username=username, password=password)
-
-#         if user is not None:
-#             login(request, user)
-#             return Response({'detail': 'Successfully logged in'}, status=status.HTTP_200_OK)
-#         else:
-#             return Response({'detail': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
-
-from django.shortcuts import get_object_or_404
-from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
-from rest_framework.permissions import IsAdminUser, IsAuthenticated
-from .models import Shelter, PetSeeker
-from .serializers import ShelterSerializer, PetSeekerSerializer
-from rest_framework import status
-from rest_framework.response import Response
-
-# accounts/views.py
-
-from rest_framework.generics import RetrieveAPIView
-from .models import Shelter, PetSeeker
-from .serializers import ShelterSerializer, PetSeekerSerializer
-from rest_framework.permissions import IsAuthenticated
-from rest_framework.response import Response
-from rest_framework import status
-
-# class ShelterProfileView(APIView): 
-    
-#     permission_classes = [IsAuthenticated]
-#     serializer_class = ShelterSerializer
-
-#     def retrieve(self, request, *args, **kwargs):
-#         username = kwargs['username']
-#         user = get_object_or_404(CustomUser, username=username)
-
-#         try:
-#             shelter = Shelter.objects.get(user=user)
-#             serializer = self.get_serializer(shelter)
-#             return Response(serializer.data)
-#         except Shelter.DoesNotExist:
-#             return Response({'detail': 'Shelter not found.'}, status=status.HTTP_404_NOT_FOUND)
-        
-
-class PetSeekerProfileView(APIView):
-    permission_classes = [IsAuthenticated]
     serializer_class = PetSeekerSerializer
 
-    def retrieve(self, request, *args, **kwargs):
-        username = kwargs['username']
-        user = get_object_or_404(CustomUser, username=username)
+    def create(self, request, *args, **kwargs):
+        data = request.data
+        username = data.get('username')
+        email = data.get('email')
+        password = data.get('password')
+        seeker_name = data.get('seeker_name')
+        location = data.get('location')
+        profile_picture = data.get('profile_picture')
+
+        # Validate required fields
+        if not (username and email and password and seeker_name and location):
+            return Response({'detail': 'All fields are required'}, status=status.HTTP_400_BAD_REQUEST)
 
         try:
-            pet_seeker = PetSeeker.objects.get(user=user)
-            serializer = self.get_serializer(pet_seeker)
-            return Response(serializer.data)
-        except PetSeeker.DoesNotExist:
-            return Response({'detail': 'Pet Seeker not found.'}, status=status.HTTP_404_NOT_FOUND)
+            # Create CustomUser instance
+            user = CustomUser.objects.create_user(
+                username=username,
+                email=email,
+                password=password,
+                seeker=True
+            )
+            
+            # Create PetSeeker instance
+            PetSeeker(user=user, seeker_name=seeker_name, location=location, profile_picture=profile_picture).save()
 
-class ListSheltersView(ListAPIView): 
+            return Response({'detail': 'Pet Seeker created successfully'}, status=status.HTTP_201_CREATED)
+
+        except IntegrityError:
+            return Response({'detail': 'Username or email already exists'}, status=status.HTTP_400_BAD_REQUEST)
+
+        except Exception as e:
+            return Response({'detail': f'An error occurred: {str(e)}'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        
+
+class ShelterProfileView(APIView): 
     permission_classes = [IsAuthenticated]
     serializer_class = ShelterSerializer
-    queryset = Shelter.objects.all()
 
     def get(self, request, *args, **kwargs):
-        return self.list(request, *args, **kwargs)
-
-# accounts/views.py
-
-from rest_framework.generics import RetrieveUpdateDestroyAPIView
-from rest_framework.permissions import IsAdminUser, IsAuthenticated
-from rest_framework.response import Response
-from rest_framework import status
-from .models import Shelter
-from .serializers import ShelterSerializer
-
-class ShelterDeleteView(RetrieveUpdateDestroyAPIView):
-    permission_classes = [IsAuthenticated]  # Change to IsAuthenticated
-    serializer_class = ShelterSerializer
-    queryset = Shelter.objects.all()
-
-    def delete(self, request, *args, **kwargs):
-        shelter = self.get_object()
-
-        # Check if the current user is the owner of the shelter
-        if request.user == shelter.user:
-            user = shelter.user
-            shelter.delete()
-            user.delete()
-            return Response({'detail': 'Shelter and associated User deleted successfully'}, status=status.HTTP_204_NO_CONTENT)
-        else:
-            return Response({'detail': 'You do not have permission to delete this shelter.'}, status=status.HTTP_403_FORBIDDEN)
+        username = kwargs['username']
+        
+        try:
+            user = CustomUser.objects.get(username=username)
+            # Try to get the associated shelter
+            shelter = Shelter.objects.get(user=user)
+            serializer = self.serializer_class(shelter)  # Use the serializer class directly
+            return Response(serializer.data)
+        except Shelter.DoesNotExist:
+            return Response({'detail': 'Shelter not found.'}, status=status.HTTP_404_NOT_FOUND)
+        except CustomUser.DoesNotExist:
+            return Response({'detail': 'Shelter not found.'}, status=status.HTTP_404_NOT_FOUND)
 
 
-from rest_framework.generics import RetrieveUpdateDestroyAPIView
-from rest_framework.permissions import IsAdminUser, IsAuthenticated
-from rest_framework.response import Response
-from rest_framework import status
-from .models import PetSeeker
-from .serializers import PetSeekerSerializer
-
-class PetSeekerDeleteView(RetrieveUpdateDestroyAPIView):
-    permission_classes = [IsAuthenticated]  # Change to IsAuthenticated
+class PetSeekerProfileView(APIView): 
+    permission_classes = [IsAuthenticated]
     serializer_class = PetSeekerSerializer
-    queryset = PetSeeker.objects.all()
 
-    def delete(self, request, *args, **kwargs):
-        pet_seeker = self.get_object()
+    def get(self, request, *args, **kwargs):
+        username = kwargs['username']
+        
+        try:
+            user = CustomUser.objects.get(username=username)
+            pet_seeker = PetSeeker.objects.get(user=user)
 
-        # Check if the current user is the owner of the pet seeker profile
-        if request.user == pet_seeker.user:
-            pet_seeker.delete()
-            return Response({'detail': 'Pet Seeker profile deleted successfully'}, status=status.HTTP_204_NO_CONTENT)
-        else:
-            return Response({'detail': 'You do not have permission to delete this pet seeker profile.'}, status=status.HTTP_403_FORBIDDEN)
+            if not request.user.shelter:
+                return Response({'detail': 'Permission denied. User is not a shelter.'}, status=status.HTTP_403_FORBIDDEN)
+
+            # if Application.objects.filter(shelter__user=shelter_user, pet_seeker=pet_seeker, is_active=True).exists():
+            #     serializer = self.serializer_class(pet_seeker)
+            #     return Response(serializer.data)
+            # else:
+            #     return Response({'detail': 'Permission denied. No active application.'}, status=status.HTTP_403_FORBIDDEN)
+            serializer = self.serializer_class(pet_seeker)
+            return Response(serializer.data)
+
+        except PetSeeker.DoesNotExist:
+            return Response({'detail': 'Pet Seeker not found.'}, status=status.HTTP_404_NOT_FOUND)
+        except CustomUser.DoesNotExist:
+            return Response({'detail': 'Pet Seeker not found.'}, status=status.HTTP_404_NOT_FOUND)
+
+
+class ListSheltersView(ListAPIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = ShelterSerializer
+
+    def get_queryset(self):
+        return Shelter.objects.all()
+
+
+
+class ShelterUpdateView(UpdateAPIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = ShelterSerializer
+
+    def get_object(self):
+        username = self.kwargs['username']
+        return get_object_or_404(Shelter, user__username=username)
+
+    def update(self, request, *args, **kwargs):
+        instance = self.get_object()
+        data = request.data
+
+        # Ensure that the user making the request is the owner of the shelter
+        if request.user != instance.user:
+            return Response({'detail': 'Permission denied. You are not the owner of this shelter.'}, status=status.HTTP_403_FORBIDDEN)
+
+        # Fields to update
+        fields_to_update = ['username', 'email', 'password', 'shelter_name', 'location', 'mission_statement']
+
+        for field in fields_to_update:
+            value = data.get(field)
+
+            if value is not None:
+                if field in ['username', 'email', 'password']:
+                    setattr(instance.user, field, value)
+                else:
+                    setattr(instance, field, value)
+
+        try:
+            instance.user.save()
+            instance.save()
+
+            # Serialize the updated instance
+            serializer = self.serializer_class(instance)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+
+        except IntegrityError:
+            return Response({'detail': 'Username or email already exists'}, status=status.HTTP_400_BAD_REQUEST)
+
+        except Exception as e:
+            return Response({'detail': f'An error occurred: {str(e)}'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        
+
+class PetSeekerUpdateView(UpdateAPIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = PetSeekerSerializer
+
+    def get_object(self):
+        username = self.kwargs['username']
+        return get_object_or_404(PetSeeker, user__username=username)
+
+    def update(self, request, *args, **kwargs):
+        instance = self.get_object()
+        data = request.data
+
+        # Ensure that the user making the request is the owner of the pet seeker profile
+        if request.user != instance.user:
+            return Response({'detail': 'Permission denied. You are not the owner of this pet seeker profile.'}, status=status.HTTP_403_FORBIDDEN)
+
+        # Fields to update
+        fields_to_update = ['username', 'email', 'password', 'seeker_name', 'location', 'profile_picture']
+
+        for field in fields_to_update:
+            value = data.get(field)
+
+            if value is not None:
+                if field in ['username', 'email', 'password']:
+                    setattr(instance.user, field, value)
+                else:
+                    setattr(instance, field, value)
+
+        try:
+            instance.user.save()
+            instance.save()
+
+            # Serialize the updated instance
+            serializer = self.serializer_class(instance)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+
+        except IntegrityError:
+            return Response({'detail': 'Username or email already exists'}, status=status.HTTP_400_BAD_REQUEST)
+
+        except Exception as e:
+            return Response({'detail': f'An error occurred: {str(e)}'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
