@@ -9,6 +9,8 @@ from django.contrib.auth import authenticate, login
 from rest_framework.permissions import IsAuthenticated
 from django.shortcuts import get_object_or_404
 from .models import CustomUser, Shelter, PetSeeker
+from applications.models import Application
+from pet_listings.models import Pets
 from .serializers import CustomUserSerializer, ShelterSerializer, PetSeekerSerializer
 from rest_framework.generics import ListAPIView
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
@@ -154,11 +156,13 @@ class PetSeekerProfileView(APIView):
         try:
             user = CustomUser.objects.get(username=username)
             pet_seeker = PetSeeker.objects.get(user=user)
+            application = Application.objects.filter(user=pet_seeker)
+            shelter = Shelter.objects.filter(user=request.user)
 
             if (not request.user.shelter) and (request.user != pet_seeker.user):
                 return Response({'detail': 'Permission denied. User is not a shelter or the owner of the pet seeker profile'}, status=status.HTTP_403_FORBIDDEN)
 
-            # if Application.objects.filter(shelter__user=shelter_user, pet_seeker=pet_seeker, is_active=True).exists():
+            # if Application.objects.filter(shelter_user=shelter, user=pet_seeker).exists():
             #     serializer = self.serializer_class(pet_seeker)
             #     return Response(serializer.data)
             # else:

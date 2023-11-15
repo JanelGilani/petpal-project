@@ -35,9 +35,3 @@ class PetSeeker(models.Model):
     location = models.CharField(max_length=255)
     preferences = models.CharField(max_length=255)
     profile_picture = models.ImageField(upload_to='static', blank=True, null=True)
-    # applications = models.ManyToManyField('Application', related_name='pet_seeker_applications')
-
-# class Application(models.Model):
-#     shelter = models.ForeignKey('Shelter', on_delete=models.CASCADE)
-#     pet_seeker = models.ForeignKey('PetSeeker', on_delete=models.CASCADE)
-#     is_active = models.BooleanField(default=False)
