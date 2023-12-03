@@ -22,4 +22,4 @@ python manage.py makemigrations
 python manage.py migrate
 
 # Load data from test.json
-# python manage.py loaddata test.json
+python petpal/manage.py loaddata petpal/test.json

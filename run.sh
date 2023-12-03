@@ -3,10 +3,10 @@
 # Note: you may need to run 'chmod +x run.sh' in the terminal (in the petpal folder) to make this file executable
 
 
-source myenv/bin/activate
+source petpal/myenv/bin/activate
 
 # Run the server
-python3 manage.py runserver
+python3 petpal/manage.py runserver
 
 # Press Ctrl+C to stop the server
 

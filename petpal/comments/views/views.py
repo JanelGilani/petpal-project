@@ -26,7 +26,7 @@ class IsShelterOrPetSeeker(permissions.BasePermission):
             application = Application.objects.get(id=application_id)
 
         # Check if the user is the pet seeker or the shelter related to the application
-            return application.user == request.user or application.pet.shelter == request.user
+            return application.seeker_user == request.user or application.pet.shelter == request.user
         except Application.DoesNotExist:
             return False
         
@@ -56,20 +56,20 @@ class ShelterCommentListCreateView(CommentListCreateView):
 
     def perform_create(self, serializer):
         shelter_id = self.kwargs['shelter_id']
-        shelter = get_object_or_404(Shelter, pk=shelter_id)
+        shelter_user = get_object_or_404(CustomUser, pk=shelter_id)
+        shelter = get_object_or_404(Shelter, user=shelter_user)
         comment = serializer.save(user=self.request.user, shelter=shelter)
         user = get_object_or_404(CustomUser, pk=self.request.user.id)
         reverse_url = reverse('comments:shelter-comment-details', args=[str(shelter_id), str(comment.id)])
         # Send notification to the user who owns the post
         Notifications.objects.create(
-            title=f'New comment on post {comment.id}',
-            body=f'New comment on your post {comment.id}',
-            user=user,
+            title=f'New review on your shelter',
+            body=f'New review on your shelter, check it out!',
+            user=shelter_user,
             content_type=ContentType.objects.get_for_model(comment),
             object_id=comment.id,
             model_url = reverse_url
         )
-    
 
 class ApplicationCommentListCreateView(CommentListCreateView):
     permission_classes = [IsAuthenticated]
@@ -92,8 +92,8 @@ class ApplicationCommentListCreateView(CommentListCreateView):
         reverse_url = reverse('comments:application-comment-details', args=[str(application_id), str(comment.id)])
         # Send notification to the user who owns the application
         Notifications.objects.create(
-            title=f'New comment on application {comment.id}',
-            body=f'New comment on your application {comment.id}',
+            title=f'New comment on application {application_id}',
+            body=f'New comment on your application {application_id}',
             user=user,
             content_type=ContentType.objects.get_for_model(comment),
             object_id=comment.id,
