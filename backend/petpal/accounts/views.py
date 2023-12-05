@@ -27,6 +27,18 @@ from io import BytesIO
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from rest_framework_simplejwt.authentication import JWTAuthentication
 
+
+class UserInfoView(APIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
+    serializer_class = CustomUserSerializer
+
+    def get(self, request, *args, **kwargs):
+        user = request.user
+        serializer = self.serializer_class(user)
+        return Response(serializer.data)
+    
+
 class ShelterRegistrationView(CreateAPIView):
     permission_classes = [AllowAny]
     serializer_class = ShelterSerializer

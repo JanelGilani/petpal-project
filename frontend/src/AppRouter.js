@@ -6,6 +6,7 @@ import LandingPage from "./components/LandingPage";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import PetSearch from "./components/PetSearch";
+import Logout from "./components/Logout";
 
 function AppRouter() {
     return (
@@ -14,7 +15,8 @@ function AppRouter() {
                 <Route path="/" element={<App />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
-                <Route path="/petsearch" element={<PetSearch />} />
+                <Route exact path="/petsearch" element={<PetSearch />} Component={PetSearch} />
+                <Route path="/logout" element={<Logout />} />
             </Routes>
         </BrowserRouter>
     )

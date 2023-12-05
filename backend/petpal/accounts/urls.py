@@ -3,11 +3,12 @@
 from django.urls import path
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from .views import  ShelterRegistrationView, PetSeekerRegistrationView, ShelterProfileView, \
-    PetSeekerProfileView, ListSheltersView, ShelterUpdateView, PetSeekerUpdateView
+    PetSeekerProfileView, ListSheltersView, ShelterUpdateView, PetSeekerUpdateView, UserInfoView
 
 app_name = 'accounts'
 
 urlpatterns = [
+    path('userinfo/', UserInfoView.as_view(), name='user-info'),
     path('login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('login/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('shelters/', ShelterRegistrationView.as_view(), name='shelter-register'),

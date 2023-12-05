@@ -1,0 +1,260 @@
+@import "global.css";
+
+
+.body {
+    width: 100vw;
+    font-family: var(--font);
+    color: var(--primary-400);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    min-height: 100vh;
+}
+
+/*
+Navbar
+*/
+nav.navbar {
+    padding: 15px 60px;
+    background: var(--primary-50);
+    font-size: 14px;
+    font-weight: 800;
+    font-family: var(--font);
+}
+div.navbar-collapse {
+    display: flex;
+    justify-content: flex-end;
+    color: white;
+}
+
+button.ui.vertical.animated.button {
+    background: none;
+    padding-left: 45px;
+}
+
+
+.navbar.navbar-light {
+    color: white;
+}
+
+img.logo {
+    width: 120px;
+    margin: 0;
+}
+
+
+/* BODY */
+
+#signup-btn {
+    margin-bottom: 50px;
+    margin-top: 20px;
+    background-color: var(--primary-200);
+    float: right;
+    margin-right: 0;
+}
+
+#signup-btn:hover {
+    background-color: var(--primary-600);
+    color: white;
+}
+
+.signup-main {
+    display: flex;
+    padding: 50px;
+    justify-content: space-between; /* Use space between to evenly distribute the divs */
+}
+.left-signup {
+    flex: 0.6;
+    background: #fff;
+    padding: 20px;
+    height: 80vh;
+}
+/* .right-signup {
+    flex: 0.4;
+    background: #fff;
+    padding: 20px;
+    height: 80vh;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.ui.cards.home {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 100%; 
+    overflow-x: auto; 
+}
+
+.ui.card.benefit {
+    width: 80%;
+    max-width: 300px;
+    padding: 10px;
+    border: none;
+    color: var(--primary-600);
+} */
+.right-signup {
+    flex: 0.4;
+    background: #fff;
+    padding: 20px;
+    height: 80vh;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.benefit-icons {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+.benefit-icon {
+    text-align: center;
+    color: var(--primary-600);
+}
+
+.benefit-icon i {
+    font-size: 4rem;
+    margin-bottom: 10px;
+}
+
+.benefit-icon h5 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.benefit-icon p {
+    font-size: 1rem;
+    margin-bottom: 20px;
+}
+
+
+#shelter-fields {
+    display: block;
+}
+
+#user-shelter:checked + label + .hidden {
+    display: block;
+}
+
+.ui.action.input input[type="text"] {
+    cursor: not-allowed;
+}
+
+.ui.action.input input[type="file"] {
+    display: none;
+}
+
+.ui.action.input .ui.icon.button {
+    cursor: pointer;
+}
+
+.ui.action.input .ui.icon.button i.icon {
+    cursor: pointer;
+}
+
+
+
+/* Footer */
+
+.footer {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    margin-top: 100px;
+    background-color: var(--primary-50);
+    color: var(--secondary-black);
+    padding: 20px 0;
+}
+
+#page-container {
+    position: relative;
+    min-height: 100vh;
+  }
+  
+  #content-wrap {
+    padding-bottom: 2.5rem;    /* Footer height */
+  }
+  
+  #footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 2.5rem;            /* Footer height */
+  }
+
+.logo {
+    max-width: 100%;
+    margin-bottom: 20px;
+}
+
+.footer .col-md-4, .footer .col-md-2 {
+    margin-top: 50px;
+}
+
+.footer .col-md-4 {
+    margin-bottom: 20px;
+}
+
+.footer h3 {
+    color: var(--primary-400);
+}
+
+.social-icons {
+    list-style: none;
+    padding: 0;
+}
+
+.social-icons li {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.social-icons a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.footer ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer ul li {
+    margin-bottom: 10px;
+}
+
+.footer ul a {
+    color: var(--secondary-black);
+    text-decoration: none;
+}
+
+/* Style the copyright text */
+.copyright {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 14px;
+    color: #999;
+}
+
+
+
+@media screen and (max-width: 480px) {
+   
+    .right-signup{
+        display: none;
+    }
+    .left-signup{
+        flex: 1;
+    }
+}

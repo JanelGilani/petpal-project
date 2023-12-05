@@ -40,7 +40,7 @@ button.ui.vertical.animated.button {
     color: var(--primary-200);
 }
 
-img.logo {
+logo {
     width: 120px;
     margin: 0;
 }

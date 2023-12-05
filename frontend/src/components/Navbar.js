@@ -1,87 +1,126 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import 'semantic-ui-css/semantic.min.css';
-import {Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import '../styles/header-footer.css';
+import Logo from "../img/logo_large.png";
+import { Image, Avatar, Dropdown, Menu, Badge, notification } from 'antd';
+import { BellOutlined, UserOutlined } from '@ant-design/icons';
+import { useSelector } from "react-redux";
 
 export default function Header() {
-    // const location = useLocation();
-    // const path = location.pathname;
-    return (
-        <div class="pusher">
-        <nav class="navbar navbar-expand-lg navbar-light" style={{ height: '80px' }}>
-            <a class="navbar-brand d-flex align-items-center" href="#">
-                {/* <img alt="logo" class="logo" src="images/logo_large.png"> */}
-            </a>
-            <button aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"
-                    class="navbar-toggler navbar-toggler-start" type="button">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="navbar-collapse collapse" id="navbarNav">
-                <ul class="nav navbar-nav">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/login">Login</a>
-                        {/* <Link to="/login">Login</Link> */}
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="pages/seeker/pet-search.html">Pet Search</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="pages/signup.html">Register</a>
-                    </li>
-                    {/* <li class="nav-item notification">
+    const auth = useSelector((state) => state.auth);
+    const [notifications, setNotifications] = useState([]);
+    const [notificationCount, setNotificationCount] = useState(0);
 
-                    </li> */}
-                    <li class="nav-item notification">
-                        <button class="ui vertical animated button" data-content="1 new message" data-inverted=""
-                                data-position="bottom left"
-                                id="notificationButton">
-                            <div class="hidden content">Notifications</div>
-                            <div class="visible content">
-                                <i class="mail icon"></i>
-                                <span class="notification-count">1</span>
-                            </div>
-                        </button>
-                    </li>
-                    <li class="ui dropdown">
-                        
-                        <div class="menu">
-                            <a class="item" data-value="0" href="pages/seeker/application.html">Your
-                                Application</a>
-                            <a class="item" data-value="1" href="pages/seeker/account-update.html">Account Settings
-                            </a>
-                            <div class="item" data-value="2">Logout</div>
-                        </div>
-                    </li>
-                </ul>
-                <div class="ui bottom center popup" id="notificationPopup">
-                    <div class="list-group">
-                        <div class="list-group-item notification-content">
-                            {/* <img class="ui avatar image" src="https://xsgames.co/randomusers/avatar.php?g=pixel"> */}
-                            <a href="pages/seeker/application.html" class="header"><b>GoDoggy Adoption</b></a>
-                            <div class="description"><b>Your application was rejected</b></div>
-                        </div>
-                        <div class="list-group-item notification-content">
-                            {/* <img class="ui avatar image" src="https://xsgames.co/randomusers/avatar.php?g=pixel"> */}
-                            <div class="header">Meow Center</div>
-                            <div class="description">Your application is still under consideration</div>
-                        </div>
-                        <div class="list-group-item notification-content">
-                            {/* <img class="ui avatar image" src="https://xsgames.co/randomusers/avatar.php?g=pixel"> */}
-                            <div class="header">GetPets Org</div>
-                            <div class="description">New update on your application</div>
-                        </div>
-                        <div class="list-group-item notification-content">
-                            {/* <img class="ui avatar image" src="https://xsgames.co/randomusers/avatar.php?g=pixel"> */}
-                            <div class="header">Jenny Hess</div>
-                            <div class="description">Welcome to PetPal</div>
-                        </div>
-                    </div>
+    const profileMenu = (
+        <Menu>
+            <Menu.Item key="1">
+                <Link to="/your-applications" style={{ textDecoration: "none" }}>Your Applications</Link>
+            </Menu.Item>
+            <Menu.Item key="2">
+                <Link to="/account-settings" style={{ textDecoration: "none" }}>Account Settings</Link>
+            </Menu.Item>
+            <Menu.Divider />
+            <Menu.Item key="3">
+                <Link to="/logout" style={{ textDecoration: "none" }}>Logout</Link>
+            </Menu.Item>
+        </Menu>
+    );
+
+    useEffect(() => {
+        if (auth.authenticated) {
+            getNotifications();
+        }
+    }, [auth.authenticated]);
+
+    async function getNotifications() {
+        try {
+            // Pass the auth token as a header
+            const res = await fetch(`http://localhost:8000/notifications/`, {
+                method: "GET",
+                headers: {
+                    "Authorization": `Bearer ${auth.token}`
+                }
+            });
+            const data = await res.json();
+            if (res.status !== 200) {
+                alert(data.detail);
+            } else {
+                setNotifications(data.results); // Update state with notifications
+                let count = 0;
+                for (let i = 0; i < data.results.length; i++) {
+                    if (data.results[i].is_read === 'unread') {
+                        count++;
+                    }
+                }
+                setNotificationCount(count);
+            }
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+    const notificationMenu = (
+        <Menu>
+            {notifications.map((notification) => (
+                <Menu.Item key={notification.id}>{notification.title}</Menu.Item>
+            ))}
+        </Menu>
+    );
+
+    return (
+        <div className="pusher">
+            <nav className="navbar navbar-expand-lg navbar-light" style={{ height: '80px' }}>
+                <a className="navbar-brand d-flex align-items-center" href="/">
+                    <Image className="logo" src={Logo} preview={false} width={115} />
+                </a>
+                <button aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"
+                    className="navbar-toggler navbar-toggler-start" type="button">
+                    <span className="navbar-toggler-icon"></span>
+                </button>
+                <div className="navbar-collapse collapse" id="navbarNav">
+                    <ul className="nav navbar-nav">
+                        <li className="nav-item active">
+                            <a className="nav-link" href="#">Home</a>
+                        </li>
+                        {
+                            !auth.authenticated && (
+                                <>
+                                    <li className="nav-item">
+                                        <a className="nav-link" href="/login">Login</a>
+                                    </li>
+                                    <li className="nav-item">
+                                        <a className="nav-link" href="/register">Register</a>
+                                    </li>
+                                </>
+                            )
+                        }
+                        <li className="nav-item">
+                            <a className="nav-link" href="/petsearch">Pet Search</a>
+                        </li>
+
+                        <li className="nav-item">
+                            <a className="nav-link" href="/shelter">Shelters</a>
+                        </li>
+                        {auth.authenticated && (
+                            <>
+                                <li className="nav-item">
+                                    <Dropdown overlay={notificationMenu} placement="bottomRight">
+                                        <Badge count={notifications.length}>
+                                            <Avatar icon={<BellOutlined />} style={{ marginLeft: '10px' }} />
+                                        </Badge>
+                                    </Dropdown>
+                                </li>
+                                <li className="nav-item">
+                                    <Dropdown overlay={profileMenu} placement="bottomRight">
+                                        <Avatar icon={<UserOutlined />} style={{ marginLeft: '20px' }} />
+                                    </Dropdown>
+                                </li>
+                            </>
+                        )}
+                    </ul>
                 </div>
-            </div>
-        </nav>
-    </div>
+            </nav>
+        </div>
     );
 }

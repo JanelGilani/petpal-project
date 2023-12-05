@@ -1,0 +1,54 @@
+
+.ui.container.search {
+    width: 100%;
+}
+
+.ui.cards {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.ui.card {
+    width: 300px;
+    margin: 10px;
+}
+
+.applied-filters {
+    margin-top: 10px;
+}
+
+.applied-filters .ui.label {
+    margin-right: 5px;
+    margin-bottom: 5px;
+    background-color: var( --primary-500);
+    color: white;
+}
+
+select.ui.dropdown {
+    height: 43px;
+}
+
+select#locationSort {
+    width: 250px;
+}
+
+.fields {
+    display: flex;
+    justify-content: center;
+}
+
+
+.filter-icon {
+    margin: 0 5px 2px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    color: var(--secondary-black);
+}
+.ui.multiple.dropdown.filter {
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
+    align-items: center;
+}

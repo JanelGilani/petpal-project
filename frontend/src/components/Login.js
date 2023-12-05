@@ -1,17 +1,20 @@
 import React from "react";
 import { useDispatch } from "react-redux";
+import { useState } from "react";
 import { setAuth } from "../redux/authReducer";
-import { useLocation } from "react-router-dom";
+import { Form, Input } from "antd";
 
 export default function Login() {
     const dispatch = useDispatch();
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+
     async function login(e) {
         e.preventDefault();
-        console.log("Logging in");
         const details = {
-            username: "shelter1",
-            password: "shelter1"
-        }
+            username: username,
+            password: password
+        };
         try {
             const response = await fetch('http://localhost:8000/accounts/login/', {
                 method: "POST",
@@ -22,23 +25,41 @@ export default function Login() {
             });
             const data = await response.json();
             console.log(data);
-            if (data.error) {
-                console.log(data.error);
+            if (response.status !== 200) {
+                alert(data.detail);
             } else {
-                console.log("Logged in");
-                dispatch(setAuth({auth: true, token: data.access, objectId: "seeker"}));
+                const userInfoResponse = await fetch(`http://localhost:8000/accounts/userinfo/`, {
+                    method: "GET",
+                    headers: {
+                        "Authorization": `Bearer ${data.access}`
+                    }
+                });
+                const userInfoData = await userInfoResponse.json();
+                if (userInfoData.shelter) {
+                    dispatch(setAuth({ auth: true, token: data.access, objectId: "shelter" }));
+                } else {
+                    dispatch(setAuth({ auth: true, token: data.access, objectId: "seeker" }));
+                }
             }
         } catch (err) {
             console.log(err);
         }
     }
-    
+
     return (
         <div>
             <h1>Login</h1>
-            <form onSubmit={login}>
-                <input type="submit" value="Login" />
-            </form>
+            <Form>
+                <Form.Item>
+                    <Input placeholder="Username" onChange={(e) => setUsername(e.target.value)} />
+                </Form.Item>
+                <Form.Item>
+                    <Input placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
+                </Form.Item>
+                <Form.Item>
+                    <button onClick={login}>Login</button>
+                </Form.Item>
+            </Form>
         </div>
     );
 }

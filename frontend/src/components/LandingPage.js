@@ -10,9 +10,7 @@ import Navbar from "./Navbar";
 import Footer from "./Footer";
 
 export default function LandingPage() {
-  // Auth context
-  const auth = useSelector((state) => state.auth);
-  console.log(auth);
+  
   return (
     <div className="content">
       <Navbar />
