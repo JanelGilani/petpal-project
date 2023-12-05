@@ -15,7 +15,7 @@ urlpatterns = [
     path('petseekers/', PetSeekerRegistrationView.as_view(), name='petseeker-register'),
     path('shelters/<str:username>/', ShelterUpdateView.as_view(), name='shelter-update'),
     path('petseekers/<str:username>/', PetSeekerUpdateView.as_view(), name='petseeker-profile'),
-    path('shelters/profile/<str:username>/', ShelterProfileView.as_view(), name='shelter-profile'),
+    path('shelters/profile/<int:id>/', ShelterProfileView.as_view(), name='shelter-profile'),
     path('petseekers/profile/<str:username>/', PetSeekerProfileView.as_view(), name='petseeker-profile'),
     path('all_shelters/', ListSheltersView.as_view(), name='list-shelters'),
 

@@ -248,7 +248,8 @@ export default function PetSearch() {
                                 </div>
                                 <div className="card-description">
                                     <h3 className="card-description title">{pet.name}</h3>
-                                    <a className="card-description ui button" href="pages/seeker/pet-details.html">Adopt</a>
+                                    <p class="pet-description">{pet.color} {pet.breed}, Aged {pet.age}</p>
+                                    <a className="card-description ui button" href={"/petsearch/" + pet.id}>Adopt</a>
                                 </div>
                             </div>
                         ))

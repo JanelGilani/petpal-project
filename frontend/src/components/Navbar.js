@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import 'semantic-ui-css/semantic.min.css';
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import '../styles/header-footer.css';
 import Logo from "../img/logo_large.png";
 import { Image, Avatar, Dropdown, Menu, Badge, notification } from 'antd';
@@ -9,6 +9,8 @@ import { useSelector } from "react-redux";
 
 export default function Header() {
     const auth = useSelector((state) => state.auth);
+    const location = useLocation();
+    const url = location.pathname;
     const [notifications, setNotifications] = useState([]);
     const [notificationCount, setNotificationCount] = useState(0);
 
@@ -62,11 +64,16 @@ export default function Header() {
 
     const notificationMenu = (
         <Menu>
-            {notifications.map((notification) => (
-                <Menu.Item key={notification.id}>{notification.title}</Menu.Item>
-            ))}
+            {notifications.length === 0 ? (
+                <Menu.Item key="1">No notifications</Menu.Item>
+            ) : (
+                notifications.map((notification) => (
+                    <Menu.Item key={notification.id}>{notification.title}</Menu.Item>
+                ))
+            )}
         </Menu>
     );
+    
 
     return (
         <div className="pusher">
@@ -80,28 +87,35 @@ export default function Header() {
                 </button>
                 <div className="navbar-collapse collapse" id="navbarNav">
                     <ul className="nav navbar-nav">
-                        <li className="nav-item active">
-                            <a className="nav-link" href="#">Home</a>
+                        <li className={url.startsWith("/home") ? "nav-item active": "nav-item"}>
+                            <a className="nav-link" href="/home">Home</a>
                         </li>
                         {
                             !auth.authenticated && (
                                 <>
-                                    <li className="nav-item">
+                                    <li className={url.startsWith("/login") ? "nav-item active": "nav-item"}>
                                         <a className="nav-link" href="/login">Login</a>
                                     </li>
-                                    <li className="nav-item">
+                                    <li className={url.startsWith("/register") ? "nav-item active": "nav-item"}>
                                         <a className="nav-link" href="/register">Register</a>
                                     </li>
                                 </>
                             )
                         }
-                        <li className="nav-item">
+                        <li className={url.startsWith("/petsearch") ? "nav-item active": "nav-item"}>
                             <a className="nav-link" href="/petsearch">Pet Search</a>
                         </li>
-
-                        <li className="nav-item">
-                            <a className="nav-link" href="/shelter">Shelters</a>
-                        </li>
+                        {
+                            auth.objectId === "seeker" ? (
+                                <li className={url.startsWith("/shelters") ? "nav-item active" : "nav-item"}>
+                                    <a className="nav-link" href="/shelter">Shelters</a>
+                                </li>
+                            ) : (
+                                <li className={url.startsWith("/manage-shelter") ? "nav-item active" : "nav-item"}>
+                                    <a className="nav-link" href="/manage-shelter">Manage Shelter</a>
+                                </li>
+                            )
+                        }
                         {auth.authenticated && (
                             <>
                                 <li className="nav-item">

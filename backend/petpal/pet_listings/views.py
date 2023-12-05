@@ -59,6 +59,15 @@ class PetListView(ListAPIView):
     serializer_class = PetsSerializer
     permission_classes = [AllowAny]
 
+class ShelterPetListView(ListAPIView):
+    serializer_class = PetsSerializer
+    permission_classes = [IsAuthenticated]
+    authentication_classes = [JWTAuthentication]
+
+    def get_queryset(self):
+        shelter_id = self.kwargs['shelter_id']
+        return Pets.objects.filter(shelter=shelter_id)
+    
 
 class PetSearchView(ListAPIView):
     queryset = Pets.objects.all()

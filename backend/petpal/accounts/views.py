@@ -143,10 +143,12 @@ class ShelterProfileView(APIView):
     serializer_class = ShelterSerializer
 
     def get(self, request, *args, **kwargs):
-        username = kwargs['username']
-        
+        # Log the kwargs
+        id = kwargs['id']
         try:
-            user = CustomUser.objects.get(username=username)
+            # user = CustomUser.objects.get(username=kwargs['username'])
+            user = CustomUser.objects.get(id=id)
+            print(user)
             # Try to get the associated shelter
             shelter = Shelter.objects.get(user=user)
             serializer = self.serializer_class(shelter)  # Use the serializer class directly

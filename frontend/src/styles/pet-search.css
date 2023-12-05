@@ -52,3 +52,8 @@ select#locationSort {
     align-content: flex-start;
     align-items: center;
 }
+
+
+.pet-description {
+    text-align: center;
+  }

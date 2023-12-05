@@ -10,7 +10,7 @@ export default function Logout() {
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(setAuth({ auth: false, token: "", objectId: "" }));
-        navigate("/");
+        navigate("/home");
     }, [dispatch, navigate]);
 
 }
