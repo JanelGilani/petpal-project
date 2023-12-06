@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 import Error from "./404.js";
 import '../styles/pet-details.css';
 import Navbar from "./Navbar";
@@ -19,7 +19,7 @@ export default function PetDetails() {
     const navigate = useNavigate();
     const location = useLocation();
     const pet_id = location.pathname.split("/")[2];
-    
+
     useEffect(() => {
         if (!auth.authenticated) {
             return <Error error={401} />;
@@ -58,7 +58,9 @@ export default function PetDetails() {
 
         fetchData();
     }, [pet_id, auth]);
-    
+
+    console.log(shelter)
+
     return (
         <div className="content">
             <Navbar />
@@ -93,7 +95,7 @@ export default function PetDetails() {
                                 <h1 className="custom-font" style={{ color: 'white' }}>{pet.status}</h1>
                             </div>
                             <div className="card adoption-detail">
-                                <Title level={3} style={{ color: 'rgb(77, 71, 81)' }}>GoDoggy Adoption Center</Title>
+                                <Title level={3} style={{ color: 'rgb(77, 71, 81)' }}>{shelter.shelter_name}</Title>
                                 <Divider />
                                 <Space direction="vertical" size="large">
                                     <Space>
@@ -113,9 +115,11 @@ export default function PetDetails() {
                                     </Space>
                                 </Space>
                                 <Divider />
-                                <Button type="primary" className="adopt-button">
-                                    Adopt Me
-                                </Button>
+                                {
+                                    pet.status === "Available" ? (
+                                        <Link to={`/adopt/${pet.id}`}><Button type="primary" block>Adopt Me</Button></Link>) :
+                                        <Button type="primary" block disabled>Adopt Me</Button>
+                                }
                             </div>
                         </div>
                     </div>

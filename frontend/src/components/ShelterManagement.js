@@ -14,6 +14,7 @@ import Logo from '../img/logo.png';
 export default function ShelterManagement() {
     const auth = useSelector((state) => state.auth);
     const [pets, setPets] = React.useState([]);
+    const [shelterId, setShelterId] = useState("");
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -34,6 +35,7 @@ export default function ShelterManagement() {
                 } else {
                     try {
                         const shelter_id = userInfoData.id;
+                        setShelterId(shelter_id);
                         const petRes = await fetch(`http://localhost:8000/pets/shelter/${shelter_id}/`, {
                             method: "GET",
                             headers: {
@@ -76,7 +78,7 @@ export default function ShelterManagement() {
                         <h1 className="heading">List of Pets in your Shelter</h1>
                     </div>
                     <div className="col-2 d-flex flex-column align-items-center text-center">
-                        <Link to="/create-pet" className="add_pet_btn" style={{ marginBottom: "5px" }}>
+                        <Link to={`/create-pet/${shelterId}`} className="add_pet_btn" style={{ marginBottom: "5px" }}>
                             <IoIosAddCircle />
                         </Link>
                         Add Pet

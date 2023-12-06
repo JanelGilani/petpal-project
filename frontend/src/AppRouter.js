@@ -10,6 +10,9 @@ import Logout from "./components/Logout";
 import PetDetails from "./components/PetDetails";
 import ShelterManagement from "./components/ShelterManagement";
 import PetCreate from "./components/PetCreate";
+import PetApplication from "./components/Application";
+import ShelterList from "./components/ShelterList";
+import ShelterDetails from "./components/ShelterDetail";
 
 function AppRouter() {
     return (
@@ -23,7 +26,10 @@ function AppRouter() {
                 <Route path="/petsearch/:id/" element={<PetDetails />}/>
                 <Route path="/logout" element={<Logout />} />
                 <Route path="/manage-shelter" element={<ShelterManagement />} />
-                <Route path="/create-pet" element={<PetCreate />} />
+                <Route path="/create-pet/:id" element={<PetCreate />} />
+                <Route path="/adopt/:id" element={<PetApplication />} />
+                <Route path="/shelters" element={<ShelterList />} />
+                <Route path="/shelters/:id/:username" element={<ShelterDetails />} />
             </Routes>
         </BrowserRouter>
     )

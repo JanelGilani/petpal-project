@@ -190,7 +190,7 @@ export default function Register() {
                                     </div>
                                     <div className="field">
                                         <label htmlFor="confirm-password">Confirm Password</label>
-                                        <Input type="password" className="form-control" id="confirm-password" name="confirm-password" required onChange={handleChange} />
+                                        <Input type="password" className="form-control" id="confirm-password" name="confirm-password" required onChange={handleNameChange} />
                                     </div>
                                     <div className="field">
                                         <label htmlFor="registration-number">Mission Statement</label>
