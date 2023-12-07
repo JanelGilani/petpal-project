@@ -5,6 +5,7 @@ import '../styles/shelter-details.css';
 import '../styles/landing-page.css';
 import { useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { FaPaw, FaHeart, FaCheckCircle } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import Error from "./404.js";
 import { Button, Input, Form } from 'antd';
