@@ -29,7 +29,7 @@ function AppRouter() {
                 <Route path="/create-pet/:id" element={<PetCreate />} />
                 <Route path="/adopt/:id" element={<PetApplication />} />
                 <Route path="/shelters" element={<ShelterList />} />
-                <Route path="/shelters/:id/:username" element={<ShelterDetails />} />
+                <Route path="/shelters/:id/:username/:id" element={<ShelterDetails />} />
             </Routes>
         </BrowserRouter>
     )

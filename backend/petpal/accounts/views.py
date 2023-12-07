@@ -28,6 +28,21 @@ from django.core.files.uploadedfile import InMemoryUploadedFile
 from rest_framework_simplejwt.authentication import JWTAuthentication
 
 
+class UserInfoFromIdView(APIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
+    serializer_class = CustomUserSerializer
+
+    def get(self, request, *args, **kwargs):
+        id = kwargs['id']
+        try:
+            user = CustomUser.objects.get(id=id)
+            serializer = self.serializer_class(user)
+            return Response(serializer.data)
+        except CustomUser.DoesNotExist:
+            return Response({'detail': 'User not found.'}, status=status.HTTP_404_NOT_FOUND)
+        
+
 class UserInfoView(APIView):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
@@ -165,10 +180,11 @@ class PetSeekerProfileView(APIView):
     serializer_class = PetSeekerSerializer
 
     def get(self, request, *args, **kwargs):
-        username = kwargs['username']
+        id = kwargs['id']
         
         try:
-            seeker_user = CustomUser.objects.get(username=username)
+            # seeker_user = CustomUser.objects.get(username=username)
+            seeker_user = CustomUser.objects.get(id=id)
             pet_seeker = PetSeeker.objects.get(user=seeker_user)
 
             if (not self.request.user.shelter) and (self.request.user != pet_seeker.user):

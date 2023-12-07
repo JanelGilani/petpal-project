@@ -61,7 +61,7 @@ export default function ShelterList() {
             title: "Action",
             key: "action",
             render: (text, record) => (
-                <Link to={`/shelters/${record.user.id}/${record.user.username}`}>
+                <Link to={`/shelters/${record.user.id}/${record.user.username}/${record.id}`}>
                     <Button type="primary">View</Button>
                 </Link>
             )
