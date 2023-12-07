@@ -3,11 +3,29 @@ import 'semantic-ui-css/semantic.min.css';
 import { Link, useLocation } from "react-router-dom";
 import '../styles/header-footer.css';
 import Logo from "../img/logo_large.png";
-import { Image, Avatar, Dropdown, Menu, Badge, notification, Button } from 'antd';
+import { Image, Avatar, Dropdown, Menu, Badge, notification, Modal, Button } from 'antd';
 import { BellOutlined, UserOutlined } from '@ant-design/icons';
 import { useSelector } from "react-redux";
+import Login from "./Login"; // Import your Login component
+
+
 
 export default function Header() {
+    
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const showModal = () => {
+        setIsModalOpen(true);
+    };
+
+    const handleOk = () => {
+        setIsModalOpen(false);
+    };
+
+    const handleCancel = () => {
+        setIsModalOpen(false);
+    };
+
     const auth = useSelector((state) => state.auth);
     const location = useLocation();
     const url = location.pathname;
@@ -99,6 +117,7 @@ export default function Header() {
 
 {/* <Button type="link" onClick={async () => {} }>Mark all as read</Button> */}
     return (
+        
         <div className="pusher">
             <nav className="navbar navbar-expand-lg navbar-light" style={{ height: '80px' }}>
                 <a className="navbar-brand d-flex align-items-center" href="/">
@@ -116,9 +135,8 @@ export default function Header() {
                         {
                             !auth.authenticated && (
                                 <>
-                                    <li className={url.startsWith("/login") ? "nav-item active" : "nav-item"}>
-                                        <a className="nav-link" href="/login">Login</a>
-                                    </li>
+                                    
+                                   
                                     <li className={url.startsWith("/register") ? "nav-item active" : "nav-item"}>
                                         <a className="nav-link" href="/register">Register</a>
                                     </li>
@@ -128,6 +146,20 @@ export default function Header() {
                         <li className={url.startsWith("/petsearch") ? "nav-item active" : "nav-item"}>
                             <a className="nav-link" href="/petsearch">Pet Search</a>
                         </li>
+
+                        <Button type="primary" onClick={showModal}>
+                                    Login
+                                </Button>
+                                <Modal
+                                    title="Login"
+                                    visible={isModalOpen}
+                                    onOk={handleOk}
+                                    onCancel={handleCancel}
+                                    footer={null} // Remove footer to use your Login component's own buttons
+                                >
+                                    {/* Render the Login component */}
+                                    <Login />
+                                </Modal>
                         {
                             auth.authenticated && (
                                 auth.objectId === "seeker" ? (
@@ -163,4 +195,6 @@ export default function Header() {
             </nav>
         </div>
     );
+
+    
 }
