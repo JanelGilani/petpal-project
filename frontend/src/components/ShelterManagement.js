@@ -62,7 +62,6 @@ export default function ShelterManagement() {
     }, [auth]); // Include auth as a dependency
 
 
-
     return (
         <div className="content">
             <Navbar />
@@ -89,7 +88,7 @@ export default function ShelterManagement() {
                 <div className="ui cards home">
                     {
                         pets.map(pet => (
-                            <div className="adoption-pet card" key={pet.pet_id}>
+                            <div className="adoption-pet card" key={pet.id}>
                                 <div className="curved-border">
                                     <div className="card-image">
                                         <Image src={Logo} />
@@ -106,8 +105,8 @@ export default function ShelterManagement() {
                                 </div>
                                 <div className="card-description">
                                     <h3 className="card-description title">{pet.name}</h3>
-                                    <p class="pet-description">{pet.color} {pet.breed}, Aged {pet.age}</p>
-                                    <a className="card-description ui button" href={"/petsearch/" + pet.id}>Edit Pet</a>
+                                    <p className="pet-description">{pet.color} {pet.breed}, Aged {pet.age}</p>
+                                    <a className="card-description ui button" href={`/edit-pet/${pet.id}`}>Edit Pet</a>
                                 </div>
                             </div>
                         ))

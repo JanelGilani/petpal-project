@@ -19,7 +19,7 @@ export default function Header() {
             <Menu.Item key="1" className={url.startsWith("/your-applications") ? "dropdown-item active" : "dropdown-item"} >
                 <Link to="/your-applications" style={{ textDecoration: "none" }}>Your Applications</Link>
             </Menu.Item>
-            <Menu.Item key="2" style={{ backgroundColor: url.startsWith("/your-account") ? "#f7f7f7" : "inherit" }}>
+            <Menu.Item key="2">
                 <Link to="/your-account" style={{ textDecoration: "none" }}>Account Settings</Link>
             </Menu.Item>
             <Menu.Divider />
