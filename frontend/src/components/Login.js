@@ -2,7 +2,8 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { setAuth } from "../redux/authReducer";
-import { Form, Input } from "antd";
+import { Form, Input, Button, message } from "antd";
+import { Link } from "react-router-dom";
 
 export default function Login() {
     const dispatch = useDispatch();
@@ -26,7 +27,8 @@ export default function Login() {
             const data = await response.json();
             console.log(data);
             if (response.status !== 200) {
-                alert(data.detail);
+                // Display error message for invalid credentials
+                message.error("Invalid credentials");
             } else {
                 const userInfoResponse = await fetch(`http://localhost:8000/accounts/userinfo/`, {
                     method: "GET",
@@ -40,6 +42,8 @@ export default function Login() {
                 } else {
                     dispatch(setAuth({ auth: true, token: data.access, objectId: "seeker" }));
                 }
+                // Redirect to landing page after successful login
+                window.location.href = "/"; // Change this URL to the landing page URL
             }
         } catch (err) {
             console.log(err);
@@ -48,17 +52,20 @@ export default function Login() {
 
     return (
         <div>
-            <h1>Login</h1>
             <Form>
                 <Form.Item>
-                    <Input placeholder="Username" onChange={(e) => setUsername(e.target.value)} />
+                    <Input placeholder="Username" onChange={(e) => setUsername(e.target.value)} required/>
                 </Form.Item>
                 <Form.Item>
-                    <Input placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
+                    <Input.Password placeholder="Password" onChange={(e) => setPassword(e.target.value)} required/>
                 </Form.Item>
                 <Form.Item>
-                    <button onClick={login}>Login</button>
+                    <Button type="primary" onClick={login}>
+                        Login
+                    </Button>
                 </Form.Item>
+                {/* Link to the registration page */}
+                <p>Don't have an account? <Link to="/register">Register</Link></p>
             </Form>
         </div>
     );
