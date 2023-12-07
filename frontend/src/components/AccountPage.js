@@ -1,18 +1,53 @@
-import React, { useState } from "react";
+import { useEffect, useState} from "react";
 import "../styles/account-update.css";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+import axios from "axios"; // Import Axios for making HTTP requests
+import { useSelector } from "react-redux";
 
 const AccountUpdate = () => {
+  const auth = useSelector((state) => state.auth);
   const [formData, setFormData] = useState({
-    name: "User's Name",
-    email: "user@example.com",
+    name: "",
+    email: "",
     password: "",
     confirmPassword: "",
-    phone: "123-456-7890",
-    location: "Your Location",
-    petPreferences: "Your Pet Preferences",
+    phone: "",
+    location: "",
+    petPreferences: "",
   });
+  console.log(auth.userId);
+  useEffect(() => {
+    // Fetch user data and prepopulate the form
+    const fetchUserData = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:8000/accounts/petseekers/profile/${auth.userId}/`, // Replace with your Django API endpoint to fetch user data
+          {
+            headers: {
+              Authorization: `Bearer ${auth.token}`,
+            },
+          }
+        );
+  
+        const userData = response.data;
+        console.log(userData);
+        // Set the form data with the fetched user data
+        setFormData({
+          name: userData.name,
+          email: userData.email,
+          phone: userData.phone,
+          location: userData.location,
+          petPreferences: userData.petPreferences,
+        });
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
+    };
+  
+    fetchUserData();
+  }, [auth.token, auth.userId]); //
+
 
   const handleChange = (e) => {
     setFormData({
@@ -21,9 +56,19 @@ const AccountUpdate = () => {
     });
   };
 
-  const handleUpdate = () => {
-    // Add your update logic here
-    console.log("Form data submitted:", formData);
+  const handleUpdate = async () => {
+    try {
+      const response = await axios.put(
+        `http://localhost:8000/petseekers/${formData.username}/`, // Replace with your Django API endpoint to update user data
+        formData
+      );
+
+      console.log("User updated:", response.data);
+      // Handle success: show a success message or perform any other actions
+    } catch (error) {
+      console.error("Error updating user:", error);
+      // Handle error: show an error message or perform any other actions
+    }
   };
 
   return (
