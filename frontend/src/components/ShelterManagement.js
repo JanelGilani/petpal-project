@@ -8,12 +8,13 @@ import Footer from "./Footer";
 import { useSelector } from "react-redux";
 import Error from "./404.js";
 import { useState, useEffect } from "react";
-import { Image } from 'antd';
+import { Image, Button } from 'antd';
 import Logo from '../img/logo.png';
+import { MdDelete } from "react-icons/md";
 
 export default function ShelterManagement() {
     const auth = useSelector((state) => state.auth);
-    const [pets, setPets] = React.useState([]);
+    const [pets, setPets] = useState([]);
     const [shelterId, setShelterId] = useState("");
     useEffect(() => {
         const fetchData = async () => {
@@ -58,8 +59,30 @@ export default function ShelterManagement() {
             }
         };
 
-        fetchData(); // Call the fetchData function
-    }, [auth]); // Include auth as a dependency
+        fetchData();
+    }, [auth]);
+
+    const handleDelete = async (petId) => {
+        try {
+            const response = await fetch(`http://localhost:8000/pets/${petId}/`, {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${auth.token}`
+                }
+            });
+
+            if (response.status !== 204) {
+                const data = await response.json();
+                alert(data.detail);
+            } else {
+                window.location.reload();
+            }
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
 
 
     return (
@@ -92,6 +115,9 @@ export default function ShelterManagement() {
                                 <div className="curved-border">
                                     <div className="card-image">
                                         <Image src={Logo} />
+                                        <Link onClick={() => handleDelete(pet.id)} className="edit icon" style={{ marginBottom: "5px" }}>
+                                            <MdDelete color="black" size={"14px"} />
+                                        </Link>
                                     </div>
                                 </div>
                                 <div className="card-content">

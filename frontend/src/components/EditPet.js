@@ -27,7 +27,7 @@ export default function EditPet() {
     const success = () => {
         message.open({
             type: 'success',
-            content: 'Pet registered',
+            content: 'Pet Updated',
         });
         navigate("/manage-shelter");
     };
@@ -100,8 +100,8 @@ export default function EditPet() {
         e.preventDefault();
         console.log(petDetails);
         try {
-            const response = await fetch("http://localhost:8000/pets/", {
-                method: "POST",
+            const response = await fetch(`http://localhost:8000/pets/${pet_id}/`, {
+                method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
                     "Authorization": `Bearer ${auth.token}`,
@@ -128,7 +128,7 @@ export default function EditPet() {
                 <div className="row">
                     <div className="col-lg-7">
                         <form className="adoption-form" onSubmit={handleSubmit}>
-                            <p style={{ fontSize: "30px", fontWeight: "bold" }}>Pet Creation</p>
+                            <p style={{ fontSize: "30px", fontWeight: "bold" }}>Pet Update</p>
                             <div className="form-group">
                                 <label htmlFor="name">Pet Name</label>
                                 <input
@@ -142,18 +142,23 @@ export default function EditPet() {
                             </div>
                             <div className="form-group">
                                 <label htmlFor="age">Age</label>
-                                <input className="form-control" id="age" name="age" required type="number"
-                                    onChange={(e) => handleFormChange("age", e.target.value)} val />
+                                <input 
+                                    className="form-control" 
+                                    id="age" name="age" 
+                                    required 
+                                    type="number"
+                                    onChange={(e) => handleFormChange("age", e.target.value)} 
+                                    value={petDetails.age} />
                             </div>
                             <div className="form-group">
                                 <label htmlFor="species">Species</label>
                                 <input className="form-control" id="species" name="species" required type="text"
-                                    onChange={(e) => handleFormChange("species", e.target.value)} />
+                                    onChange={(e) => handleFormChange("species", e.target.value)} value={petDetails.species}/>
                             </div>
                             <div className="form-group">
                                 <label htmlFor="breed">Breed</label>
                                 <input className="form-control" id="breed" name="breed" required type="text"
-                                    onChange={(e) => handleFormChange("breed", e.target.value)} />
+                                    onChange={(e) => handleFormChange("breed", e.target.value)} value={petDetails.breed}/>
                             </div>
                             <div className="form-group d-inline-flex flex-column">
                                 <label htmlFor="size">Size</label>
@@ -163,6 +168,7 @@ export default function EditPet() {
                                     onChange={(value) => handleFormChange("size", value)}
                                     style={{ width: 120 }}
                                     required
+                                    value={petDetails.size}
                                 >
                                     <Option value="Small">Small</Option>
                                     <Option value="Medium">Medium</Option>
@@ -172,12 +178,14 @@ export default function EditPet() {
                             <div className="form-group">
                                 <label htmlFor="description">Description of the Pet</label>
                                 <textarea className="form-control" id="description" name="description" required
-                                    onChange={(e) => handleFormChange("description", e.target.value)}></textarea>
+                                    onChange={(e) => handleFormChange("description", e.target.value)}
+                                    value={petDetails.description}
+                                    ></textarea>
                             </div>
                             <div className="form-group">
                                 <label htmlFor="location">Location</label>
                                 <input className="form-control" id="location" name="location" required type="text"
-                                    onChange={(e) => handleFormChange("location", e.target.value)} />
+                                    onChange={(e) => handleFormChange("location", e.target.value)} value={petDetails.location}/>
                             </div>
 
                             <div className="form-group d-inline-flex flex-column">
@@ -188,6 +196,7 @@ export default function EditPet() {
                                     onChange={(value) => handleFormChange("color", value)}
                                     style={{ width: 190 }}
                                     required
+                                    value={petDetails.color}
                                 >
                                     <Option value="Black">Black</Option>
                                     <Option value="White">White</Option>
@@ -204,12 +213,13 @@ export default function EditPet() {
                                     onChange={(value) => handleFormChange("gender", value)}
                                     style={{ width: 120 }}
                                     required
+                                    value={petDetails.gender}
                                 >
                                     <Option value="Male">Male</Option>
                                     <Option value="Female">Female</Option>
                                 </Select>
                             </div>
-                            <button className="btn btn-primary " type="submit">Register Pet</button>
+                            <Button htmlType="submit" type="primary">Update Pet</Button>
                         </form>
 
                     </div>
