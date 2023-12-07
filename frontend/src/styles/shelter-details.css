@@ -1,7 +1,7 @@
 @import "global.css";
 
 body,h1,h2,form,#process {
-    background-color: white;
+    /* background-color: white; */
     font-family: var(--font);
     color: black;
 }
@@ -29,7 +29,7 @@ p{
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 60px !important;
+    font-size: 20px;
     font-weight: bold;
 
 }

@@ -1,6 +1,6 @@
 import React from "react";
 import { Input, Button, Card, Row, Col } from "antd";
-import { FaHeart } from "react-icons/fa";
+import { FaPaw, FaHeart, FaCheckCircle } from "react-icons/fa";
 import { SearchOutlined, RightOutlined } from "@ant-design/icons";
 import { useSelector } from "react-redux";
 import "../styles/landing-page.css";
@@ -29,10 +29,10 @@ export default function LandingPage() {
             <Col xs={24} sm={8}>
               <Card className="benefit animate__animated animate__bounceIn" style={{ width: '18rem' }}>
                 <div className="image" style={{ background: 'none' }}>
-                  <FaHeart style={{ fontSize: '4em' }} />
+                  <FaPaw style={{ fontSize: '4em' }} />
                 </div>
                 <div className="card-body">
-                  <h5 className="card-title">We Offer</h5>
+                  <h5 className="card-title"style={{margin: "10px 0"}}>We Offer</h5>
                   <p className="card-text">Find your perfect pet from a wide selection of adorable animals.</p>
                   <Button type="primary">Go somewhere</Button>
                 </div>
@@ -41,10 +41,10 @@ export default function LandingPage() {
             <Col xs={24} sm={8}>
               <Card className="benefit animate__animated animate__bounceIn" style={{ width: '18rem', border: 'none' }}>
                 <div className="image" style={{ background: 'none' }}>
-                  <FaHeart style={{ fontSize: '4em' }} />
+                  <FaCheckCircle style={{ fontSize: '4em' }} />
                 </div>
                 <div className="card-body">
-                  <h5 className="card-title">We Care</h5>
+                  <h5 className="card-title" style={{margin: "10px 0"}}>We Care</h5>
                   <p className="card-text">Experience a quick and hassle-free adoption process with PetPal.</p>
                   <Button type="primary">Go somewhere</Button>
                 </div>
@@ -56,7 +56,7 @@ export default function LandingPage() {
                   <FaHeart style={{ fontSize: '4em' }} />
                 </div>
                 <div className="card-body">
-                  <h5 className="card-title">You Give</h5>
+                  <h5 className="card-title"style={{margin: "10px 0"}}>You Give</h5>
                   <p className="card-text">Give a loving home to a furry friend and make a difference by being a difference.</p>
                   <Button type="primary">Go somewhere</Button>
                 </div>
