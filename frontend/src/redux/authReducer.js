@@ -4,6 +4,7 @@ const initialState = {
     authenticated: false,
     token: "",
     objectId: "",
+    userId: "",
 }
 
 const authSlice = createSlice({
@@ -15,7 +16,8 @@ const authSlice = createSlice({
                 ...state,
                 authenticated: action.payload.auth,
                 token: action.payload.token,
-                objectId: action.payload.objectId
+                objectId: action.payload.objectId,
+                userId: action.payload.userId
             };
         }
     }

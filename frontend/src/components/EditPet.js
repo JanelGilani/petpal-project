@@ -18,7 +18,6 @@ export default function EditPet() {
     const pet_id = location.pathname.split("/")[2]
     const [messageApi, contextHolder] = message.useMessage();
     const [pet, setPet] = useState(null);
-
     const error = (err) => {
         message.open({
             type: 'error',
@@ -47,8 +46,22 @@ export default function EditPet() {
                 if (response.status !== 200) {
                     error(data.detail);
                 } else {
-                    if (data.shelter !== auth.objectId) {
-                        <Error error={403} />;
+                    if (data.shelter !== auth.userId) {
+                        return <Error error={403} />;
+                    }
+                    else {
+                        console.log(data);
+                        setPetDetails({
+                            name: data ? data.name : "",
+                            age: data ? data.age : 0,
+                            species: data ? data.species : "",
+                            breed: data ? data.breed : "",
+                            description: data ? data.description : "",
+                            location: data ? data.location : "",
+                            color: data ? data.color : "",
+                            size: data ? data.size : "",
+                            gender: data ? data.gender : "",
+                        });
                     }
                 }
             } catch (err) {
@@ -58,16 +71,6 @@ export default function EditPet() {
         };
         checkPet();
     }, []);
-    
-    
-
-
-
-
-
-
-
-
 
 
     const [petDetails, setPetDetails] = useState({
@@ -75,13 +78,13 @@ export default function EditPet() {
         age: 0,
         species: "",
         breed: "",
-        size: "",
         description: "",
         location: "",
         color: "",
         size: "",
         gender: "",
     });
+
 
     if (auth.objectId === "seeker") {
         return <Error error={403} />;
@@ -105,7 +108,7 @@ export default function EditPet() {
                 },
                 body: JSON.stringify(petDetails),
             });
-    
+
             const data = await response.json();
             console.log(data);
             if (data.error) {
@@ -117,7 +120,7 @@ export default function EditPet() {
             console.error(err);
             message.error("Something went wrong!");
         }
-    };    
+    };
     return (
         <div class="content">
             <NavBar />
@@ -129,6 +132,7 @@ export default function EditPet() {
                             <div className="form-group">
                                 <label htmlFor="name">Pet Name</label>
                                 <input
+                                    value={petDetails.name}
                                     className="form-control"
                                     id="name"
                                     name="name"
@@ -139,7 +143,7 @@ export default function EditPet() {
                             <div className="form-group">
                                 <label htmlFor="age">Age</label>
                                 <input className="form-control" id="age" name="age" required type="number"
-                                    onChange={(e) => handleFormChange("age", e.target.value)} />
+                                    onChange={(e) => handleFormChange("age", e.target.value)} val />
                             </div>
                             <div className="form-group">
                                 <label htmlFor="species">Species</label>
@@ -207,6 +211,7 @@ export default function EditPet() {
                             </div>
                             <button className="btn btn-primary " type="submit">Register Pet</button>
                         </form>
+
                     </div>
                     <div className="col-lg-5">
                         <div className="upload-image">

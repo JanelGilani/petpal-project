@@ -11,7 +11,7 @@ import Login from "./Login"; // Import your Login component
 
 
 export default function Header() {
-    
+
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const showModal = () => {
@@ -115,9 +115,9 @@ export default function Header() {
         </Menu>
     );
 
-{/* <Button type="link" onClick={async () => {} }>Mark all as read</Button> */}
+    {/* <Button type="link" onClick={async () => {} }>Mark all as read</Button> */ }
     return (
-        
+
         <div className="pusher">
             <nav className="navbar navbar-expand-lg navbar-light" style={{ height: '80px' }}>
                 <a className="navbar-brand d-flex align-items-center" href="/">
@@ -135,8 +135,7 @@ export default function Header() {
                         {
                             !auth.authenticated && (
                                 <>
-                                    
-                                   
+
                                     <li className={url.startsWith("/register") ? "nav-item active" : "nav-item"}>
                                         <a className="nav-link" href="/register">Register</a>
                                     </li>
@@ -146,20 +145,22 @@ export default function Header() {
                         <li className={url.startsWith("/petsearch") ? "nav-item active" : "nav-item"}>
                             <a className="nav-link" href="/petsearch">Pet Search</a>
                         </li>
-
-                        <Button type="primary" onClick={showModal}>
-                                    Login
-                                </Button>
-                                <Modal
-                                    title="Login"
-                                    visible={isModalOpen}
-                                    onOk={handleOk}
-                                    onCancel={handleCancel}
-                                    footer={null} // Remove footer to use your Login component's own buttons
-                                >
-                                    {/* Render the Login component */}
-                                    <Login />
-                                </Modal>
+                        {
+                            !auth.authenticated &&
+                            <Button type="primary" onClick={showModal}>
+                                Login
+                            </Button>
+                        }
+                        <Modal
+                            title="Login"
+                            visible={isModalOpen}
+                            onOk={handleOk}
+                            onCancel={handleCancel}
+                            footer={null} // Remove footer to use your Login component's own buttons
+                        >
+                            {/* Render the Login component */}
+                            <Login />
+                        </Modal>
                         {
                             auth.authenticated && (
                                 auth.objectId === "seeker" ? (
@@ -196,5 +197,5 @@ export default function Header() {
         </div>
     );
 
-    
+
 }

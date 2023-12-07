@@ -38,9 +38,9 @@ export default function Login() {
                 });
                 const userInfoData = await userInfoResponse.json();
                 if (userInfoData.shelter) {
-                    dispatch(setAuth({ auth: true, token: data.access, objectId: "shelter" }));
+                    dispatch(setAuth({ auth: true, token: data.access, objectId: "shelter", userId: userInfoData.id }));
                 } else {
-                    dispatch(setAuth({ auth: true, token: data.access, objectId: "seeker" }));
+                    dispatch(setAuth({ auth: true, token: data.access, objectId: "seeker", userId: userInfoData.id }));
                 }
                 // Redirect to landing page after successful login
                 window.location.href = "/"; // Change this URL to the landing page URL
