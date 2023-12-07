@@ -3,7 +3,7 @@ import 'semantic-ui-css/semantic.min.css';
 import { Link, useLocation } from "react-router-dom";
 import '../styles/header-footer.css';
 import Logo from "../img/logo_large.png";
-import { Image, Avatar, Dropdown, Menu, Badge, notification } from 'antd';
+import { Image, Avatar, Dropdown, Menu, Badge, notification, Button } from 'antd';
 import { BellOutlined, UserOutlined } from '@ant-design/icons';
 import { useSelector } from "react-redux";
 
@@ -16,11 +16,11 @@ export default function Header() {
 
     const profileMenu = (
         <Menu>
-            <Menu.Item key="1">
+            <Menu.Item key="1" className={url.startsWith("/your-applications") ? "dropdown-item active" : "dropdown-item"} >
                 <Link to="/your-applications" style={{ textDecoration: "none" }}>Your Applications</Link>
             </Menu.Item>
-            <Menu.Item key="2">
-                <Link to="/account-settings" style={{ textDecoration: "none" }}>Account Settings</Link>
+            <Menu.Item key="2" style={{ backgroundColor: url.startsWith("/your-account") ? "#f7f7f7" : "inherit" }}>
+                <Link to="/your-account" style={{ textDecoration: "none" }}>Account Settings</Link>
             </Menu.Item>
             <Menu.Divider />
             <Menu.Item key="3">
@@ -38,7 +38,7 @@ export default function Header() {
     async function getNotifications() {
         try {
             // Pass the auth token as a header
-            const res = await fetch(`http://localhost:8000/notifications/`, {
+            const res = await fetch(`http://localhost:8000/notifications/?status=unread`, {
                 method: "GET",
                 headers: {
                     "Authorization": `Bearer ${auth.token}`
@@ -61,20 +61,43 @@ export default function Header() {
             console.log(err);
         }
     }
-
+    async function readNotification(notificationId) {
+        try {
+            // Pass the auth token as a header
+            const res = await fetch(`http://localhost:8000/notifications/${notificationId}/`, {
+                method: "GET",
+                headers: {
+                    "Authorization": `Bearer ${auth.token}`
+                }
+            });
+            const data = await res.json();
+            if (res.status !== 200) {
+                alert(data.detail);
+            } else {
+                getNotifications();
+            }
+        } catch (err) {
+            console.log(err);
+        }
+    }
     const notificationMenu = (
         <Menu>
             {notifications.length === 0 ? (
                 <Menu.Item key="1">No notifications</Menu.Item>
             ) : (
                 notifications.map((notification) => (
-                    <Menu.Item key={notification.id}>{notification.title}</Menu.Item>
+                    <Menu.Item key={notification.id}>
+                        {notification.title}
+                        <Button type="link" onClick={async () => { await readNotification(notification.id) }}>
+                            Mark as read
+                        </Button>
+                    </Menu.Item>
                 ))
             )}
         </Menu>
     );
 
-
+{/* <Button type="link" onClick={async () => {} }>Mark all as read</Button> */}
     return (
         <div className="pusher">
             <nav className="navbar navbar-expand-lg navbar-light" style={{ height: '80px' }}>
