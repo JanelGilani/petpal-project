@@ -4,6 +4,7 @@
     height: 200px;
     overflow: hidden;
     border-radius: 50%;
+    border: 1px solid var(--primary-200);
 }
 .pp{
     display: flex;

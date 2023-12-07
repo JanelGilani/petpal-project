@@ -41,7 +41,6 @@ class UserInfoFromIdView(APIView):
             return Response(serializer.data)
         except CustomUser.DoesNotExist:
             return Response({'detail': 'User not found.'}, status=status.HTTP_404_NOT_FOUND)
-        
 
 class UserInfoView(APIView):
     authentication_classes = [JWTAuthentication]
@@ -221,19 +220,16 @@ class ShelterUpdateView(APIView):
     permission_classes = [IsAuthenticated]
     serializer_class = ShelterSerializer
 
-    def get_object(self, username):
-        return get_object_or_404(Shelter, user__username=username)
+    def get_object(self, id):
+        return get_object_or_404(Shelter, user__id=id)
 
-
-    def put(self, request, username, *args, **kwargs):
-        instance = self.get_object(username)
+    def put(self, request, id, *args, **kwargs):
+        instance = self.get_object(id)
         data = request.data
 
-        # Ensure that the user making the request is the owner of the shelter
         if request.user != instance.user:
             return Response({'detail': 'Permission denied. You are not the owner of this shelter.'}, status=status.HTTP_403_FORBIDDEN)
 
-        # Fields to update
         fields_to_update = ['username', 'email', 'password', 'shelter_name', 'location', 'mission_statement']
 
         for field in fields_to_update:
@@ -248,8 +244,6 @@ class ShelterUpdateView(APIView):
         try:
             instance.user.save()
             instance.save()
-
-            # Serialize the updated instance
             serializer = self.serializer_class(instance)
             return Response(serializer.data, status=status.HTTP_200_OK)
 
@@ -259,10 +253,9 @@ class ShelterUpdateView(APIView):
         except Exception as e:
             return Response({'detail': f'An error occurred: {str(e)}'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
-    def delete(self, request, username, *args, **kwargs):
-        instance = self.get_object(username)
+    def delete(self, request, id, *args, **kwargs):
+        instance = self.get_object(id)
 
-        # Ensure that the user making the request is the owner of the shelter
         if request.user != instance.user:
             return Response({'detail': 'Permission denied. You are not the owner of this shelter.'}, status=status.HTTP_403_FORBIDDEN)
 
@@ -272,27 +265,25 @@ class ShelterUpdateView(APIView):
 
         except Exception as e:
             return Response({'detail': f'An error occurred: {str(e)}'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-        
+
 
 class PetSeekerUpdateView(APIView):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
     serializer_class = PetSeekerSerializer
 
-    def get_object(self, username):
-        return get_object_or_404(PetSeeker, user__username=username)
+    def get_object(self, id):
+        return get_object_or_404(PetSeeker, user__id=id)
 
-    def put(self, request, username, *args, **kwargs):
-        instance = self.get_object(username)
+    def put(self, request, id, *args, **kwargs):
+        instance = self.get_object(id)
         data = request.data
 
-        # Ensure that the user making the request is the owner of the pet seeker profile
         if request.user != instance.user:
             return Response({'detail': 'Permission denied. You are not the owner of this pet seeker profile.'}, status=status.HTTP_403_FORBIDDEN)
 
-        # Fields to update
         fields_to_update = ['username', 'email', 'password', 'seeker_name', 'location', 'profile_picture']
-        global_username = data.get('username')
+        global_id = data.get('id')
         for field in fields_to_update:
             value = data.get(field)
 
@@ -300,16 +291,13 @@ class PetSeekerUpdateView(APIView):
                 if field in ['username', 'email', 'password']:
                     setattr(instance.user, field, value)
                 elif field == 'profile_picture':
-                    # Handle updating profile picture
-                    instance.profile_picture = self.process_profile_picture(value, username=global_username)
+                    instance.profile_picture = self.process_profile_picture(value, id=global_id)
                 else:
                     setattr(instance, field, value)
 
         try:
             instance.user.save()
             instance.save()
-
-            # Serialize the updated instance
             serializer = self.serializer_class(instance)
             return Response(serializer.data, status=status.HTTP_200_OK)
 
@@ -319,15 +307,13 @@ class PetSeekerUpdateView(APIView):
         except Exception as e:
             return Response({'detail': f'An error occurred: {str(e)}'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
-    def delete(self, request, username, *args, **kwargs):
-        instance = self.get_object(username)
+    def delete(self, request, id, *args, **kwargs):
+        instance = self.get_object(id)
 
-        # Ensure that the user making the request is the owner of the pet seeker profile
         if request.user != instance.user:
             return Response({'detail': 'Permission denied. You are not the owner of this pet seeker profile.'}, status=status.HTTP_403_FORBIDDEN)
 
         try:
-            # Handle deleting profile picture
             if instance.profile_picture:
                 instance.profile_picture.delete()
 
@@ -337,17 +323,15 @@ class PetSeekerUpdateView(APIView):
         except Exception as e:
             return Response({'detail': f'An error occurred: {str(e)}'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
-    def process_profile_picture(self, profile_picture, username):
-        # Process and save profile picture
+    def process_profile_picture(self, profile_picture, id):
         if profile_picture:
             image = Image.open(BytesIO(profile_picture.read()))
-            # Resize the image or perform any other processing if needed
             output_buffer = BytesIO()
-            image.save(output_buffer, format='JPEG')  # You can change the format as needed
+            image.save(output_buffer, format='JPEG')
             profile_picture = InMemoryUploadedFile(
                 output_buffer,
                 'ImageField',
-                f'{username}_profile.jpg',
+                f'{id}_profile.jpg',
                 'image/jpeg',
                 sys.getsizeof(output_buffer),
                 None
