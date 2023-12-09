@@ -8,10 +8,10 @@ from rest_framework.permissions import AllowAny
 from django.contrib.auth import authenticate, login
 from rest_framework.permissions import IsAuthenticated
 from django.shortcuts import get_object_or_404
-from .models import CustomUser, Shelter, PetSeeker
+from .models import CustomUser, Shelter, PetSeeker, Admin, UserReport
 from applications.models import Application
 from pet_listings.models import Pets
-from .serializers import CustomUserSerializer, ShelterSerializer, PetSeekerSerializer
+from .serializers import CustomUserSerializer, ShelterSerializer, PetSeekerSerializer, AdminSerializer, UserReportSerializer
 from rest_framework.generics import ListAPIView
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework.permissions import IsAdminUser, IsAuthenticated
@@ -162,7 +162,6 @@ class ShelterProfileView(APIView):
         try:
             # user = CustomUser.objects.get(username=kwargs['username'])
             user = CustomUser.objects.get(id=id)
-            print(user)
             # Try to get the associated shelter
             shelter = Shelter.objects.get(user=user)
             serializer = self.serializer_class(shelter)  # Use the serializer class directly
@@ -256,9 +255,10 @@ class ShelterUpdateView(APIView):
     def delete(self, request, id, *args, **kwargs):
         instance = self.get_object(id)
 
-        if request.user != instance.user:
+        # Admins can delete shelters
+        if not request.user.admin and request.user != instance.user:
             return Response({'detail': 'Permission denied. You are not the owner of this shelter.'}, status=status.HTTP_403_FORBIDDEN)
-
+        
         try:
             instance.user.delete()
             return Response({'detail': 'Shelter deleted successfully'}, status=status.HTTP_204_NO_CONTENT)
@@ -310,7 +310,8 @@ class PetSeekerUpdateView(APIView):
     def delete(self, request, id, *args, **kwargs):
         instance = self.get_object(id)
 
-        if request.user != instance.user:
+        # Admins can delete pet seekers
+        if not request.user.admin and request.user != instance.user:
             return Response({'detail': 'Permission denied. You are not the owner of this pet seeker profile.'}, status=status.HTTP_403_FORBIDDEN)
 
         try:
@@ -338,3 +339,152 @@ class PetSeekerUpdateView(APIView):
             )
             return profile_picture
         return None
+    
+
+class AdminRegistrationView(CreateAPIView):
+    permission_classes = [AllowAny]
+    serializer_class = CustomUserSerializer
+
+    def create(self, request, *args, **kwargs):
+        data = request.data
+        username = data.get('username')
+        email = data.get('email')
+        password = data.get('password')
+        admin_name = data.get('admin_name')
+
+        # Validate required fields
+        if not (username and email and password and admin_name):
+            return Response({'detail': 'All fields are required'}, status=status.HTTP_400_BAD_REQUEST)
+
+        try:
+            # Create CustomUser instance
+            user = CustomUser.objects.create_user(
+                username=username,
+                email=email,
+                password=password,
+                seeker=True,
+                shelter=True,
+                admin=True
+            )
+            
+            # Create Admin instance
+            Admin(user=user, admin_name=admin_name).save()
+
+            return Response({'detail': 'Admin created successfully'}, status=status.HTTP_201_CREATED)
+
+        except IntegrityError:
+            return Response({'detail': 'Username or email already exists'}, status=status.HTTP_400_BAD_REQUEST)
+
+        except Exception as e:
+            return Response({'detail': f'An error occurred: {str(e)}'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+class AdminProfileView(APIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
+    serializer_class = AdminSerializer
+
+    def get(self, request, *args, **kwargs):
+        id = kwargs['id']
+        try:
+            # user = CustomUser.objects.get(username=kwargs['username'])
+            user = CustomUser.objects.get(id=id)
+            # Try to get the associated shelter
+            admin = Admin.objects.get(user=user)
+            serializer = self.serializer_class(admin)  # Use the serializer class directly
+            return Response(serializer.data)
+        except Admin.DoesNotExist:
+            return Response({'detail': 'Admin not found.'}, status=status.HTTP_404_NOT_FOUND)
+        except CustomUser.DoesNotExist:
+            return Response({'detail': 'Admin not found.'}, status=status.HTTP_404_NOT_FOUND)
+
+
+class UserReportView(APIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
+    serializer_class = UserReportSerializer
+
+    def post(self, request, *args, **kwargs):
+        data = request.data
+        reporter_id = data.get('reporter_id')
+        reported_id = data.get('reported_id')
+
+        if not (reporter_id and reported_id):
+            return Response({'detail': 'Both reporter_id and reported_id are required'}, status=status.HTTP_400_BAD_REQUEST)
+
+        print(reporter_id, reported_id)
+        reporter = get_object_or_404(CustomUser, id=reporter_id)
+        reported = get_object_or_404(CustomUser, id=reported_id)
+
+        if reporter == reported:
+            return Response({'detail': 'You cannot report yourself'}, status=status.HTTP_400_BAD_REQUEST)
+
+        user_report_instance = UserReport.objects.create(reporter=reporter, reported=reported)
+        
+        # Get all the admins and add the user_report_instance to their reported_users field
+        admins = Admin.objects.all()
+        for admin in admins:
+            admin.reported_users.add(user_report_instance)
+            admin.save()
+        
+        return Response({'detail': 'User reported successfully'}, status=status.HTTP_201_CREATED)
+
+
+class AdminReportedUsersView(APIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
+    serializer_class = UserReportSerializer
+
+    def get(self, request, *args, **kwargs):
+        id = kwargs['id']
+        try:
+            user = CustomUser.objects.get(id=id)
+            # Check if the user is an admin
+            if not user.admin:
+                return Response({'detail': 'Permission denied. User is not an admin'}, status=status.HTTP_403_FORBIDDEN)
+            admin = Admin.objects.get(user=user)
+            reported_users = admin.reported_users.all()
+            serializer = self.serializer_class(reported_users, many=True)  # Use the serializer class directly
+            return Response(serializer.data)
+        except Admin.DoesNotExist:
+            return Response({'detail': 'Admin not found.'}, status=status.HTTP_404_NOT_FOUND)
+        except CustomUser.DoesNotExist:
+            return Response({'detail': 'Admin not found.'}, status=status.HTTP_404_NOT_FOUND)
+        
+
+class AdminDeleteView(APIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
+    serializer_class = UserReportSerializer
+
+    def delete(self, request, *args, **kwargs):
+        admin_id = kwargs['id']
+        reported_user_id = kwargs['reported_user_id']
+        try:
+            admin = Admin.objects.get(user__id=admin_id)
+            reported_user = CustomUser.objects.get(id=reported_user_id)
+
+            # Get all UserReport instances related to the reported user
+            user_reports = UserReport.objects.filter(reported=reported_user)
+
+            # Remove the instances from the admin's reported_users field
+            admin.reported_users.remove(*user_reports)
+
+            # Delete the reported user
+            reported_user.delete()
+        
+            print("Deleted successfully")
+            return Response({'detail': 'Reported user deleted successfully'}, status=status.HTTP_204_NO_CONTENT)
+        except Admin.DoesNotExist:
+            print("Admin not found.")
+            return Response({'detail': 'Admin not found.'}, status=status.HTTP_404_NOT_FOUND)
+        except CustomUser.DoesNotExist:
+            print("Reported user not found.")
+            return Response({'detail': 'Reported user not found.'}, status=status.HTTP_404_NOT_FOUND)
+        except UserReport.DoesNotExist:
+            print("User reports not found.")
+            return Response({'detail': 'User reports not found.'}, status=status.HTTP_404_NOT_FOUND)
+        except Exception as e:
+            print(f'An error occurred: {str(e)}')
+            return Response({'detail': f'An error occurred: {str(e)}'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+

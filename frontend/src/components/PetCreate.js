@@ -79,7 +79,8 @@ export default function PetCreate() {
             console.error(err);
             message.error("Something went wrong!");
         }
-    };    
+    };
+    
     return (
         <div class="content">
             <NavBar />
@@ -167,7 +168,7 @@ export default function PetCreate() {
                                     <Option value="Female">Female</Option>
                                 </Select>
                             </div>
-                            <button className="btn btn-primary " type="submit">Register Pet</button>
+                            <button type="submit" className="btn btn-primary">Submit Application</button>
                         </form>
                     </div>
                     <div className="col-lg-5">

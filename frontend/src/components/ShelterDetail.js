@@ -86,6 +86,32 @@ export default function ShelterDetails() {
         return <Error error="403" />
     }
 
+    async function handleReport(reportUserId) {
+        try {
+            // Report the user
+            const res = await fetch(`http://localhost:8000/accounts/report/`, {
+                method: "POST",
+                headers: {
+                    "Authorization": `Bearer ${auth.token}`,
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    reporter_id: auth.userId,
+                    reported_id: reportUserId
+                })
+            });
+            const data = await res.json();
+            if (res.status !== 201) {
+                alert(data.detail);
+            } else {
+                alert("User has been reported!");
+            }
+        }
+        catch (err) {
+            console.log(err);
+        }
+    }
+
     return (
         <div className="content">
             <Navbar />
@@ -172,10 +198,14 @@ export default function ShelterDetails() {
                 <p style={{ fontSize: "30px", fontWeight: "bold", marginTop: "50px", marginBottom: "10px" }}>Reviews</p>
                 <div className="row">
                     {comments.map((comment, index) => (
-                        <div className="card" style={{ width: "100%", marginBottom: "20px" }} key={index}>
+                        <div className="card" style={{ width: "100%", marginBottom: "20px" }} key={comment.userId}>
                             <div className="card-body">
                                 <h5 className="card-title">{comment.user}</h5>
                                 <p className="card-text">{comment.text}</p>
+                                {
+                                    auth.userId !== comment.userId &&
+                                        <Button type="dashed" danger onClick={() => handleReport(comment.userId)}>Report User</Button>
+                                }
                             </div>
                         </div>
                     ))}

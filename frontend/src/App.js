@@ -13,9 +13,6 @@ export default function App() {
   return (
     <div className='App'>
       <LandingPage />
-      {/* <Login /> */}
-      {/* <Register /> */}
-      {/* <Navbar /> */}
     </div>
   );
 }

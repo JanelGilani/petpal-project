@@ -15,6 +15,8 @@ import ShelterList from "./components/ShelterList";
 import ShelterDetails from "./components/ShelterDetail";
 import AccountPage from "./components/AccountPage";
 import EditPet from "./components/EditPet";
+import AdminPage from "./components/AdminPage";
+import ApplicationList from "./components/ApplicationList";
 
 function AppRouter() {
     return (
@@ -34,6 +36,8 @@ function AppRouter() {
                 <Route path="/shelters/:id/:username/:id" element={<ShelterDetails />} />
                 <Route path="/your-account" element={<AccountPage />} />
                 <Route path="/edit-pet/:id" element={<EditPet />} />
+                <Route path="/admin" element={<AdminPage />} />
+                <Route path="/your-applications" element={<ApplicationList />} />
             </Routes>
         </BrowserRouter>
     )

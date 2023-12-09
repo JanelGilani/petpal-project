@@ -10,7 +10,10 @@ import Navbar from "./Navbar";
 import Footer from "./Footer";
 
 export default function LandingPage() {
-  
+
+  if (useSelector(state => state.auth.objectId === "admin")) {
+    window.location.href = "/admin";
+  }
   return (
     <div className="content">
       <Navbar />
