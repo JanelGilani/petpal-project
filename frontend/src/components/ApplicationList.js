@@ -94,12 +94,14 @@ export default function ApplicationsList() {
             title: "Action",
             key: "action",
             render: (text, record) => (
-                <Link to={""}>
+                <Link to={`/your-applications/${record.id}/`}>
                     <Button type="link">View</Button>
                 </Link>
             )
         }
     ];
+
+    console.log(applications);
 
     return (
         <div className="content">
@@ -115,5 +117,7 @@ export default function ApplicationsList() {
             <Footer />
         </div>
     );
+
+    
     
 }

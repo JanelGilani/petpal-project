@@ -17,6 +17,7 @@ import AccountPage from "./components/AccountPage";
 import EditPet from "./components/EditPet";
 import AdminPage from "./components/AdminPage";
 import ApplicationList from "./components/ApplicationList";
+import ApplicationDetails from "./components/ApplicationDetail";
 
 function AppRouter() {
     return (
@@ -38,6 +39,7 @@ function AppRouter() {
                 <Route path="/edit-pet/:id" element={<EditPet />} />
                 <Route path="/admin" element={<AdminPage />} />
                 <Route path="/your-applications" element={<ApplicationList />} />
+                <Route path="/your-applications/:id" element={<ApplicationDetails />} />
             </Routes>
         </BrowserRouter>
     )
