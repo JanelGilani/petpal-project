@@ -165,7 +165,7 @@ export default function Header() {
                         </li>
                         {
                             !auth.authenticated &&
-                            <Button type="primary" onClick={showModal}>
+                            <Button type="primary" onClick={showModal} style={{ marginLeft: "10px" }}>
                                 Login
                             </Button>
                         }
@@ -174,7 +174,7 @@ export default function Header() {
                             visible={isModalOpen}
                             onOk={handleOk}
                             onCancel={handleCancel}
-                            footer={null} // Remove footer to use your Login component's own buttons
+                            footer={null}
                         >
                             {/* Render the Login component */}
                             <Login />

@@ -17,6 +17,7 @@ export default function PetSearch() {
     const [sort, setSort] = useState({
         "sort_by": ["name"],
     });
+    const [images, setImages] = useState([]);
     const [dataNext, setDataNext] = useState(null);
     useEffect(() => {
         getPet();
@@ -105,7 +106,6 @@ export default function PetSearch() {
 
             const jsonData = await response.json();
             setPets(jsonData.results);
-
         } catch (err) {
             console.error(err.message);
         }
@@ -148,6 +148,7 @@ export default function PetSearch() {
             console.error(err.message);
         }
     }
+    
 
     return (
         <div id="content">
@@ -255,7 +256,7 @@ export default function PetSearch() {
                             <div className="adoption-pet card" key={pet.pet_id}>
                                 <div className="curved-border">
                                     <div className="card-image">
-                                        <Image src={Logo} />
+                                        <img width="100%" src={require(`../img/${pet.name}.jpg`)} className="pet-image"/>
                                         <i className="heart icon"></i>
                                     </div>
                                 </div>

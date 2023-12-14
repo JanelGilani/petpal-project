@@ -1,5 +1,8 @@
 import React from "react";
-
+import img from '../img/logo.png';
+import { Image } from 'antd';
+import PetSearch from "./PetSearch";
+import { Link } from "react-router-dom";
 
 export default function Footer() {
     return (
@@ -7,7 +10,7 @@ export default function Footer() {
             <div class="container">
                 <div class="row">
                     <div class="col-md-2 text-center">
-                        {/* <img alt="Pet Pal Logo" class="logo" src="images/logo.png"> */}
+                       <Image src={img} style={{paddingRight: "20px"}} alt="logo" class="logo" />
                     </div>
                     <div class="col-md-2 text-center">
                         <h3>Contact Us</h3>
@@ -26,12 +29,12 @@ export default function Footer() {
                             <li><a href="#"><i class="fab fa-instagram"></i></a></li>
                         </ul>
                     </div>
-                    <div class="col-md-4 text-center">
+                    <div className="col-md-4 text-center">
                         <h3>Quick Links</h3>
                         <ul>
                             <li><a href="#">Home</a></li>
-                            <li><a href="pages/seeker/pet-search.html">Adopt a Pet</a></li>
-                            <li><a href="#">About Us</a></li>
+                            <li><Link to="/petsearch">Adopt a Pet</Link></li>
+                            <li><a href="/register">Register</a></li>
                             <li><a href="#">Contact Us</a></li>
                         </ul>
                     </div>

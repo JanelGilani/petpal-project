@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import Error from "./404.js";
+import Login from "./Login.js";
 import '../styles/pet-details.css';
 import Navbar from "./Navbar";
 import Footer from "./Footer";
@@ -59,7 +60,9 @@ export default function PetDetails() {
         fetchData();
     }, [pet_id, auth]);
 
-    console.log(shelter)
+    if (!auth.authenticated) {
+        return <Error error={"login"} />;
+    }
 
     return (
         <div className="content">
@@ -73,9 +76,9 @@ export default function PetDetails() {
                             <div className="card pet-image">
                                 {
                                     pet.image ?
-                                        <img src={pet.image} alt="pet" />
+                                        <img src={require(`../img/${pet.name}.jpg`)} alt="pet" />
                                         :
-                                        <img src={Logo} alt="pet" />
+                                        <img src={require(`../img/${pet.name}.jpg`)} alt="pet" />
                                 }
                             </div>
                             <div className="card pet-info">

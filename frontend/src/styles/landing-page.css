@@ -110,6 +110,7 @@ Card Layout
     justify-content: center;
     gap: 20px;
     align-items: center;
+    flex-direction: column;
 }
 
 h1.adoption.title {
@@ -153,16 +154,6 @@ h1.adoption.title {
     outline: none;
 }
 
-.card-image {
-    position: relative;
-    overflow: hidden;
-}
-
-.card-image img {
-    width: 100%;
-    height: 300px;
-    object-fit: cover;
-}
 .card-content {
     position: relative;
 }

@@ -4,16 +4,43 @@ import { FaPaw, FaHeart, FaCheckCircle } from "react-icons/fa";
 import { SearchOutlined, RightOutlined } from "@ant-design/icons";
 import { useSelector } from "react-redux";
 import "../styles/landing-page.css";
+import "../styles/pet-search.css";
 import img1 from "../img/pet2-slideshow.jpeg";
 // Component imports
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 export default function LandingPage() {
   const auth = useSelector(state => state.auth);
   if (auth.authenticated && auth.objectId === "admin") {
     window.location.href = "/admin";
   }
+  const [pets, setPets] = useState([]);
+
+  useEffect(() => {
+    async function getPets() {
+      try {
+        const res = await fetch(`http://localhost:8000/pets/all/`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json"
+          }
+        });
+        const data = await res.json();
+        // Only show 3 pets
+        data.results = data.results.slice(0, 5);
+        setPets(data.results);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+
+    getPets();
+  }, []);
+  console.log(pets);
+
   return (
     <div className="content">
       <Navbar />
@@ -35,9 +62,14 @@ export default function LandingPage() {
                   <FaPaw style={{ fontSize: '4em' }} />
                 </div>
                 <div className="card-body">
-                  <h5 className="card-title"style={{margin: "10px 0"}}>We Offer</h5>
+                  <h5 className="card-title" style={{ margin: "10px 0" }}>We Offer</h5>
                   <p className="card-text">Find your perfect pet from a wide selection of adorable animals.</p>
-                  <Button type="primary">Go somewhere</Button>
+                  {
+                    auth.authenticated ?
+                      <Link to="/petsearch"><Button type="primary">See Offer</Button></Link>
+                      :
+                      <Link to="/login"><Button type="primary">See Offer</Button></Link>
+                  }
                 </div>
               </Card>
             </Col>
@@ -47,9 +79,14 @@ export default function LandingPage() {
                   <FaCheckCircle style={{ fontSize: '4em' }} />
                 </div>
                 <div className="card-body">
-                  <h5 className="card-title" style={{margin: "10px 0"}}>We Care</h5>
+                  <h5 className="card-title" style={{ margin: "10px 0" }}>We Care</h5>
                   <p className="card-text">Experience a quick and hassle-free adoption process with PetPal.</p>
-                  <Button type="primary">Go somewhere</Button>
+                  {
+                    auth.authenticated ?
+                      <Link to="/petsearch"><Button type="primary">I care</Button></Link>
+                      :
+                      <Link to="/login"><Button type="primary">I care</Button></Link>
+                  }
                 </div>
               </Card>
             </Col>
@@ -59,25 +96,56 @@ export default function LandingPage() {
                   <FaHeart style={{ fontSize: '4em' }} />
                 </div>
                 <div className="card-body">
-                  <h5 className="card-title"style={{margin: "10px 0"}}>You Give</h5>
+                  <h5 className="card-title" style={{ margin: "10px 0" }}>You Give</h5>
                   <p className="card-text">Give a loving home to a furry friend and make a difference by being a difference.</p>
-                  <Button type="primary">Go somewhere</Button>
+                  {
+                    auth.authenticated ?
+                      <Link to="/petsearch"><Button type="primary">Let's Give</Button></Link>
+                      :
+                      <Link to="/login"><Button type="primary">Let's Give</Button></Link>
+                  }
                 </div>
               </Card>
             </Col>
           </Row>
         </div>
       </div>
-
       <div className="adoption cards">
         <h1 className="adoption title">Looking to Adopt a Pet?</h1>
-        <Row gutter={[16, 16]} justify="center">
-          {/* Your adoption cards go here */}
-        </Row>
+        <div className="ui cards home">
+          {
+            pets.map(pet => (
+              <div className="adoption-pet card" key={pet.pet_id}>
+                <div className="curved-border">
+                  <div className="card-image">
+                    <img width="100%" src={require(`../img/${pet.name}.jpg`)} className="pet-image" />
+                    <i className="heart icon"></i>
+                  </div>
+                </div>
+                <div className="card-content">
+                  <div className="card-wave">
+                    <svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M0,192L120,176C240,160,480,128,720,128C960,128,1200,160,1320,176L1440,192L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"
+                        fill="white"
+                        fill-opacity="1"></path>
+                    </svg>
+                  </div>
+                </div>
+                <div className="card-description">
+                  <h3 className="card-description title">{pet.name}</h3>
+                  <p class="pet-description">{pet.color} {pet.breed}, Aged {pet.age}</p>
+                  <a className="card-description ui button" href={"/petsearch/" + pet.id}>Adopt</a>
+                </div>
+              </div>
+            ))
+          }
+        </div>
         <div style={{ width: '100%', padding: '0 70px', textAlign: 'right' }}>
-          <Button type="primary" icon={<RightOutlined />} className="bg-light">
-            Pets Near You
-          </Button>
+          <Link to="/petsearch">
+            <Button type="primary" icon={<RightOutlined />}>
+              Pets Near You
+            </Button>
+          </Link>
         </div>
       </div>
       <Footer />
