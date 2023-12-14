@@ -114,7 +114,7 @@ export default function ShelterManagement() {
                             <div className="adoption-pet card" key={pet.id}>
                                 <div className="curved-border">
                                     <div className="card-image">
-                                        <Image src={Logo} />
+                                        <img src={require(`../img/${pet.name}.jpg`)} alt="pet" />
                                         <Link onClick={() => handleDelete(pet.id)} className="edit icon" style={{ marginBottom: "5px" }}>
                                             <MdDelete color="black" size={"14px"} />
                                         </Link>
