@@ -2,12 +2,14 @@ import { useState, useEffect } from "react";
 import React from "react";
 import { Button, Form, Input, message, Radio } from 'antd';
 import { FaPaw, FaHeart, FaCheckCircle } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 import '../styles/register.css';
 import NavBar from "./Navbar";
 import Footer from "./Footer";
 const { TextArea } = Input;
 
 export default function Register() {
+    const navigate = useNavigate();
     const [seeker, setSeeker] = useState({
         username: "",
         email: "",
@@ -39,6 +41,7 @@ export default function Register() {
             type: 'success',
             content: 'User registered',
         });
+        navigate("/home");
     };
 
     const handleUserTypeChange = (e) => {
