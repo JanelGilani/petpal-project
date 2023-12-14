@@ -1,14 +1,14 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { Image } from "antd";
+import { Button, Image } from "antd";
 import Logo from "../img/logo.png";
 import Footer from "./Footer";
 import "../styles/pet-search.css";
 import "../styles/landing-page.css";
 import Navbar from "./Navbar";
-import { Select, Tag } from "antd";
+import { Select, Tag, Alert, Space } from "antd";
 import { FilterOutlined } from "@ant-design/icons";
-import { useLocation, useNavigate } from "react-router-dom";
+import { json, useLocation, useNavigate } from "react-router-dom";
 
 export default function PetSearch() {
     const location = useLocation();
@@ -17,17 +17,24 @@ export default function PetSearch() {
     const [sort, setSort] = useState({
         "sort_by": ["name"],
     });
+    const [dataNext, setDataNext] = useState(null);
     useEffect(() => {
         getPet();
     }, []);
-    console.log(sort);
     async function getPet() {
         try {
             const response = await fetch("http://localhost:8000/pets/all");
             const jsonData = await response.json();
-
+            console.log(jsonData);
+            if (jsonData.next !== null) {
+                setDataNext(jsonData.next);
+            } else {
+                setDataNext(null);
+            }
             const availablePets = jsonData.results.filter((pet) => pet.status === "Available");
+
             setPets(availablePets);
+
         } catch (err) {
             console.error(err.message);
         }
@@ -124,8 +131,23 @@ export default function PetSearch() {
         );
     }
 
-
-    console.log(pets)
+    async function loadMore() {
+        try {
+            const path = dataNext + "&sort_by=name";
+            const response = await fetch(dataNext);
+            const jsonData = await response.json();
+            console.log(jsonData);
+            if (jsonData.next !== null) {
+                setDataNext(jsonData.next);
+            } else {
+                setDataNext(null);
+            }
+            const availablePets = jsonData.results.filter((pet) => pet.status === "Available");
+            setPets([...pets, ...availablePets]);
+        } catch (err) {
+            console.error(err.message);
+        }
+    }
 
     return (
         <div id="content">
@@ -255,6 +277,15 @@ export default function PetSearch() {
                         ))
                     }
                 </div>
+                {
+                    dataNext === null ? <Space
+                        direction="vertical"
+                        align="center"
+                        style={{
+                            width: '100%',
+                        }}
+                    ><Alert message="Oops. Seems like you have reached end of the list" type="info" width="100px" />  </Space> : <Button className="load-more" onClick={() => loadMore()}>Load More</Button>
+                }
             </div>
             <Footer />
         </div>

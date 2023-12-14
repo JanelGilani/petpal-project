@@ -938,7 +938,7 @@
         "pk": 5,
         "fields": {
             "shelter": 7,
-            "name": "Max",
+            "name": "Boss",
             "age": 5,
             "species": "Dog",
             "breed": "German Shepherd",
@@ -957,7 +957,7 @@
         "pk": 3,
         "fields": {
             "shelter": 5,
-            "name": "Max",
+            "name": "Dambar",
             "age": 4,
             "species": "Dog",
             "breed": "Labrador Retriever",
@@ -1147,7 +1147,7 @@
         "pk": 15,
         "fields": {
             "shelter": 7,
-            "name": "Snowball",
+            "name": "Queen",
             "age": 2,
             "species": "Cat",
             "breed": "Maine Coon",
@@ -1242,7 +1242,7 @@
         "pk": 20,
         "fields": {
             "shelter": 7,
-            "name": "Rocky",
+            "name": "John",
             "age": 3,
             "species": "Dog",
             "breed": "Bulldog",

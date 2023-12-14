@@ -98,13 +98,32 @@ export default function Header() {
             console.log(err);
         }
     }
+
+    async function notificationNavigate(notification) {
+        await readNotification(notification.id);
+        //  notification.model_url contains applications 
+        console.log(notification);
+        if (notification.model_url.includes('application')) {
+            let notificationId;
+            if (notification.model_url.includes('comments')) {
+                notificationId = notification.model_url.split('/')[3];
+            }
+            else {
+                notificationId = notification.model_url.split('/')[2];
+            }
+            window.location.href = `/your-applications/${notificationId}`;
+        } else if (notification.notification_type === 'pet') {
+            window.location.href = `/pet/${notification.pet_id}`;
+        }
+    }
+
     const notificationMenu = (
         <Menu>
             {notifications.length === 0 ? (
                 <Menu.Item key="1">No notifications</Menu.Item>
             ) : (
                 notifications.map((notification) => (
-                    <Menu.Item key={notification.id}>
+                    <Menu.Item key={notification.id} onClick={() => notificationNavigate(notification)}>
                         {notification.title}
                         <Button type="link" onClick={async () => { await readNotification(notification.id) }}>
                             Mark as read
@@ -115,7 +134,6 @@ export default function Header() {
         </Menu>
     );
 
-    {/* <Button type="link" onClick={async () => {} }>Mark all as read</Button> */ }
     return (
 
         <div className="pusher">

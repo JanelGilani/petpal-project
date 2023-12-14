@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Error from "./404.js";
 import { useLocation, useNavigate } from "react-router-dom";
-import { Button, Table, Tag } from "antd";
+import { Button, Table, Tag, Divider } from "antd";
 import { Link } from "react-router-dom";
 
 
@@ -55,7 +55,7 @@ export default function ApplicationsList() {
                     color = 'blue';
                 } else if (app_status === 'accepted') {
                     color = 'green';
-                } else if (app_status === 'rejected') {
+                } else if (app_status === 'denied') {
                     color = 'volcano';
                 }
 
@@ -78,30 +78,59 @@ export default function ApplicationsList() {
             title: 'Pet ID',
             dataIndex: 'pet',
             key: 'pet',
-            // Async rendering of pet name
-            // render: async (text) => {
-            //     const petName = await getPetName(text);
-            //     console.log(petName);
-            //     return <span>{petName}</span>;
-            // },
         },
         {
-            title: 'Shelter ID',
-            dataIndex: 'shelter_user',
-            key: 'shelter_user',
+            title: auth.objectId === "shelter" ? 'Seeker ID' : 'Shelter ID',
+            dataIndex: auth.objectId === "shelter" ? 'seeker_user' : 'shelter_user',
+            key: auth.objectId === "shelter" ? 'seeker_user' : 'shelter_user',
         },
         {
             title: "Action",
             key: "action",
             render: (text, record) => (
-                <Link to={`/your-applications/${record.id}/`}>
-                    <Button type="link">View</Button>
-                </Link>
-            )
+                <span>
+                    <Link to={`/your-applications/${record.id}`}>
+                        <Button type="link">View</Button>
+                    </Link>
+
+                    {
+                        <Divider type="vertical" /> &&
+                        auth.objectId === "shelter" && record.app_status !== "accepted" && (
+                            <Button type="primary" onClick={() => updateApplicationStatus("accepted", record)}>Accept</Button>
+                        )}
+                    {
+                        <Divider type="vertical" /> &&
+                        auth.objectId === "shelter" && record.app_status !== "denied" && (
+                            <Button type="link" danger onClick={() => updateApplicationStatus("denied", record)}>Reject</Button>
+                        )
+                    }
+                </span>
+            ),
         }
+
     ];
 
-    console.log(applications);
+    async function updateApplicationStatus(status, record) {
+        console.log(status);
+        console.log(record);
+        try {
+            const res = await fetch(`http://localhost:8000/applications/${record.id}/`, {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${auth.token}`,
+                },
+                body: JSON.stringify({
+                    app_status: status,
+                }),
+            });
+            const data = await res.json();
+            console.log(data);
+            window.location.reload();
+        } catch (err) {
+            console.log(err);
+        }
+    }
 
     return (
         <div className="content">
@@ -118,6 +147,6 @@ export default function ApplicationsList() {
         </div>
     );
 
-    
-    
+
+
 }
