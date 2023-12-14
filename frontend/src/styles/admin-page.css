@@ -1,0 +1,40 @@
+/* Update the styles in your existing admin-page.css */
+@import "global.css";
+
+.admin-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    /* Adjust this based on your layout needs */
+}
+
+.admin-nav {
+    margin: 2em 0 2rem 0;
+}
+
+.logo {
+    width: 150px;
+    /* Adjust the width based on your logo size preference */
+}
+
+.admin-header {
+    color: #333;
+    flex-grow: 4;
+    display: flex;
+    justify-content: center;
+}
+
+.admin-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 100px;
+    width: 100%;
+}
+  
+  .admin-nav-right {
+    display: flex; /* Add flex display */
+    justify-content: flex-end; /* Align to the right */
+  }
+  

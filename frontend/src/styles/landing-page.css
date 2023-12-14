@@ -1,0 +1,273 @@
+@import "global.css";
+
+.body {
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    min-height: 100vh;
+    font-family: var(--font);
+    color: var(--primary-400);
+}
+
+#page-container {
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    min-height: 100vh;
+    font-family: var(--font);
+    color: var(--primary-400);
+}
+
+/*
+Search Bar
+*/
+.joined-search {
+    display: flex;
+}
+
+.joined-search .input {
+    border-radius: 2px;
+    width: 300px;
+    margin: 0;
+}
+
+.slide-show .joined-search {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    z-index: 2; /* Place the search bar in front of the image */
+}
+/*
+Bg image
+*/
+
+.slide-show {
+    position: relative;
+    width: 100vw;
+    height: 500px;
+    overflow: hidden;
+}
+
+.slide-show img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: relative;
+    z-index: 1;
+}
+
+
+
+
+/*
+Our Resource
+*/
+
+.info-container {
+    text-align: center;
+    margin-top: 20px;
+    background-color: var(--primary-50);
+    height: auto;
+    padding: 40px 60px;
+}
+
+.benefit-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+}
+.ui.card.benefit {
+    width: 300px;
+    height: 250px;
+    padding: 10px;
+    border: none;
+    color: var(--primary-600);
+}
+
+
+.ui.cards.home {
+    margin: 10px;
+    gap: 20px;
+}
+/*
+Card Layout
+*/
+
+.ui.cards.home {
+    display: flex;
+    justify-content: center;
+}
+
+.adoption.cards {
+    padding: 40px 60px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
+    flex-direction: column;
+}
+
+h1.adoption.title {
+    font-size: 45px;
+    font-weight: 800;
+    color: var(--primary-400);
+    text-align: center;
+    font-family: var(--font);
+}
+
+.adoption-pet.card {
+    overflow: hidden; /* Hide overflow to round the corners */
+    width: 200px;
+    height: auto;
+    position: relative;
+}
+
+.heart.icon {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    color: white;
+    z-index: 2;
+}
+.heart.icon:hover {
+    cursor: pointer;
+    color: red;
+    transform: scale(1.2);
+    transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+.adoption-pet.card:hover {
+    transform: scale(1.01);
+    transition: transform 0.3s ease-in-out;
+}
+.adoption-pet.card:hover {
+    outline: 2px solid blue;
+    transition: outline 0.1s ease-in-out;
+}
+
+.adoption-pet.card:hover .curved-border {
+    outline: none;
+}
+
+.card-content {
+    position: relative;
+}
+
+.card-wave {
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    position: absolute;
+}
+
+.card-description {
+    z-index: 4;
+}
+
+.card-description.title {
+    margin: 0;
+    padding: 0 10px 25px;
+    text-align: center;
+    background-color: #fff;
+    font-size: 24px;
+    font-family: var(--font);
+    z-index: 4;
+    color: var(--secondary-black);
+}
+
+.card-description.button {
+    width: 100%;
+    background-color: white;
+    border-top: 0.5px solid var(--primary-400);
+}
+
+.card-description .ui.button {
+    color: var(--secondary-black);
+    transition: background-color 0.3s;
+    font-family: var(--font);
+    padding: 15px;
+}
+
+.adoption-pet.card:hover .ui.button {
+    background-color: var(--primary-500);
+    color: #fff;
+}
+
+.card-description .ui.button:hover {
+    background-color: var(--primary-500);
+    color: #fff;
+}
+
+/*
+Footer
+*/
+
+.footer {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    background-color: var(--primary-50);
+    color: var(--secondary-black);
+    padding: 20px 0;
+    margin-top: 100px;
+}
+
+.logo {
+    max-width: 100%;
+    margin-bottom: 20px;
+}
+
+.footer .col-md-4, .footer .col-md-2 {
+    margin-top: 50px;
+}
+
+.footer .col-md-4 {
+    margin-bottom: 20px;
+}
+
+.footer h3 {
+    color: var(--primary-400);
+}
+
+.social-icons {
+    list-style: none;
+    padding: 0;
+}
+
+.social-icons li {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.social-icons a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.footer ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer ul li {
+    margin-bottom: 10px;
+}
+
+.footer ul a {
+    color: var(--secondary-black);
+    text-decoration: none;
+}
+
+.copyright {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 14px;
+    color: #999;
+}

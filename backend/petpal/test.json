@@ -1,0 +1,1440 @@
+[
+    {
+        "model": "auth.permission",
+        "pk": 1,
+        "fields": {
+            "name": "Can add log entry",
+            "content_type": 1,
+            "codename": "add_logentry"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 2,
+        "fields": {
+            "name": "Can change log entry",
+            "content_type": 1,
+            "codename": "change_logentry"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 3,
+        "fields": {
+            "name": "Can delete log entry",
+            "content_type": 1,
+            "codename": "delete_logentry"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 4,
+        "fields": {
+            "name": "Can view log entry",
+            "content_type": 1,
+            "codename": "view_logentry"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 5,
+        "fields": {
+            "name": "Can add permission",
+            "content_type": 2,
+            "codename": "add_permission"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 6,
+        "fields": {
+            "name": "Can change permission",
+            "content_type": 2,
+            "codename": "change_permission"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 7,
+        "fields": {
+            "name": "Can delete permission",
+            "content_type": 2,
+            "codename": "delete_permission"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 8,
+        "fields": {
+            "name": "Can view permission",
+            "content_type": 2,
+            "codename": "view_permission"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 9,
+        "fields": {
+            "name": "Can add group",
+            "content_type": 3,
+            "codename": "add_group"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 10,
+        "fields": {
+            "name": "Can change group",
+            "content_type": 3,
+            "codename": "change_group"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 11,
+        "fields": {
+            "name": "Can delete group",
+            "content_type": 3,
+            "codename": "delete_group"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 12,
+        "fields": {
+            "name": "Can view group",
+            "content_type": 3,
+            "codename": "view_group"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 13,
+        "fields": {
+            "name": "Can add content type",
+            "content_type": 4,
+            "codename": "add_contenttype"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 14,
+        "fields": {
+            "name": "Can change content type",
+            "content_type": 4,
+            "codename": "change_contenttype"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 15,
+        "fields": {
+            "name": "Can delete content type",
+            "content_type": 4,
+            "codename": "delete_contenttype"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 16,
+        "fields": {
+            "name": "Can view content type",
+            "content_type": 4,
+            "codename": "view_contenttype"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 17,
+        "fields": {
+            "name": "Can add session",
+            "content_type": 5,
+            "codename": "add_session"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 18,
+        "fields": {
+            "name": "Can change session",
+            "content_type": 5,
+            "codename": "change_session"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 19,
+        "fields": {
+            "name": "Can delete session",
+            "content_type": 5,
+            "codename": "delete_session"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 20,
+        "fields": {
+            "name": "Can view session",
+            "content_type": 5,
+            "codename": "view_session"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 21,
+        "fields": {
+            "name": "Can add user",
+            "content_type": 6,
+            "codename": "add_customuser"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 22,
+        "fields": {
+            "name": "Can change user",
+            "content_type": 6,
+            "codename": "change_customuser"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 23,
+        "fields": {
+            "name": "Can delete user",
+            "content_type": 6,
+            "codename": "delete_customuser"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 24,
+        "fields": {
+            "name": "Can view user",
+            "content_type": 6,
+            "codename": "view_customuser"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 25,
+        "fields": {
+            "name": "Can add shelter",
+            "content_type": 7,
+            "codename": "add_shelter"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 26,
+        "fields": {
+            "name": "Can change shelter",
+            "content_type": 7,
+            "codename": "change_shelter"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 27,
+        "fields": {
+            "name": "Can delete shelter",
+            "content_type": 7,
+            "codename": "delete_shelter"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 28,
+        "fields": {
+            "name": "Can view shelter",
+            "content_type": 7,
+            "codename": "view_shelter"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 29,
+        "fields": {
+            "name": "Can add pet seeker",
+            "content_type": 8,
+            "codename": "add_petseeker"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 30,
+        "fields": {
+            "name": "Can change pet seeker",
+            "content_type": 8,
+            "codename": "change_petseeker"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 31,
+        "fields": {
+            "name": "Can delete pet seeker",
+            "content_type": 8,
+            "codename": "delete_petseeker"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 32,
+        "fields": {
+            "name": "Can view pet seeker",
+            "content_type": 8,
+            "codename": "view_petseeker"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 33,
+        "fields": {
+            "name": "Can add application",
+            "content_type": 9,
+            "codename": "add_application"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 34,
+        "fields": {
+            "name": "Can change application",
+            "content_type": 9,
+            "codename": "change_application"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 35,
+        "fields": {
+            "name": "Can delete application",
+            "content_type": 9,
+            "codename": "delete_application"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 36,
+        "fields": {
+            "name": "Can view application",
+            "content_type": 9,
+            "codename": "view_application"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 37,
+        "fields": {
+            "name": "Can add pets",
+            "content_type": 10,
+            "codename": "add_pets"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 38,
+        "fields": {
+            "name": "Can change pets",
+            "content_type": 10,
+            "codename": "change_pets"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 39,
+        "fields": {
+            "name": "Can delete pets",
+            "content_type": 10,
+            "codename": "delete_pets"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 40,
+        "fields": {
+            "name": "Can view pets",
+            "content_type": 10,
+            "codename": "view_pets"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 41,
+        "fields": {
+            "name": "Can create pet listings",
+            "content_type": 10,
+            "codename": "can_create_pets"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 42,
+        "fields": {
+            "name": "Can add Notification",
+            "content_type": 11,
+            "codename": "add_notifications"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 43,
+        "fields": {
+            "name": "Can change Notification",
+            "content_type": 11,
+            "codename": "change_notifications"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 44,
+        "fields": {
+            "name": "Can delete Notification",
+            "content_type": 11,
+            "codename": "delete_notifications"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 45,
+        "fields": {
+            "name": "Can view Notification",
+            "content_type": 11,
+            "codename": "view_notifications"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 46,
+        "fields": {
+            "name": "Can add comment",
+            "content_type": 12,
+            "codename": "add_comment"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 47,
+        "fields": {
+            "name": "Can change comment",
+            "content_type": 12,
+            "codename": "change_comment"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 48,
+        "fields": {
+            "name": "Can delete comment",
+            "content_type": 12,
+            "codename": "delete_comment"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 49,
+        "fields": {
+            "name": "Can view comment",
+            "content_type": 12,
+            "codename": "view_comment"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "id": 1,
+        "fields": {
+            "app_label": "admin",
+            "model": "logentry"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "id": 2,
+        "fields": {
+            "app_label": "auth",
+            "model": "permission"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "id": 3,
+        "fields": {
+            "app_label": "auth",
+            "model": "group"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "id": 4,
+        "fields": {
+            "app_label": "contenttypes",
+            "model": "contenttype"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "id": 5,
+        "fields": {
+            "app_label": "sessions",
+            "model": "session"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "id": 6,
+        "fields": {
+            "app_label": "accounts",
+            "model": "customuser"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "id": 7,
+        "fields": {
+            "app_label": "accounts",
+            "model": "shelter"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "id": 8,
+        "fields": {
+            "app_label": "accounts",
+            "model": "petseeker"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "id": 9,
+        "fields": {
+            "app_label": "applications",
+            "model": "application"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "id": 10,
+        "fields": {
+            "app_label": "pet_listings",
+            "model": "pets"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "id": 11,
+        "fields": {
+            "app_label": "notifications",
+            "model": "notifications"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "id": 12,
+        "fields": {
+            "app_label": "comments",
+            "model": "comment"
+        }
+    },
+    {
+        "model": "accounts.customuser",
+        "pk": 1,
+        "fields": {
+            "password": "pbkdf2_sha256$600000$ow3xX2q9ryV4KIZqst7ms9$KugaybAlRQSHLnMXKa0fktVNCqSQ9EvutkC0/lPHpZo=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "seeker1",
+            "first_name": "",
+            "last_name": "",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2023-11-21T04:32:39.126Z",
+            "email": "seeker1@gmail.com",
+            "seeker": true,
+            "shelter": false,
+            "admin": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "accounts.customuser",
+        "pk": 2,
+        "fields": {
+            "password": "pbkdf2_sha256$600000$5wnnsiBNyQllQq2OxG7pY6$xW1Oqb+QgIoTmCmvC7Z6ej5bVtNKfOmVgo6278U5Uzw=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "seeker2",
+            "first_name": "",
+            "last_name": "",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2023-11-21T04:33:05.377Z",
+            "email": "seeker2@gmail.com",
+            "seeker": true,
+            "shelter": false,
+            "admin": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "accounts.customuser",
+        "pk": 3,
+        "fields": {
+            "password": "pbkdf2_sha256$600000$310Ny1ElMHG8losaZjIUlL$I/dHp4XHK7BIsiVLBC94TKBy8AfvuFMYHpyQujA9pcE=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "seeker3",
+            "first_name": "",
+            "last_name": "",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2023-11-21T04:33:27.022Z",
+            "email": "seeker3@gmail.com",
+            "seeker": true,
+            "shelter": false,
+            "admin": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "accounts.customuser",
+        "pk": 4,
+        "fields": {
+            "password": "pbkdf2_sha256$600000$q0O675P6LqyLHLMJnhYLNw$XVcEDvced6GL7EUTUVSt1nPCxsZ7eH4DUGCzxAvKDtY=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "seeker4",
+            "first_name": "",
+            "last_name": "",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2023-11-21T04:34:05.304Z",
+            "email": "seeker4@gmail.com",
+            "seeker": true,
+            "shelter": false,
+            "admin": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "accounts.customuser",
+        "pk": 5,
+        "fields": {
+            "password": "pbkdf2_sha256$600000$UJ0Bf8ynfrUIRXZZa8EAE5$F7u1jbHnYv5d9zD3B6JyPQngoPQ9I7N/g6PzSEiin2E=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "shelter1",
+            "first_name": "",
+            "last_name": "",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2023-11-21T04:35:01.700Z",
+            "email": "shelter1@gmail.com",
+            "seeker": false,
+            "shelter": true,
+            "admin": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "accounts.customuser",
+        "pk": 6,
+        "fields": {
+            "password": "pbkdf2_sha256$600000$NiKyPSyq9SzOkn3Qg6vsAu$8XPpS+iyoZV0oH6nihgqawa44wZxAnuqYS43ezl/2qI=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "shelter2",
+            "first_name": "",
+            "last_name": "",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2023-11-21T04:35:23.318Z",
+            "email": "shelter2@gmail.com",
+            "seeker": false,
+            "shelter": true,
+            "admin": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "accounts.customuser",
+        "pk": 7,
+        "fields": {
+            "password": "pbkdf2_sha256$600000$k1KkxBbJibpU4Qn8x0mHPh$J3ev7URQt5TTMk3MwYd9GBQ2hdiHt/dPgquN3pFB4m0=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "shelter3",
+            "first_name": "",
+            "last_name": "",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2023-11-21T04:35:43.948Z",
+            "email": "shelter3@gmail.com",
+            "seeker": false,
+            "shelter": true,
+            "admin": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "accounts.customuser",
+        "pk": 8,
+        "fields": {
+            "password": "pbkdf2_sha256$600000$m5DrOdzzrvCuZpXwbgvnLn$dhSZxEb9q+3zdQtKhfpmj0r9HRnh/K5MsHo7DNkZw08=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "shelter4",
+            "first_name": "",
+            "last_name": "",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2023-11-21T04:36:07.049Z",
+            "email": "shelter4@gmail.com",
+            "seeker": false,
+            "shelter": true,
+            "admin": false,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "accounts.shelter",
+        "pk": 1,
+        "fields": {
+            "user": 5,
+            "shelter_name": "Shelter 1",
+            "location": "Lalaland",
+            "mission_statement": "Come to us"
+        }
+    },
+    {
+        "model": "accounts.shelter",
+        "pk": 2,
+        "fields": {
+            "user": 6,
+            "shelter_name": "Shelter 2",
+            "location": "Dreamworld",
+            "mission_statement": "Don't come to us"
+        }
+    },
+    {
+        "model": "accounts.shelter",
+        "pk": 3,
+        "fields": {
+            "user": 7,
+            "shelter_name": "Shelter 3",
+            "location": "Heaven",
+            "mission_statement": "We are the best"
+        }
+    },
+    {
+        "model": "accounts.shelter",
+        "pk": 4,
+        "fields": {
+            "user": 8,
+            "shelter_name": "Shelter 4",
+            "location": "Hell",
+            "mission_statement": "We are the worst"
+        }
+    },
+    {
+        "model": "accounts.petseeker",
+        "pk": 1,
+        "fields": {
+            "user": 1,
+            "seeker_name": "Seeker 1",
+            "location": "Toronto",
+            "profile_picture": "static/seeker1_profile.jpg"
+        }
+    },
+    {
+        "model": "accounts.petseeker",
+        "pk": 2,
+        "fields": {
+            "user": 2,
+            "seeker_name": "Seeker 2",
+            "location": "Mumbai",
+            "profile_picture": ""
+        }
+    },
+    {
+        "model": "accounts.petseeker",
+        "pk": 3,
+        "fields": {
+            "user": 3,
+            "seeker_name": "Seeker 3",
+            "location": "New York",
+            "profile_picture": ""
+        }
+    },
+    {
+        "model": "accounts.petseeker",
+        "pk": 4,
+        "fields": {
+            "user": 4,
+            "seeker_name": "Seeker 4",
+            "location": "London",
+            "profile_picture": "static/seeker4_profile.jpg"
+        }
+    },
+    {
+        "model": "applications.application",
+        "pk": 1,
+        "fields": {
+            "seeker_user": 1,
+            "shelter_user": 5,
+            "app_status": "pending",
+            "pet": 1,
+            "name": "John",
+            "email": "John123@gmail.com",
+            "address": "333 spadina",
+            "pettype": "dog",
+            "petage": 10,
+            "ownedbefore": "Yes, I have owned pets before and absolutely plan to continue caring for them in the future. Providing for a pet involves several aspects like ensuring their health needs are met, offering a loving environment, providing proper nutrition, exercise, mental stimulation, and regular veterinary care.",
+            "plantoprovide": "Providing for a pet involves several aspects like ensuring their health needs are met, offering a loving environment, providing proper nutrition, exercise, mental stimulation, and regular veterinary care.",
+            "reason": "The reasons for adopting a pet are multifaceted. Firstly, adopting a pet brings immense joy and companionship into one's life. Pets offer unconditional love and can significantly improve mental health by reducing stress and anxiety.",
+            "emergencycontact": "437945567",
+            "emergencyemail": "ryan123@gmail.com",
+            "acknowledge": true,
+            "created_at": "2023-11-21T04:52:06.283Z",
+            "last_update_time": "2023-11-21T05:49:02.160Z"
+        }
+    },
+    {
+        "model": "applications.application",
+        "pk": 2,
+        "fields": {
+            "seeker_user": 1,
+            "shelter_user": 5,
+            "app_status": "pending",
+            "pet": 2,
+            "name": "John",
+            "email": "John123@gmail.com",
+            "address": "333 spadina",
+            "pettype": "cat",
+            "petage": 2,
+            "ownedbefore": "Yes, I have owned pets before and absolutely plan to continue caring for them in the future. Providing for a pet involves several aspects like ensuring their health needs are met, offering a loving environment, providing proper nutrition, exercise, mental stimulation, and regular veterinary care.",
+            "plantoprovide": "Providing for a pet involves several aspects like ensuring their health needs are met, offering a loving environment, providing proper nutrition, exercise, mental stimulation, and regular veterinary care.",
+            "reason": "The reasons for adopting a pet are multifaceted. Firstly, adopting a pet brings immense joy and companionship into one's life. Pets offer unconditional love and can significantly improve mental health by reducing stress and anxiety.",
+            "emergencycontact": "437945567",
+            "emergencyemail": "ryan123@gmail.com",
+            "acknowledge": true,
+            "created_at": "2023-11-21T04:56:20.942Z",
+            "last_update_time": "2023-11-21T04:56:20.942Z"
+        }
+    },
+    {
+        "model": "applications.application",
+        "pk": 3,
+        "fields": {
+            "seeker_user": 2,
+            "shelter_user": 5,
+            "app_status": "pending",
+            "pet": 2,
+            "name": "Emily",
+            "email": "emily456@gmail.com",
+            "address": "123 Oak Street",
+            "pettype": "cat",
+            "petage": 2,
+            "ownedbefore": "Yes, I have owned pets before and absolutely plan to continue caring for them in the future. Providing for a pet involves several aspects like ensuring their health needs are met, offering a loving environment, providing proper nutrition, exercise, mental stimulation, and regular veterinary care.",
+            "plantoprovide": "I am committed to providing a loving and caring home for my future pet. This includes regular veterinary check-ups, a balanced diet, exercise, and a comfortable living environment.",
+            "reason": "I have always loved the companionship that pets provide. Adopting a cat will bring joy and positivity to my life, and I am excited about the opportunity to provide a loving home for a furry friend.",
+            "emergencycontact": "416789123",
+            "emergencyemail": "emily_emergency@gmail.com",
+            "acknowledge": true,
+            "created_at": "2023-11-21T04:57:24.044Z",
+            "last_update_time": "2023-11-21T05:45:12.802Z"
+        }
+    },
+    {
+        "model": "applications.application",
+        "pk": 4,
+        "fields": {
+            "seeker_user": 3,
+            "shelter_user": 6,
+            "app_status": "pending",
+            "pet": 4,
+            "name": "Michael",
+            "email": "michael789@gmail.com",
+            "address": "567 Maple Avenue",
+            "pettype": "hamster",
+            "petage": 1,
+            "ownedbefore": "Yes, I have owned pets before and absolutely plan to continue caring for them in the future. Providing for a pet involves several aspects like ensuring their health needs are met, offering a loving environment, providing proper nutrition, exercise, mental stimulation, and regular veterinary care.",
+            "plantoprovide": "I am dedicated to creating a safe and enriching environment for my future hamster. This includes a comfortable cage, proper nutrition, and regular playtime to ensure their well-being.",
+            "reason": "I find hamsters to be adorable and fascinating pets. Their playful nature brings joy, and I am ready to take on the responsibility of caring for a small and furry companion.",
+            "emergencycontact": "905234567",
+            "emergencyemail": "michael_emergency@gmail.com",
+            "acknowledge": true,
+            "created_at": "2023-11-21T05:00:04.225Z",
+            "last_update_time": "2023-11-21T05:00:04.225Z"
+        }
+    },
+    {
+        "model": "pet_listings.pets",
+        "pk": 1,
+        "fields": {
+            "shelter": 5,
+            "name": "Buddy",
+            "age": 3,
+            "species": "Dog",
+            "breed": "Golden Retriever",
+            "description": "Friendly and playful dog looking for a loving home.",
+            "image": "",
+            "location": "Cityville",
+            "color": "Golden",
+            "date_added": "2023-11-21T04:39:01.365Z",
+            "size": "Medium",
+            "gender": "Male",
+            "status": "Available"
+        }
+    },
+    {
+        "model": "pet_listings.pets",
+        "pk": 2,
+        "fields": {
+            "shelter": 5,
+            "name": "Whiskers",
+            "age": 2,
+            "species": "Cat",
+            "breed": "Siamese",
+            "description": "Independent and affectionate cat seeking a quiet home.",
+            "image": "",
+            "location": "Suburbia",
+            "color": "Cream",
+            "date_added": "2023-11-21T04:39:25.164Z",
+            "size": "Small",
+            "gender": "Female",
+            "status": "Available"
+        }
+    },
+    {
+        "model": "pet_listings.pets",
+        "pk": 4,
+        "fields": {
+            "shelter": 6,
+            "name": "Coco",
+            "age": 4,
+            "species": "Parrot",
+            "breed": "African Grey",
+            "description": "Intelligent and talkative parrot seeking a social home.",
+            "image": "",
+            "location": "Countryside",
+            "color": "Grey",
+            "date_added": "2023-11-21T04:40:23.253Z",
+            "size": "Small",
+            "gender": "Female",
+            "status": "Available"
+        }
+    },
+    {
+        "model": "pet_listings.pets",
+        "pk": 5,
+        "fields": {
+            "shelter": 7,
+            "name": "Boss",
+            "age": 5,
+            "species": "Dog",
+            "breed": "German Shepherd",
+            "description": "Loyal and protective dog in need of a loving family.",
+            "image": "",
+            "location": "Mountain Town",
+            "color": "Black and Tan",
+            "date_added": "2023-11-21T04:41:08.144Z",
+            "size": "Large",
+            "gender": "Male",
+            "status": "Available"
+        }
+    },
+    {
+        "model": "pet_listings.pets",
+        "pk": 3,
+        "fields": {
+            "shelter": 5,
+            "name": "Dambar",
+            "age": 4,
+            "species": "Dog",
+            "breed": "Labrador Retriever",
+            "description": "Friendly and energetic Labrador in search of an active family.",
+            "image": "",
+            "location": "Riverside",
+            "color": "Black",
+            "date_added": "2023-11-21T04:49:00.000Z",
+            "size": "Large",
+            "gender": "Male",
+            "status": "Available"
+        }
+    },
+    {
+        "model": "pet_listings.pets",
+        "pk": 6,
+        "fields": {
+            "shelter": 5,
+            "name": "Snowball",
+            "age": 1,
+            "species": "Rabbit",
+            "breed": "Dwarf Rabbit",
+            "description": "Cute and fluffy dwarf rabbit looking for a cozy home.",
+            "image": "",
+            "location": "Hillsborough",
+            "color": "White",
+            "date_added": "2023-11-21T04:52:00.000Z",
+            "size": "Small",
+            "gender": "Female",
+            "status": "Available"
+        }
+    },
+    {
+        "model": "pet_listings.pets",
+        "pk": 7,
+        "fields": {
+            "shelter": 5,
+            "name": "Oscar",
+            "age": 2,
+            "species": "Dog",
+            "breed": "Bulldog",
+            "description": "Loyal and loving bulldog in need of a caring family.",
+            "image": "",
+            "location": "Beachside",
+            "color": "Brown and White",
+            "date_added": "2023-11-21T04:55:00.000Z",
+            "size": "Medium",
+            "gender": "Male",
+            "status": "Available"
+        }
+    },
+    {
+        "model": "pet_listings.pets",
+        "pk": 8,
+        "fields": {
+            "shelter": 5,
+            "name": "Mittens",
+            "age": 3,
+            "species": "Cat",
+            "breed": "Maine Coon",
+            "description": "Gentle and friendly Maine Coon seeking a warm lap to curl up on.",
+            "image": "",
+            "location": "Parkview",
+            "color": "Tabby",
+            "date_added": "2023-11-21T04:58:00.000Z",
+            "size": "Large",
+            "gender": "Female",
+            "status": "Available"
+        }
+    },
+    {
+        "model": "pet_listings.pets",
+        "pk": 9,
+        "fields": {
+            "shelter": 5,
+            "name": "Rocky",
+            "age": 5,
+            "species": "Dog",
+            "breed": "Boxer",
+            "description": "Playful and friendly boxer looking for an active household.",
+            "image": "",
+            "location": "Lakeview",
+            "color": "Fawn",
+            "date_added": "2023-11-21T05:00:00.000Z",
+            "size": "Large",
+            "gender": "Male",
+            "status": "Available"
+        }
+    },
+    {
+        "model": "pet_listings.pets",
+        "pk": 10,
+        "fields": {
+            "shelter": 6,
+            "name": "Sunny",
+            "age": 2,
+            "species": "Dog",
+            "breed": "Dalmatian",
+            "description": "Energetic and loving Dalmatian seeking an active family.",
+            "image": "",
+            "location": "Hilltop",
+            "color": "White with Black Spots",
+            "date_added": "2023-11-21T05:03:00.000Z",
+            "size": "Medium",
+            "gender": "Male",
+            "status": "Available"
+        }
+    },
+    {
+        "model": "pet_listings.pets",
+        "pk": 11,
+        "fields": {
+            "shelter": 6,
+            "name": "Cleo",
+            "age": 1,
+            "species": "Cat",
+            "breed": "Persian",
+            "description": "Elegant and graceful Persian cat looking for a loving home.",
+            "image": "",
+            "location": "Downtown",
+            "color": "White",
+            "date_added": "2023-11-21T05:06:00.000Z",
+            "size": "Medium",
+            "gender": "Female",
+            "status": "Available"
+        }
+    },
+    {
+        "model": "pet_listings.pets",
+        "pk": 12,
+        "fields": {
+            "shelter": 6,
+            "name": "Gizmo",
+            "age": 3,
+            "species": "Dog",
+            "breed": "Pug",
+            "description": "Charming and affectionate pug in search of a cozy home.",
+            "image": "",
+            "location": "Suburbia",
+            "color": "Fawn",
+            "date_added": "2023-11-21T05:09:00.000Z",
+            "size": "Small",
+            "gender": "Male",
+            "status": "Available"
+        }
+    },
+    {
+        "model": "pet_listings.pets",
+        "pk": 13,
+        "fields": {
+            "shelter": 6,
+            "name": "Luna",
+            "age": 4,
+            "species": "Dog",
+            "breed": "Husky",
+            "description": "Beautiful and energetic Husky seeking an adventurous family.",
+            "image": "",
+            "location": "Mountainside",
+            "color": "White",
+            "date_added": "2023-11-21T05:12:00.000Z",
+            "size": "Large",
+            "gender": "Female",
+            "status": "Available"
+        }
+    },
+    {
+        "model": "pet_listings.pets",
+        "pk": 14,
+        "fields": {
+            "shelter": 6,
+            "name": "Bubbles",
+            "age": 1,
+            "species": "Fish",
+            "breed": "Goldfish",
+            "description": "Friendly and colorful goldfish looking for a spacious tank.",
+            "image": "",
+            "location": "Aquarium",
+            "color": "Golden",
+            "date_added": "2023-11-21T05:15:00.000Z",
+            "size": "Small",
+            "gender": "Male",
+            "status": "Available"
+        }
+    },
+    {
+        "model": "pet_listings.pets",
+        "pk": 15,
+        "fields": {
+            "shelter": 7,
+            "name": "Queen",
+            "age": 2,
+            "species": "Cat",
+            "breed": "Maine Coon",
+            "description": "Fluffy and affectionate Maine Coon seeking a warm home.",
+            "image": "",
+            "location": "Countryside",
+            "color": "White",
+            "date_added": "2023-11-21T05:20:00.000Z",
+            "size": "Large",
+            "gender": "Male",
+            "status": "Available"
+        }
+    },
+    {
+        "model": "pet_listings.pets",
+        "pk": 16,
+        "fields": {
+            "shelter": 7,
+            "name": "Spot",
+            "age": 3,
+            "species": "Dog",
+            "breed": "Dalmatian",
+            "description": "Friendly and playful Dalmatian looking for a loving family.",
+            "image": "",
+            "location": "Suburbia",
+            "color": "White with Black Spots",
+            "date_added": "2023-11-21T05:23:00.000Z",
+            "size": "Medium",
+            "gender": "Female",
+            "status": "Available"
+        }
+    },
+    {
+        "model": "pet_listings.pets",
+        "pk": 17,
+        "fields": {
+            "shelter": 7,
+            "name": "Oreo",
+            "age": 4,
+            "species": "Dog",
+            "breed": "Labrador Retriever",
+            "description": "Loyal and friendly Labrador Retriever in need of a forever home.",
+            "image": "",
+            "location": "Cityville",
+            "color": "Black and White",
+            "date_added": "2023-11-21T05:26:00.000Z",
+            "size": "Large",
+            "gender": "Male",
+            "status": "Available"
+        }
+    },
+    {
+        "model": "pet_listings.pets",
+        "pk": 18,
+        "fields": {
+            "shelter": 7,
+            "name": "Smokey",
+            "age": 2,
+            "species": "Cat",
+            "breed": "British Shorthair",
+            "description": "Gentle and calm British Shorthair looking for a peaceful home.",
+            "image": "",
+            "location": "Riverside",
+            "color": "Grey",
+            "date_added": "2023-11-21T05:29:00.000Z",
+            "size": "Medium",
+            "gender": "Male",
+            "status": "Available"
+        }
+    },
+    {
+        "model": "pet_listings.pets",
+        "pk": 19,
+        "fields": {
+            "shelter": 7,
+            "name": "Misty",
+            "age": 1,
+            "species": "Cat",
+            "breed": "Siamese",
+            "description": "Graceful and elegant Siamese cat seeking a loving family.",
+            "image": "",
+            "location": "Hillside",
+            "color": "Cream",
+            "date_added": "2023-11-21T05:32:00.000Z",
+            "size": "Small",
+            "gender": "Female",
+            "status": "Available"
+        }
+    },
+    {
+        "model": "pet_listings.pets",
+        "pk": 20,
+        "fields": {
+            "shelter": 7,
+            "name": "John",
+            "age": 3,
+            "species": "Dog",
+            "breed": "Bulldog",
+            "description": "Strong and loyal Bulldog looking for an affectionate home.",
+            "image": "",
+            "location": "Countryside",
+            "color": "Brown",
+            "date_added": "2023-11-21T05:35:00.000Z",
+            "size": "Medium",
+            "gender": "Male",
+            "status": "Available"
+        }
+    },
+    {
+        "model": "notifications.notifications",
+        "pk": 1,
+        "fields": {
+            "title": "New application on pet 1",
+            "body": "New application on pet 1",
+            "user": 5,
+            "content_type": 9,
+            "object_id": 1,
+            "created_at": "2023-11-21T04:52:06.290Z",
+            "is_read": "unread",
+            "model_url": "/applications/1/detail/"
+        }
+    },
+    {
+        "model": "notifications.notifications",
+        "pk": 2,
+        "fields": {
+            "title": "New application on pet 2",
+            "body": "New application on pet 2",
+            "user": 5,
+            "content_type": 9,
+            "object_id": 2,
+            "created_at": "2023-11-21T04:56:20.946Z",
+            "is_read": "unread",
+            "model_url": "/applications/2/detail/"
+        }
+    },
+    {
+        "model": "notifications.notifications",
+        "pk": 3,
+        "fields": {
+            "title": "New application on pet 2",
+            "body": "New application on pet 2",
+            "user": 5,
+            "content_type": 9,
+            "object_id": 3,
+            "created_at": "2023-11-21T04:57:24.047Z",
+            "is_read": "unread",
+            "model_url": "/applications/3/detail/"
+        }
+    },
+    {
+        "model": "notifications.notifications",
+        "pk": 4,
+        "fields": {
+            "title": "New application on pet 4",
+            "body": "New application on pet 4",
+            "user": 6,
+            "content_type": 9,
+            "object_id": 4,
+            "created_at": "2023-11-21T05:00:04.229Z",
+            "is_read": "unread",
+            "model_url": "/applications/4/detail/"
+        }
+    },
+    {
+        "model": "notifications.notifications",
+        "pk": 5,
+        "fields": {
+            "title": "New comment on post 1",
+            "body": "New comment on your post 1",
+            "user": 5,
+            "content_type": 12,
+            "object_id": 1,
+            "created_at": "2023-11-21T05:34:38.478Z",
+            "is_read": "unread",
+            "model_url": "/comments/shelters/5/comments/1/"
+        }
+    },
+    {
+        "model": "notifications.notifications",
+        "pk": 6,
+        "fields": {
+            "title": "New comment on post 2",
+            "body": "New comment on your post 2",
+            "user": 5,
+            "content_type": 12,
+            "object_id": 2,
+            "created_at": "2023-11-21T05:35:14.783Z",
+            "is_read": "unread",
+            "model_url": "/comments/shelters/5/comments/2/"
+        }
+    },
+    {
+        "model": "notifications.notifications",
+        "pk": 7,
+        "fields": {
+            "title": "New comment on application 3",
+            "body": "New comment on your application 3",
+            "user": 1,
+            "content_type": 12,
+            "object_id": 3,
+            "created_at": "2023-11-21T05:43:36.927Z",
+            "is_read": "unread",
+            "model_url": "/comments/applications/1/comments/3/"
+        }
+    },
+    {
+        "model": "notifications.notifications",
+        "pk": 8,
+        "fields": {
+            "title": "New comment on application 4",
+            "body": "New comment on your application 4",
+            "user": 2,
+            "content_type": 12,
+            "object_id": 4,
+            "created_at": "2023-11-21T05:45:12.804Z",
+            "is_read": "unread",
+            "model_url": "/comments/applications/3/comments/4/"
+        }
+    },
+    {
+        "model": "notifications.notifications",
+        "pk": 9,
+        "fields": {
+            "title": "New comment on application 1",
+            "body": "New comment on your application 1",
+            "user": 5,
+            "content_type": 12,
+            "object_id": 6,
+            "created_at": "2023-11-21T05:49:02.163Z",
+            "is_read": "unread",
+            "model_url": "/comments/applications/1/comments/6/"
+        }
+    },
+    {
+        "model": "comments.comment",
+        "pk": 1,
+        "fields": {
+            "text": "Poor communication!",
+            "created_at": "2023-11-21T05:34:38.475Z",
+            "user": 1,
+            "shelter": 1,
+            "application": null
+        }
+    },
+    {
+        "model": "comments.comment",
+        "pk": 2,
+        "fields": {
+            "text": "This is a nice shelter, I have submitted an application here.",
+            "created_at": "2023-11-21T05:35:14.780Z",
+            "user": 2,
+            "shelter": 1,
+            "application": null
+        }
+    },
+    {
+        "model": "comments.comment",
+        "pk": 3,
+        "fields": {
+            "text": "Hi, when will you reply?",
+            "created_at": "2023-11-21T05:43:36.923Z",
+            "user": 1,
+            "shelter": null,
+            "application": 1
+        }
+    },
+    {
+        "model": "comments.comment",
+        "pk": 4,
+        "fields": {
+            "text": "Hi, what's up?",
+            "created_at": "2023-11-21T05:45:12.800Z",
+            "user": 2,
+            "shelter": null,
+            "application": 3
+        }
+    },
+    {
+        "model": "comments.comment",
+        "pk": 5,
+        "fields": {
+            "text": "Keep guessing",
+            "created_at": "2023-11-21T05:49:02.159Z",
+            "user": 5,
+            "shelter": null,
+            "application": 1
+        }
+    }
+]
