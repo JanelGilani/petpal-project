@@ -22,3 +22,8 @@ frontend/node_modules
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+
+backend/petpal/*/__pycache__/ */*/__pycache__/ */*/*/__pycache__/ */migrations/0*.py
+*/__pycache__/
+
